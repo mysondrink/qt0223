@@ -1,613 +1,156 @@
-2024-02-26 14:33:02,789 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 278, in showCurrentTime
+2024-02-27 15:34:11,495 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 55, in run
+    Main = img_main()
+TypeError: 'module' object is not callable
+
+2024-02-27 15:34:11,498 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 55, in run
+    Main = img_main()
+TypeError: 'module' object is not callable
+
+2024-02-27 15:59:15,173 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 252, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\HistoryPage.py", line 50, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\HistoryPage.py", line 74, in InitUI
+    self.setTableWidget()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\HistoryPage.py", line 495, in setTableWidget
+    text = MyReport().gethtml()
+TypeError: gethtml() missing 3 required positional arguments: 'item_type', 'reagent_info', and 'nature_aver_str'
+
+2024-02-27 16:55:32,173 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 252, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 50, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 74, in InitUI
+    self.setTableWidget()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 495, in setTableWidget
+    text = MyReport().gethtml()
+TypeError: gethtml() missing 3 required positional arguments: 'item_type', 'reagent_info', and 'nature_aver_str'
+
+2024-02-27 17:15:32,559 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 252, in changePage
+    self.cur_page = globals()[msg]()
+KeyError: 'dataPage'
+
+2024-02-27 17:28:31,726 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:28:31,729 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:29:02,914 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:29:02,917 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:33:08,280 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:33:08,283 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:33:55,020 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-27 17:33:55,024 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 206, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\DataPage.py", line 293, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\util\report.py", line 118, in gethtml
+    temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+IndexError: list index out of range
+
+2024-02-28 10:49:38,520 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 303, in showCurrentTime
     def showCurrentTime(self) -> None:
 KeyboardInterrupt
 
-2024-02-26 14:44:10,343 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 14:44:49,783 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 14:44:54,749 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 128, in blinkIcon
-    def blinkIcon(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 14:45:18,251 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 14:45:41,247 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 128, in blinkIcon
-    def blinkIcon(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 14:57:48,699 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 323, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 79, in showInfoDialog
-    dialog.setInfo(msg)
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 110, in setInfo
-    self.label.setText(msg)
-TypeError: 'PySide2.QtWidgets.QLabel.setText' called with wrong argument types:
-  PySide2.QtWidgets.QLabel.setText(dict)
-Supported signatures:
-  PySide2.QtWidgets.QLabel.setText(str)
-
-2024-02-26 14:57:48,700 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 14:58:30,159 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 14:58:48,603 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 279, in showCurrentTime
+2024-02-28 10:49:38,520 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 303, in showCurrentTime
     def showCurrentTime(self) -> None:
 KeyboardInterrupt
 
-2024-02-26 15:00:31,115 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
+2024-02-28 11:09:32,264 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 264, in changePage
+    self.cur_page = globals()[msg]()
+KeyError: 'PerPage'
 
-2024-02-26 15:01:49,325 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
+2024-02-28 11:10:35,479 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 264, in changePage
+    self.cur_page = globals()[msg]()
+KeyError: 'PerPage'
 
-2024-02-26 15:03:06,579 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
+2024-02-28 11:10:52,094 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 264, in changePage
+    self.cur_page = globals()[msg]()
+KeyError: 'PerPage'
 
-2024-02-26 15:03:10,028 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 279, in showCurrentTime
-    def showCurrentTime(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 15:11:53,285 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 325, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 78, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 19, in __init__
+2024-02-28 11:18:15,573 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 264, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 31, in __init__
     self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 49, in InitUI
-    self.buttonRestart.clicked(self.restart_real_live)
-TypeError: native Qt signal is not callable
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 40, in InitUI
+    self.setBtnIcon()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 72, in setBtnIcon
+    self.ui.per_icon_label.setPixmap(pixImg)
+AttributeError: 'Ui_Form' object has no attribute 'per_icon_label'
 
-2024-02-26 15:11:53,286 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:12:08,245 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 128, in blinkIcon
-    def blinkIcon(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 15:12:18,295 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:14:14,278 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:14:21,122 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:15:09,501 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:15:17,325 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:33:20,559 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:33:21,564 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 120, in restart_real_live
-    app = QApplication(sys.argv) if useGUI else QCoreApplication(sys.argv)
-RuntimeError: Please destroy the QApplication singleton before creating a new QApplication instance.
-
-2024-02-26 15:33:34,183 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 279, in showCurrentTime
-    def showCurrentTime(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 15:34:07,434 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:34:08,210 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 122, in restart_real_live
-    app = QApplication(sys.argv) if useGUI else QCoreApplication(sys.argv)
-RuntimeError: Please destroy the QApplication singleton before creating a new QApplication instance.
-
-2024-02-26 15:34:21,535 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:34:22,870 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 122, in restart_real_live
-    app = QApplication(sys.argv) if useGUI else QCoreApplication(sys.argv)
-RuntimeError: Please destroy the QApplication singleton before creating a new QApplication instance.
-
-2024-02-26 15:34:55,619 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:35:30,501 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:37:17,783 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:38:36,369 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:39:02,907 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:40:06,721 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:40:08,123 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 279, in showCurrentTime
-    def showCurrentTime(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 15:40:28,745 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:40:37,479 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:43:43,226 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:43:50,109 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:45:49,540 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:45:58,907 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:46:07,187 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:53:17,820 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:53:24,808 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:54:39,598 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 325, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 78, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 19, in __init__
+2024-02-28 11:18:50,632 - LogController.py[line:87] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 264, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 31, in __init__
     self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 58, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 15:54:39,599 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 15:55:59,797 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 325, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 78, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 19, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 58, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 15:55:59,797 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:02:27,196 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:02:35,077 - LogController.py[line:85] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 216, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:47:30,188 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:47:37,848 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:48:48,953 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:48:55,824 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:54:00,752 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:54:07,874 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:56:10,722 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 16:56:10,722 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:56:35,522 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 16:56:35,523 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 16:58:37,452 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 119, in blinkAssess
-    def blinkAssess(self, msg) -> None:
-KeyboardInterrupt
-
-2024-02-26 16:58:40,944 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 147, in blinkIcon
-    def blinkIcon(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 16:58:53,919 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 16:58:53,919 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:06:28,587 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 17:06:28,588 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:07:34,130 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 17:07:34,130 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:09:09,097 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 344, in showErrorDialog
-    self.showInfoDialog(dict(info=info, code=code))
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractPage.py", line 81, in showInfoDialog
-    dialog = AbsctractDialog()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 23, in __init__
-    self.InitUI()
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\AbstractDialog.py", line 62, in InitUI
-    layout.addWidget(self.progress)
-TypeError: 'PySide2.QtWidgets.QBoxLayout.addWidget' called with wrong argument types:
-  PySide2.QtWidgets.QBoxLayout.addWidget(CircleProgressBar)
-Supported signatures:
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget, int = 0, PySide2.QtCore.Qt.Alignment = Default(Qt.Alignment))
-  PySide2.QtWidgets.QBoxLayout.addWidget(PySide2.QtWidgets.QWidget)
-
-2024-02-26 17:09:09,097 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:10:25,174 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:10:35,347 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:10:43,819 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\LoadPage.py", line 235, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:31:21,007 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:31:32,536 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:32:12,252 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:32:41,430 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:33:35,879 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:33:46,325 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 150, in blinkIcon
-    def blinkIcon(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 17:33:55,698 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:34:10,868 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:34:18,125 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 301, in showCurrentTime
-    def showCurrentTime(self) -> None:
-KeyboardInterrupt
-
-2024-02-26 17:34:27,193 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:34:48,745 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:34:56,502 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:35:18,195 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:35:25,160 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:35:34,557 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
-
-2024-02-26 17:36:17,676 - LogController.py[line:88] - ERROR: Traceback (most recent call last):
-  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\LoadPage.py", line 238, in changePage
-    a = 1/0
-ZeroDivisionError: division by zero
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 40, in InitUI
+    self.setBtnIcon()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\view\SysPage.py", line 72, in setBtnIcon
+    """
+AttributeError: 'Ui_Form' object has no attribute 'per_icon_label'
 

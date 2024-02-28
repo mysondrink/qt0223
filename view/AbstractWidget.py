@@ -19,7 +19,7 @@ class AbstractWidget(QWidget):
     update_log = Signal(str)
     update_json = Signal(dict)
     next_page = Signal(str)
-    update_info = Signal(dict)
+    update_info = Signal(str)
 
     def __init__(self):
         """
@@ -30,6 +30,7 @@ class AbstractWidget(QWidget):
         self.logThread.start()
         self.update_log.connect(self.logThread.getLogMsg)
         self.logThread.error_info.connect(self.showErrorDialog) # 捕获线程或其他非界面类的错误
+        self.old_hook = sys.excepthook
         sys.excepthook = self.HandleException
 
     def __del__(self):
@@ -59,8 +60,19 @@ class AbstractWidget(QWidget):
             None
         """
         sys.__excepthook__(excType, excValue, tb)
+        # self.old_hook(excType, excValue, tb)
         err_msg = "".join(traceback.format_exception(excType, excValue, tb))
+        # self.update_log.connect(self.logThread.getLogMsg)
         self.update_log.emit(err_msg)
+        try:
+            self.logThread.getLogMsg(err_msg)
+        except RuntimeError:
+            self.logThread = LogThread()
+            self.logThread.start()
+            self.update_log.connect(self.log_thread.getLogMsg)
+            self.update_log.emit(err_msg)
+            self.logThread.getLogMsg(err_msg)
+        print("global error")
         # m_title = ""
         # m_info = "系统错误！"
         # infoMessage(m_info, m_title, 300)

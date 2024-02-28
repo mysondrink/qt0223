@@ -10,11 +10,13 @@ try:
     from third_party.img.img_acquire import Image_Acquire
     from third_party.img.img_process import Image_Processing
     from controller.AbstractThread import AbstractThread
+    from pic_code.img_main import img_main
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     from qt0223.third_party.img.img_acquire import Image_Acquire
     from qt0223.third_party.img.img_process import Image_Processing
     from qt0223.controller.AbstractThread import AbstractThread
+    from qt0223.pic_code.img_main import img_main
 
 #   定位点圈定区域，可修改
 roi_position = [
@@ -35,8 +37,10 @@ class MyPicThread(AbstractThread):
     def __init__(self):
         super().__init__()
         self.gray_aver = []
-        self.imgAcq = None
-        self.imgPro = None
+        self.judge_flag = 0
+        self.nature_aver = []
+        self.gray_aver_str = []
+        self.nature_aver_str = []
 
     """
     @detail 线程运行函数
@@ -48,51 +52,51 @@ class MyPicThread(AbstractThread):
         time_now = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         path_cache = frozen.app_path() + r'/third_party/img/pic_cache/'
         path_save = frozen.app_path() + r'/third_party/img/picture/'
-        # path_cache = frozen.app_path() + r'\\third_party\\img\\pic_cache\\'
-        # path_save = frozen.app_path() + r'\\third_party\\img\\picture\\'
-        self.imgAcq = Image_Acquire(
-            path_cache=path_cache,
-            path_save=path_save
+        Main = img_main()
+        Camera_Init_flag = Main.imgAcquire(
+            path_chache=path_cache,
+            path_save=path_save,
+            name="%s" % time_now
         )
+        if Camera_Init_flag is not True:
+            return
 
-        self.imgPro = Image_Processing(
-            roi_position=roi_position
-        )
-
-        self.imgAcq.img_acquire(time_now)
-
-        # pic_name = 'img_final'
-        # flag, gray_aver = self.imgPro.process(path_read=frozen.app_path() + r'/inf/picture/' + pic_name + '.jpeg',
-        #                                       path_write=frozen.app_path() + r'/inf/img_out/', reagent=(8, 5),
-        #                                       radius=40)
         item_type = "检测组合" + self.item_type
-        judge_flag, self.gray_aver, self.nature_aver = self.imgPro.process(
-            path_read=frozen.app_path() + r'/third_party/img/picture/' + time_now + '.jpeg',
-            path_write=frozen.app_path() + r'/third_party/img/img_out/', combina=item_type, radius=40)
+        # judge_flag, self.gray_aver, self.nature_aver = self.imgPro.process(
+        #     path_read=frozen.app_path() + r'/third_party/img/picture/' + time_now + '.jpeg',
+        #     path_write=frozen.app_path() + r'/third_party/img/img_out/', combina=item_type, radius=40)
+        judge_flag, self.gray_aver, self.nature_aver = Main.imgProcess(
+            read=frozen.app_path() + r'/third_party/img/picture/' + time_now + '.jpeg',
+            write=frozen.app_path() + r'/third_party/img/img_out/',
+            combina=item_type,
+            radius=40
+        )
         w, h = self.nature_aver.shape
-        w = w - 1
         print(w, h)
         self.antibody_test_results = []
         self.antibody_test_points = []
-        self.nature_aver_str = ""
-        self.gray_aver_str = ""
+        nature_aver_list = []
+        gray_aver_list = []
         for i in range(w):
             for j in range(h):
-                self.nature_aver_str += "," + self.nature_aver[i][j]
-                self.gray_aver_str += "," + str(self.gray_aver[i][j])
+                nature_aver_list.append(self.nature_aver[i][j])
+                gray_aver_list.append(str(self.gray_aver[i][j]))
                 # if (i * h + j) % 2 != 0:
                 #     self.antibody_test_points.append(self.gray_aver[i + 1][j])
                 # else:
                 #     self.antibody_test_results.append(self.nature_aver[i][j])
         # print(self.gray_aver)
         # print(self.nature_aver)
-        for k in range(h):
-            self.gray_aver_str += "," + str(self.gray_aver[w][k])
+        # for k in range(h):
+        #     self.gray_aver_str += "," + str(self.gray_aver[w][k])
         # print(self.nature_aver_str)
         # print(self.gray_aver_str)
+        self.nature_aver_str = ",".join(nature_aver_list)
+        self.gray_aver_str = ",".join(gray_aver_list)
         print("finished!")
         self.finished.emit(time_now)
         self.judge_flag = judge_flag
+
 
     """
     @detail 获取图片pixel信息

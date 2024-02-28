@@ -37,6 +37,7 @@ class SysPage(Ui_Form, AbstractPage):
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
+        self.ui.btnSet.setText("   软件更新")
         self.setBtnIcon()
 
     """
@@ -66,11 +67,6 @@ class SysPage(Ui_Form, AbstractPage):
         return_icon_path = frozen.app_path() + r"/res/icon/return.png"
         self.ui.btnReturn.setIconSize(QSize(32, 32))
         self.ui.btnReturn.setIcon(QIcon(return_icon_path))
-
-        per_icon_path = frozen.app_path() + r"/res/icon/register.png"
-        pixImg = self.mySetIconSize(per_icon_path)
-        self.ui.per_icon_label.setPixmap(pixImg)
-        self.ui.per_icon_label.setAlignment(Qt.AlignCenter)
 
     """
     @detail 设置按钮图标比例
@@ -108,7 +104,7 @@ class SysPage(Ui_Form, AbstractPage):
     """
     @Slot()
     def on_btnSet_clicked(self):
-        page_msg = 'SetPage'
+        page_msg = 'UpdatePage'
         self.next_page.emit(page_msg)
 
     """

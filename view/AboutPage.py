@@ -17,6 +17,9 @@ except ModuleNotFoundError:
     from qt0223.view.gui.about import *
     from qt0223.view.AbstractPage import AbstractPage
 
+CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
+
+
 class AboutPage(Ui_Form, AbstractPage):
     next_page = Signal(str)
     update_json = Signal(dict)
@@ -47,6 +50,11 @@ class AboutPage(Ui_Form, AbstractPage):
         confirm_icon_path = frozen.app_path() + r"/res/icon/confirm.png"
         self.ui.btnUpload.setIconSize(QSize(32, 32))
         self.ui.btnUpload.setIcon(QIcon(confirm_icon_path))
+
+        settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+        settings.setIniCodec("UTF-8")
+        self.ui.label_2.setText(settings.value("MACHINE/machine_name"))
+        self.ui.label_36.setText(settings.value("MACHINE/machine_mode"))
 
     """
     @detail u盘上传信息到软件

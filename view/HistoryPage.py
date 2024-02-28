@@ -70,8 +70,9 @@ class HistoryPage(Ui_Form, AbstractPage):
         self.ui.btnDownload.hide()
         self.ui.btnPrint.hide()
         self.ui.btnReport.hide()
-        self.setReagentCb()
-        self.setTableWidget()
+        self.setAllergenCb()
+        # self.setReagentCb()
+        # self.setTableWidget()
 
     """
     @detail 安装事件监听
@@ -204,18 +205,22 @@ class HistoryPage(Ui_Form, AbstractPage):
             self.current_page += 1
         elif cur_page == 2:
             if self.current_page == 0:
-                m_title = "错误"
-                m_title = ""
-                m_info = "已经是第一页!"
-                infoMessage(m_info, m_title)
+                # m_title = "错误"
+                # m_title = ""
+                # m_info = "已经是第一页!"
+                # infoMessage(m_info, m_title)
+                info = "已经是第一页!"
+                self.update_info.emit(info)
                 return
             self.current_page -= 1
         elif cur_page == 3:
             if self.current_page == self.total_page - 1:
-                m_title = "错误"
-                m_title = ""
-                m_info = "已经是最后一页!"
-                infoMessage(m_info, m_title)
+                # m_title = "错误"
+                # m_title = ""
+                # m_info = "已经是最后一页!"
+                # infoMessage(m_info, m_title)
+                info = "已经是最后一页!"
+                self.update_info.emit(info)
                 return
             self.current_page += 1
         min_page = self.current_page * self.page_size
@@ -404,7 +409,21 @@ class HistoryPage(Ui_Form, AbstractPage):
                 age = i[12]
                 gender = i[13]
                 name = i[11]
+                points = i[14]
                 name_pic = pic_name
+                point_str = i[14]
+                gray_aver_str = i[15]
+                nature_aver_str = i[16]
+                # data_json = dict(patient_id=patient_id, patient_name=patient_name,
+                #                  patient_age=patient_age, patient_gender=patient_gender,
+                #                  item_type=item_type, pic_name=pic_name,
+                #                  time=cur_time, doctor=doctor,
+                #                  depart=depart, age=age,
+                #                  gender=gender, name=name,
+                #                  matrix=reagent_matrix, code_num=code_num,
+                #                  pic_path=pic_path, name_pic=name_pic,
+                #                  row_exetable=row_exetable, column_exetable=column_exetable,
+                #                  reagent_matrix_info=reagent_matrix_info)
                 data_json = dict(patient_id=patient_id, patient_name=patient_name,
                                  patient_age=patient_age, patient_gender=patient_gender,
                                  item_type=item_type, pic_name=pic_name,
@@ -414,7 +433,8 @@ class HistoryPage(Ui_Form, AbstractPage):
                                  matrix=reagent_matrix, code_num=code_num,
                                  pic_path=pic_path, name_pic=name_pic,
                                  row_exetable=row_exetable, column_exetable=column_exetable,
-                                 reagent_matrix_info=reagent_matrix_info)
+                                 reagent_matrix_info=reagent_matrix_info,point_str=point_str,
+                                 gray_aver_str=gray_aver_str,nature_aver_str=nature_aver_str)
                 info_msg = 202
                 self.update_json.emit(dict(info=info_msg, data=data_json))
                 """
@@ -439,10 +459,24 @@ class HistoryPage(Ui_Form, AbstractPage):
         # 释放内存
         cursor.close()
         connection.close()
-        self.testinfo.closeWin()
+        # self.testinfo.closeWin()
+
+    def setAllergenCb(self):
+        # 指定要读取的路径
+        path = frozen.app_path() + r"/res/allergen/"
+        # path = r"/res/allergen/"
+        # 获取指定路径下的所有文件名
+        filenames = os.listdir(path)
+        self.ui.modeBox_3.clear()
+        # 输出所有文件名
+        for filename in filenames:
+            # self.ui.modeBox_3.clear()
+            self.ui.modeBox_3.addItem(filename)
+            self.ui.modeBox_3.setCurrentIndex(-1)
 
     """
     @detail 获取试剂卡的信息
+    @detail 弃用
     """
     def setReagentCb(self):
         connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
@@ -546,9 +580,11 @@ class HistoryPage(Ui_Form, AbstractPage):
     @Slot()
     def on_btnConfirm_clicked(self):
         if self.ui.modeBox_3.currentIndex() == -1:
-            m_title = ""
-            m_info = "未选择试剂卡规格！"
-            infoMessage(m_info, m_title, 300)
+            # m_title = ""
+            # m_info = "未选择试剂卡规格！"
+            # infoMessage(m_info, m_title, 300)
+            info = "未选择试剂卡规格！"
+            self.update_info.emit(info)
         else:
             self.resetBtn_2()
             self.ui.btnConfirm.hide()
@@ -585,10 +621,12 @@ class HistoryPage(Ui_Form, AbstractPage):
     @Slot()
     def on_btnDetail_clicked(self):
         if self.ui.historyTable.currentIndex().row() == -1:
-            m_title = "错误"
-            m_title = ""
-            m_info = "未选择试剂卡！"
-            infoMessage(m_info, m_title, 300)
+            # m_title = "错误"
+            # m_title = ""
+            # m_info = "未选择试剂卡！"
+            # infoMessage(m_info, m_title, 300)
+            info = "未选择试剂卡！"
+            self.update_info.emit(info)
             return
         else:
             # 点击空白不显示
@@ -596,10 +634,10 @@ class HistoryPage(Ui_Form, AbstractPage):
             if current_row >= self.min_size:
                 return
             else:
-                self.testinfo = MyTestInfo()
-                self.testinfo.setWindowModality(Qt.ApplicationModal)
-                self.testinfo.show()
-                self.next_page.emit('dataPage')
+                # self.testinfo = MyTestInfo()
+                # self.testinfo.setWindowModality(Qt.ApplicationModal)
+                # self.testinfo.show()
+                self.next_page.emit('DataPage')
                 self.changePhoto(current_row)
                 return
             self.resetBtn_3()

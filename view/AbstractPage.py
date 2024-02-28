@@ -19,6 +19,13 @@ class ProcessDialog(AbsctractDialog):
     def mouseDoubleClickEvent(self, msg):
         pass
 
+class ErrorDialog(AbsctractDialog):
+    def __init__(self):
+        super().__init__()
+
+    def mouseDoubleClickEvent(self, msg):
+        pass
+
 
 class AbstractPage(AbstractWidget):
     def __init__(self):
@@ -56,34 +63,13 @@ class AbstractPage(AbstractWidget):
         Returns:
             None
         """
-        code = msg['code']
-        info = msg['info']
-        if code == 201:
-            # 只显示文字
-            dialog = AbsctractDialog()
-            dialog.setInfo(info)
-            dialog.setParent(self)
-            dialog.hideProgress()
-            dialog.hideBtn()
-            dialog.show()
-            dialog.setTimeClose()
-        elif code == 202:
-            # 显示文字和进度条
-            dialog = AbsctractDialog()
-            dialog.setInfo(info)
-            dialog.setParent(self)
-            # dialog.hideProgress()
-            dialog.hideBtn()
-            dialog.show()
-            # dialog.setTimeClose()
-        elif code == 404:
-            # 显示文字和按钮
-            dialog = AbsctractDialog()
-            dialog.setInfo(info)
-            dialog.setParent(self)
-            dialog.hideProgress()
-            dialog.show()
-            # dialog.setTimeClose()
+        dialog = AbsctractDialog()
+        dialog.setInfo(msg)
+        dialog.setParent(self)
+        dialog.hideProgress()
+        dialog.hideBtn()
+        dialog.setTimeClose()
+        dialog.show()
 
     def showErrorDialog(self) -> None:
         """
@@ -92,7 +78,13 @@ class AbstractPage(AbstractWidget):
             None
         """
         info = "系统错误"
-        code = 404
-        print(info + " from ", self._s.currentWidget())
+        try:
+            print(info + " from ", self._s.currentWidget())
+        except AttributeError:
+            print(info + " from ", self.objectName())
         # self.showInfoDialog(info)
-        self.showInfoDialog(dict(info=info, code=code))
+        dialog = ErrorDialog()
+        dialog.setInfo(info)
+        dialog.setParent(self)
+        dialog.hideProgress()
+        dialog.show()

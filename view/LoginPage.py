@@ -37,7 +37,7 @@ class LoginPage(Ui_Form, AbstractPage):
             None
         """
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        # self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setBtnIcon()
         self.mytest()
@@ -62,7 +62,7 @@ class LoginPage(Ui_Form, AbstractPage):
         elif code == 404:
             info = "用户名或密码错误!"
             # self.update_info.emit(info)
-            self.update_info.emit(dict(info=info, code=201))
+            self.update_info.emit(info)
 
     def mytest(self) -> None:
         """
@@ -172,10 +172,10 @@ class LoginPage(Ui_Form, AbstractPage):
             None
         """
         # super().on_loginBtn_clicked()
+        # a = 1/0
         if self.ui.nameLine.text() == "" or self.ui.numLine.text() == "":
             info = "用户名或密码未填写！"
-            code = 403
-            self.update_info.emit(dict(info=info, code=code))
+            self.update_info.emit(info)
         else:
             print("send msg")
             # self.update_json.disconnect(self.controller.authUser)

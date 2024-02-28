@@ -5,13 +5,11 @@
 """
 import sys
 import traceback
-
 from PySide2.QtCore import QThread, Signal
 try:
     from controller.LogController import LogThread
 except ModuleNotFoundError:
     from qt0223.controller.LogController import LogThread
-
 
 
 class AbstractThread(QThread):
@@ -26,6 +24,7 @@ class AbstractThread(QThread):
         self.log_thread = LogThread()
         self.log_thread.start()
         self.update_log.connect(self.log_thread.getLogMsg)
+        self.old_hook = sys.excepthook
         sys.excepthook = self.HandleException
 
     def __del__(self):
@@ -59,8 +58,17 @@ class AbstractThread(QThread):
         """
         print("m_info")
         sys.__excepthook__(excType, excValue, tb)
+        # self.old_hook(excType, excValue, tb)
         err_msg = "".join(traceback.format_exception(excType, excValue, tb))
         self.update_log.emit(err_msg)
+        try:
+            self.log_thread.getLogMsg(err_msg)
+        except RuntimeError:
+            self.log_thread = LogThread()
+            self.log_thread.start()
+            self.update_log.connect(self.log_thread.getLogMsg)
+            self.update_log.emit(err_msg)
+            self.log_thread.getLogMsg(err_msg)
         # m_title = ""
         # m_info = "系统错误！"
         # infoMessage(m_info, m_title, 300)

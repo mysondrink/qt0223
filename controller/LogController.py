@@ -4,8 +4,7 @@
 @Time：2024/1/8 16:41
 """
 import time
-
-from PySide2.QtCore import QThread, Signal
+from PySide2.QtCore import QThread, Signal, Slot
 import logging
 import sys
 import traceback

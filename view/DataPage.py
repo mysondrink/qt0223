@@ -4,20 +4,23 @@ import pymysql
 import cv2 as cv
 import datetime
 import numpy as np
+
 try:
     # from func.infoPage import infoMessage
     from view.gui.info import *
     import util.frozen as frozen
     from util import dirs
     from util.report import MyReport
-    from view.AbstractPage import AbstractPage
+    from view.AbstractPage import AbstractPage, ProcessDialog
+    from controller.USBController import CheckUSBThread
 except ModuleNotFoundError:
     # from func.infoPage import infoMessage
     from qt0223.view.gui.info import *
     import qt0223.util.frozen as frozen
     from qt0223.util import dirs
     from qt0223.util.report import MyReport
-    from qt0223.view.AbstractPage import AbstractPage
+    from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
+    from qt0223.controller.USBController import CheckUSBThread
 
 
 class DataPage(Ui_Form, AbstractPage):
@@ -46,7 +49,8 @@ class DataPage(Ui_Form, AbstractPage):
         self.setBtnIcon()
         self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui.tableView_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.setTableWidget()
+        self.ui.photoLabel.setText("")
+        self.ui.picLabel.setText("")
 
     def closeEvent(self, event) -> None:
         """
@@ -117,18 +121,21 @@ class DataPage(Ui_Form, AbstractPage):
         pic_path = self.data['pic_path']
         self.test_time = cur_time[0] + ' ' + cur_time[1]
         reagent_matrix_info = self.data['reagent_matrix_info']
-        self.pix_table_model = QStandardItemModel(self.row_exetable + int(self.row_exetable / 2), self.column_exetable)
-        self.pix_table_model_copy = QStandardItemModel(self.row_exetable + int(self.row_exetable / 2) + 2,
-                                                       self.column_exetable)
+        self.pix_table_model = QStandardItemModel(
+            self.row_exetable + int(self.row_exetable / 2), self.column_exetable
+        )
+        self.pix_table_model_copy = QStandardItemModel(
+            self.row_exetable + int(self.row_exetable / 2) + 2,
+            self.column_exetable
+        )
         self.ui.tableView.setModel(self.pix_table_model)
-        self.ui.tableView_2.setModel(self.pix_table_model_copy)
-
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        # self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableView.horizontalHeader().close()
         self.ui.tableView.verticalHeader().close()
-        self.ui.tableView.setGridStyle(Qt.NoPen)
+        # self.ui.tableView.setGridStyle(Qt.NoPen)
 
+        self.ui.tableView_2.setModel(self.pix_table_model_copy)
         self.ui.tableView_2.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableView_2.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableView_2.horizontalHeader().close()
@@ -151,17 +158,19 @@ class DataPage(Ui_Form, AbstractPage):
         #
         # self.ui.picLabel.setPixmap(img_left)
         # self.ui.picLabel.setScaledContents(True)
+        self.pic_para = 1
         if self.info == 201:
+            self.point_list = self.data['point_str']
             gray_row = self.data['gray_row']
             gray_column = self.data['gray_column']
-            gray_aver = self.data['gray_aver']
+            gray_aver = self.data['gray_aver'][1:]
             for i in range(self.row_exetable + int(self.row_exetable / 2)):
                 if i % 3 != 0:
                     for j in range(self.column_exetable):
                         if i - flag < gray_row and j < gray_column:
                             # item = QStandardItem(str(gray_aver[i - flag][j]))
                             # pix_num = int(gray_aver[i - flag][j])
-                            pix_num = int(float(gray_aver[i - flag][j]) * pic_para)
+                            pix_num = int(float(gray_aver[i - flag][j]) * self.pic_para)
                             # pix_num = random.randint(15428, 16428)
                             item = QStandardItem(str(pix_num))
                         else:
@@ -170,28 +179,30 @@ class DataPage(Ui_Form, AbstractPage):
                         self.pix_table_model.setItem(i, j, item)
                 else:
                     # num = i % 3
-                    for j in range(self.column_exetable):
+                    for j in range(0, self.column_exetable):
                         if j < gray_column:
-                            item = QStandardItem(reagent_matrix_info[flag][j])
                             # item = QStandardItem(reagent_matrix_info[num][j])
+                            item = QStandardItem(reagent_matrix_info[flag][j])
                         else:
                             item = QStandardItem(str(0))
                         item.setTextAlignment(Qt.AlignCenter)
                         self.pix_table_model.setItem(i, j, item)
                     flag += 1
-            self.insertMysql(name_pic, cur_time)  # 图片数据信息存入数据库
 
-            # self.ftpServer(base64_data)   #上传图片到服务器
+            self.insertMysql(name_pic, cur_time)  # 图片数据信息存入数据库
         elif self.info == 202:
             self.allergy_info = reagent_matrix_info
             point_str = self.data['point_str']
-            self.showDataView(point_str + reagent_matrix_info)
+            self.showDataView(point_str + ',' + reagent_matrix_info)
             # reagent_matrix_info = re.split(r",", reagent_matrix_info)[1:]
+            # self.allergy_info = reagent_matrix_info
             # for i in range(self.row_exetable + int(self.row_exetable / 2)):
             #     for j in range(self.column_exetable):
             #         item = QStandardItem(reagent_matrix_info[i * self.column_exetable + j])
             #         item.setTextAlignment(Qt.AlignCenter)
             #         self.pix_table_model.setItem(i, j, item)
+
+        self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
 
     def insertMysql(self, name_pic, cur_time) -> None:
         """
@@ -205,8 +216,9 @@ class DataPage(Ui_Form, AbstractPage):
             None
         """
         reagent_matrix_info = str(self.readPixtable())
-        point_str = self.data["point_str"]
-        self.showDataView(point_str + reagent_matrix_info)
+        point_str = self.data['point_str']
+        self.showDataView(point_str + "," + reagent_matrix_info)
+        self.allergy_info = reagent_matrix_info
         patient_id = self.data['patient_id']
 
         # name_id = random.randint(1,199)
@@ -228,8 +240,14 @@ class DataPage(Ui_Form, AbstractPage):
         points = self.data['point_str']
         gray_aver = self.data['gray_aver_str']
         nature_aver = self.data['nature_aver_str']
-        connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
-                                     charset='utf8')
+        connection = pymysql.connect(
+            host="127.0.0.1",
+            user="root",
+            password="password",
+            port=3306,
+            database="test",
+            charset='utf8'
+        )
         # MySQL语句
         sql = 'INSERT IGNORE INTO patient_copy1(name, patient_id, age, gender) VALUES (%s,%s,%s,%s)'
         sql_2 = "INSERT IGNORE INTO reagent_copy1(reagent_type, patient_id, reagent_photo, " \
@@ -241,11 +259,24 @@ class DataPage(Ui_Form, AbstractPage):
         cursor = connection.cursor()
         try:
             # 执行SQL语句
-            cursor.execute(sql, [patient_name, patient_id, patient_age, patient_gender])
-            cursor.execute(sql_2, [item_type, patient_id, pic_name, cur_time[0],
-                                   code_num, doctor, depart, matrix, cur_time[1],
-                                   reagent_matrix_info, name, age, patient_gender,
-                                   points, gray_aver, nature_aver])
+            cursor.execute(
+                sql,
+                [
+                    patient_name,
+                    patient_id,
+                    patient_age,
+                    patient_gender
+                ]
+            )
+            cursor.execute(
+                sql_2,
+                [
+                    item_type, patient_id, pic_name, cur_time[0],
+                    code_num, doctor, depart, matrix, cur_time[1],
+                    reagent_matrix_info, name, age, patient_gender,
+                    points, gray_aver, nature_aver
+                ]
+            )
             # 提交事务
             connection.commit()
         except Exception as e:
@@ -256,20 +287,17 @@ class DataPage(Ui_Form, AbstractPage):
         cursor.close()
         connection.close()
 
-    def setTableWidget(self) -> None:
-        """
-        设置报告单页面
-        Returns:
-            None
-        """
+    def setTableWidget(self, item_type, reagent_info, nature_aver_str):
         v = QVBoxLayout()
-        text = MyReport().gethtml()
+        text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
         self.myreport = QTextEdit()
-
-        str_list = []
-        for i in range(16):
-            str_list.append(str(i))
-        self.myreport.setHtml(text % tuple(str_list))
+        # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
+        # cur_time[0] + ' ' + cur_time[1]
+        str_list = [self.data['patient_name'], self.data['patient_gender'], self.data['patient_id'],
+                    self.data['code_num'], self.data['item_type'],
+                    self.data['time'][0] + ' ' + self.data['time'][1],
+                    text[1], '']
+        self.myreport.setHtml(text[0] % tuple(str_list))
 
         v.addWidget(self.myreport)
         self.ui.tableWidget.setLayout(v)
@@ -280,13 +308,13 @@ class DataPage(Ui_Form, AbstractPage):
         Returns:
             str
         """
-        reagent_matrix_info = ""
+        reagent_matrix_info = []
         for i in range(self.row_exetable + int(self.row_exetable / 2)):
             for j in range(self.column_exetable):
                 index = self.pix_table_model.index(i, j)
                 data = self.pix_table_model.data(index)
-                reagent_matrix_info += "," + str(data)
-        return reagent_matrix_info
+                reagent_matrix_info.append(str(data))
+        return ",".join(reagent_matrix_info)
 
     def getUSBInfo(self, msg) -> None:
         """
@@ -316,8 +344,8 @@ class DataPage(Ui_Form, AbstractPage):
     """
     @detail 下载信息到u盘
     @detail 下载内容包括图片、数据库信息
+    @detail 弃用
     """
-
     def downLoadToUSB(self):
         # 指定目标目录
         target_dir = '/media/orangepi/orangepi/'
@@ -382,7 +410,7 @@ class DataPage(Ui_Form, AbstractPage):
     """
 
     def showDataView(self, data):
-        title_list = ["定位点", "", "定位点", "", "定位点"]
+        title_list = ["定位点", "", "", "", "定位点"]
         data_copy = re.split(r",", data)
         data_copy = title_list + data_copy
         row = self.pix_table_model_copy.rowCount()
@@ -402,29 +430,40 @@ class DataPage(Ui_Form, AbstractPage):
 
     @Slot()
     def on_btnPrint_clicked(self):
+        info = "打印中。。。"
+        dialog = ProcessDialog()
+        dialog.setInfo(info)
+        dialog.setParent(self)
+        dialog.hideBtn()
+        dialog.show()
         print("print")
-        # m_title = ""
-        # m_info = "输出表格成功!"
-        # infoMessage(m_info, m_title, 300)
-        # time.sleep(1)
         time_now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         test_time = self.test_time
         Data_Base = [self.data['patient_name'], self.data['patient_gender'], self.data['patient_id'],
-                     self.data['code_num'], '检测组合' + self.data['item_type'], test_time, time_now]
-        gray_aver_str = self.data['gray_aver_str'].split(",")[1:]
-        nature_aver_str = self.data['nature_aver_str'].split(",")[1:]
+                    self.data['code_num'], '检测组合' + self.data['item_type'], test_time, time_now]
+        gray_aver_str = self.data['gray_aver_str'].split(",")
+        nature_aver_str = self.data['nature_aver_str'].split(",")
         array_gray_aver = np.array(gray_aver_str)
         array_nature_aver = np.array(nature_aver_str)
         matrix_gray_aver = array_gray_aver.reshape(9, 5)
-        matrix_nature_aver = array_nature_aver.reshape(8, 5)
-        Data_Nature = matrix_gray_aver
-        Data_Light = matrix_nature_aver
+        matrix_nature_aver = array_nature_aver.reshape(9, 5)
+        Data_Nature = matrix_nature_aver
+        Data_Light = matrix_gray_aver
         return
-        myEm5822_Print = Em5822_Print()
-        myEm5822_Print.em5822_print(Data_Base, Data_Nature, Data_Light)
-        m_title = ""
-        m_info = "输出表格成功!"
-        infoMessage(m_info, m_title, 300)
+        # myEm5822_Print = Em5822_Print()
+        # myEm5822_Print.em5822_print(Data_Base, Data_Nature, Data_Light)
+        # m_title = ""
+        # m_info = "输出表格成功!"
+        # infoMessage(m_info, m_title, 300)
+        Main = img_main()
+        if Main.natPrint(Data_Base, Data_Nature, Data_Light):
+            dialog.closeDialog()
+            info = "输出表格成功!"
+            self.update_info.emit(info)
+        else:
+            dialog.closeDialog()
+            info = "输出表格失败!"
+            self.update_info.emit(info)
 
     """
     @detail 下载按钮操作
@@ -434,23 +473,22 @@ class DataPage(Ui_Form, AbstractPage):
     @Slot()
     def on_btnDownload_clicked(self):
         print("Download")
-        m_title = "错误"
-        m_title = ""
-        m_info = "下载中..."
-        infoMessage(m_info, m_title, 380)
-        return
         name = self.data['name_pic']
         path = self.data['pic_path']
-        self.usbthread = CheckUSBThread(name, path)
+        data = self.data
+        self.usbthread = CheckUSBThread(name, path, data, self.data['point_str'] + ',' + self.allergy_info)
         self.usbthread.update_json.connect(self.getUSBInfo)
         # 创建定时器
-        self.info_timer = QTimer()
-        self.info_timer.timeout.connect(self.usbthread.start)
-        self.info_timer.timeout.connect(self.info_timer.stop)
+        self.download_timer = QTimer()
+        self.download_timer.timeout.connect(self.usbthread.start)
+        self.download_timer.timeout.connect(self.download_timer.stop)
         # 设置定时器延迟时间，单位为毫秒
         # 延迟2秒跳转
         delay_time = 2000
-        self.info_timer.start(delay_time)
+        self.download_timer.start(delay_time)
+        m_title = ""
+        m_info = "下载中..."
+        infoMessage(m_info, m_title, 300)
 
     """
     @detail 数据按钮操作

@@ -23,6 +23,8 @@ try:
     from view.ClearPage import ClearPage
     from view.SetPage import SetPage
     from view.AboutPage import AboutPage
+    from view.RegPage import RegPage
+    from view.UpdatePage import UpdatePage
 except ModuleNotFoundError:
     from qt0223.view.AbstractPage import AbstractPage
     from qt0223.controller.BlinkController import CheckBlinkThread
@@ -42,10 +44,13 @@ except ModuleNotFoundError:
     from qt0223.view.ClearPage import ClearPage
     from qt0223.view.SetPage import SetPage
     from qt0223.view.AboutPage import AboutPage
+    from qt0223.view.RegPage import RegPage
+    from qt0223.view.UpdatePage import UpdatePage
 
 FLAG_NUM = 0
 FAILED_CODE = 404
 SUCCEED_CODE = 202
+CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
 
 
 class LoadPage(Ui_Form, AbstractPage):
@@ -84,12 +89,16 @@ class LoadPage(Ui_Form, AbstractPage):
             None
         """
         self.statusShowTime()
-        self.ui.title_label.setText('  荧光分析仪')
+        self.title_timer = QTimer()
+        self.title_timer.timeout.connect(self.setTitle)
+        thread_delay_time = 2000
+        self.title_timer.start(thread_delay_time)
+        # self.ui.title_label.setText('  荧光分析仪')
         self.ui.retry_icon_label.hide()
         self.ui.btnRetry.hide()
         # self.ui.textEdit.setEnabled(False)
         # self.setWindowFlags(Qt.WindowStaysOnTopHint)
-        self.setWindowFlags(Qt.FramelessWindowHint)  # 去掉窗口状态栏
+        # self.setWindowFlags(Qt.FramelessWindowHint)  # 去掉窗口状态栏
         self.setAttribute(Qt.WA_TranslucentBackground)  # 窗口背景透明
         self.setFocusPolicy(Qt.NoFocus)
         self.ui.centerframe.setFrameStyle(QFrame.NoFrame)
@@ -118,6 +127,11 @@ class LoadPage(Ui_Form, AbstractPage):
         self.controller.update_page.connect(self.showPage)
         self.controller.update_retry.connect(self.retryThread)
         self.controller.startThread()
+
+    def setTitle(self):
+        settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+        settings.setIniCodec("UTF-8")
+        self.ui.title_label.setText("  " + settings.value("MACHINE/machine_name"))
 
     def blinkAssess(self, msg) -> None:
         """
@@ -235,7 +249,6 @@ class LoadPage(Ui_Form, AbstractPage):
             None
         """
         try:
-            a = 1/0
             # 设置栈为2
             num = len(self.list_widget)
             if msg == 'history':
@@ -332,19 +345,19 @@ class LoadPage(Ui_Form, AbstractPage):
         self.update_json.connect(self.cur_page.getData)  # 更改，发送给controller
         self.update_json.emit(msg)
 
-    def showErrorDialog(self) -> None:
-        """
-        弃用
-
-        显示系统错误弹窗
-        Returns:
-            None
-        """
-        info = "系统错误"
-        code = 404
-        print(info + " from ", self._s.currentWidget())
-        # self.showInfoDialog(info)
-        self.showInfoDialog(dict(info=info, code=code))
+    # def showErrorDialog(self) -> None:
+    #     """
+    #     弃用
+    #
+    #     显示系统错误弹窗
+    #     Returns:
+    #         None
+    #     """
+    #     info = "系统错误"
+    #     code = 404
+    #     print(info + " from ", self._s.currentWidget())
+    #     # self.showInfoDialog(info)
+    #     self.showInfoDialog(dict(info=info, code=code))
 
     @Slot()
     def on_btnRetry_clicked(self) -> None:

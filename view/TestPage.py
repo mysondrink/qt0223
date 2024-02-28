@@ -569,6 +569,7 @@ class TestPage(Ui_Form, AbstractPage):
         dialog = ProcessDialog()
         dialog.setInfo(info)
         dialog.setParent(self)
+        dialog.hideBtn()
         dialog.show()
         # self.testinfo.show()
         self.mypicthread.setType(self.ui.modeBox_1.currentText())

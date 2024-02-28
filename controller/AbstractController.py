@@ -46,6 +46,14 @@ class AbstractController(QObject):
         sys.__excepthook__(excType, excValue, tb)
         err_msg = "".join(traceback.format_exception(excType, excValue, tb))
         self.update_log.emit(err_msg)
+        try:
+            self.log_thread.getLogMsg(err_msg)
+        except RuntimeError:
+            self.log_thread = LogThread()
+            self.log_thread.start()
+            self.update_log.connect(self.log_thread.getLogMsg)
+            self.update_log.emit(err_msg)
+            self.log_thread.getLogMsg(err_msg)
         # m_title = ""
         # m_info = "系统错误！"
         # infoMessage(m_info, m_title, 300)
