@@ -7,14 +7,10 @@ from PySide2.QtCore import QThread, Signal, QDateTime
 import datetime
 try:
     import util.frozen as frozen
-    from third_party.img.img_acquire import Image_Acquire
-    from third_party.img.img_process import Image_Processing
     from controller.AbstractThread import AbstractThread
     from pic_code.img_main import img_main
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
-    from qt0223.third_party.img.img_acquire import Image_Acquire
-    from qt0223.third_party.img.img_process import Image_Processing
     from qt0223.controller.AbstractThread import AbstractThread
     from qt0223.pic_code.img_main import img_main
 
@@ -50,8 +46,8 @@ class MyPicThread(AbstractThread):
     def run(self):
         pic_path = QDateTime.currentDateTime().toString('yyyy-MM-dd')
         time_now = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-        path_cache = frozen.app_path() + r'/third_party/img/pic_cache/'
-        path_save = frozen.app_path() + r'/third_party/img/picture/'
+        path_cache = frozen.app_path() + r'/pic_code/img/img_cache/'
+        path_save = frozen.app_path() + r'/pic_code/img/img_tem'
         Main = img_main()
         Camera_Init_flag = Main.imgAcquire(
             path_chache=path_cache,
@@ -66,11 +62,17 @@ class MyPicThread(AbstractThread):
         #     path_read=frozen.app_path() + r'/third_party/img/picture/' + time_now + '.jpeg',
         #     path_write=frozen.app_path() + r'/third_party/img/img_out/', combina=item_type, radius=40)
         judge_flag, self.gray_aver, self.nature_aver = Main.imgProcess(
-            read=frozen.app_path() + r'/third_party/img/picture/' + time_now + '.jpeg',
-            write=frozen.app_path() + r'/third_party/img/img_out/',
+            read=frozen.app_path() + r'/pic_code/img/img_tem/' + time_now + '.jpeg',
+            write=frozen.app_path() + r'/pic_code/img/img_out/',
             combina=item_type,
             radius=40
         )
+        # judge_flag, self.gray_aver, self.nature_aver = Main.imgProcess(
+        #     read=frozen.app_path() + r'/pic_code/img/img_input/2.jpeg',
+        #     write=frozen.app_path() + r'/pic_code/img/img_out/',
+        #     combina=item_type,
+        #     radius=40
+        # )
         w, h = self.nature_aver.shape
         print(w, h)
         self.antibody_test_results = []

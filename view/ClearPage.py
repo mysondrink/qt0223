@@ -15,6 +15,8 @@ try:
     # from inf.probeThread import MyProbe
     # from inf.clearThread import ClearThread
     from view.AbstractPage import AbstractPage
+    from controller.ProbeMemController import MyProbe
+    from controller.ClearController import ClearThread
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     # from func.infoPage import infoMessage
@@ -22,6 +24,8 @@ except ModuleNotFoundError:
     # from inf.probeThread import MyProbe
     # from inf.clearThread import ClearThread
     from qt0223.view.AbstractPage import AbstractPage
+    from qt0223.controller.ProbeMemController import MyProbe
+    from qt0223.controller.ClearController import ClearThread
 
 
 class ClearPage(Ui_Form, AbstractPage):
@@ -35,31 +39,9 @@ class ClearPage(Ui_Form, AbstractPage):
     """
     def __init__(self):
         super().__init__()
-        sys.excepthook = self.HandleException
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.InitUI()
-
-    """
-    @detail 捕获及输出异常类
-    @param excType: 异常类型
-    @param excValue: 异常对象
-    @param tb: 异常的trace back
-    """
-    def HandleException(self, excType, excValue, tb):
-        sys.__excepthook__(excType, excValue, tb)
-        err_msg = ''.join(traceback.format_exception(excType, excValue, tb))
-        self.update_log.emit(err_msg)
-
-    """
-    @detail 发送异常信息
-    @detail 在正常抛出异常时使用
-    @detail 未使用
-    """
-    def sendException(self):
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-        err_msg = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-        self.update_log.emit(err_msg)
 
     """
     @detail 设置界面相关信息
@@ -145,7 +127,7 @@ class ClearPage(Ui_Form, AbstractPage):
     def memWarning(self):
         m_title = "警告"
         m_info = "存储已经占满，请清理图片！"
-        infoMessage(m_info, m_title)
+        # infoMessage(m_info, m_title)
         return
 
     """
@@ -154,10 +136,12 @@ class ClearPage(Ui_Form, AbstractPage):
     """
     def getInfo(self, msg):
         self.setClearBar()
-        m_title = "确认"
-        m_title = ""
-        m_info = "已经完成清理!"
-        infoMessage(m_info, m_title, 260)
+        # m_title = "确认"
+        # m_title = ""
+        # m_info = "已经完成清理!"
+        # infoMessage(m_info, m_title, 260)
+        info = "已经完成清理!"
+        self.showInfoDialog(info)
         return
 
     """
@@ -176,10 +160,12 @@ class ClearPage(Ui_Form, AbstractPage):
         #     files_list.append(files)
 
         if self.ui.clearCb.currentIndex() == -1:
-            m_title = "错误"
-            m_title = ""
-            m_info = "未选择时间，请选择后执行该操作！"
-            infoMessage(m_info, m_title)
+            # m_title = "错误"
+            # m_title = ""
+            # m_info = "未选择时间，请选择后执行该操作！"
+            # infoMessage(m_info, m_title)
+            info = "未选择时间，请选择后执行该操作！"
+            self.showInfoDialog(info)
             return
         dict_mode = {
             "7": 1,

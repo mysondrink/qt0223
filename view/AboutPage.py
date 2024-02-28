@@ -11,11 +11,13 @@ import traceback
 try:
     import util.frozen as frozen
     from view.gui.about import *
-    from view.AbstractPage import AbstractPage
+    from view.AbstractPage import AbstractPage, ProcessDialog
+    from controller.uploadController import UploadThread
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     from qt0223.view.gui.about import *
-    from qt0223.view.AbstractPage import AbstractPage
+    from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
+    from qt0223.controller.uploadController import UploadThread
 
 CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
 
@@ -70,7 +72,7 @@ class AboutPage(Ui_Form, AbstractPage):
         except Exception as e:
             m_title = ""
             m_info = "U盘未插入或无法访问！"
-            infoMessage(m_info, m_title, 240)
+            # infoMessage(m_info, m_title, 240)
             return
 
             # 检查U盘是否已插入
@@ -83,17 +85,17 @@ class AboutPage(Ui_Form, AbstractPage):
                     # print(f.read())
                     m_title = ""
                     m_info = f.read()
-                    infoMessage(m_info, m_title)
+                    # infoMessage(m_info, m_title)
             else:
                 # print("文件不存在")
                 m_title = ""
                 m_info = "文件不存在!"
-                infoMessage(m_info, m_title, 300)
+                # infoMessage(m_info, m_title, 300)
         else:
             # print("U盘未插入或无法访问")
             m_title = ""
             m_info = "U盘未插入或无法访问!"
-            infoMessage(m_info, m_title, 240)
+            # infoMessage(m_info, m_title, 240)
 
     """
     @detail 上传按钮操作
@@ -101,16 +103,95 @@ class AboutPage(Ui_Form, AbstractPage):
     """
     @Slot()
     def on_btnUpload_clicked(self):
-        m_title = ""
-        m_info = "上传中..."
-        infoMessage(m_info, m_title, 380)
-        # 创建定时器
-        self.change_timer = QTimer()
-        self.change_timer.timeout.connect(self.uploadFromUSB())
-        # 设置定时器延迟时间，单位为毫秒
-        # 延迟2秒跳转
-        delay_time = 2000
-        self.change_timer.start(delay_time)
+        # self.testinfo = MyTestInfo()
+        info = "数据上传中。。。"
+        dialog = ProcessDialog()
+        dialog.setInfo(info)
+        dialog.setParent(self)
+        dialog.hideBtn()
+        dialog.show()
+
+        """
+        # 指定目标目录
+        target_dir = '/media/orangepi/'
+        # target_dir = '/media/xiao/'
+        # 获取U盘设备路径
+        try:
+            if len(os.listdir(target_dir)) == 0:
+                self.update_json.emit(failed_code)
+                return
+            else:
+                u_name = r"/media/orangepi/" + os.listdir(target_dir)[0] + "/"
+        except Exception as e:
+            print(e)
+            self.sendException()
+            self.update_json.emit(failed_code)
+            return
+        try:
+            cmd = 'su orangepi -c "cd %s"' % u_name
+            flag = os.system(cmd)
+            if flag != 0:
+                self.update_json.emit(failed_code)
+                delete_cmd = 'echo %s | sudo rm -rf %s' % ('orangepi', u_name)
+                os.system(delete_cmd)
+                return
+        except Exception as e:
+            print(e)
+            self.sendException()
+            self.update_json.emit(failed_code)
+            return
+        """
+        try:
+            os.system("sudo mount /dev/sda1 /mnt/mydev")
+        except Exception as e:
+            print("aboutPage :", e)
+            return False
+        u_name = "/mnt/mydev/"
+        dir_list = os.listdir(u_name)
+        upload_file_list = []
+        for i in dir_list:
+            path = u_name + i + "/new_data.xlsx"
+            print(path)
+            if os.path.exists(path):
+                print("True")
+                upload_file_list.append(path)
+            else:
+                print("False")
+        if not upload_file_list:
+            try:
+                # self.testinfo.closeWin()
+                dialog.closeDialog()
+                # m_title = ""
+                # m_info = "上传完成!"
+                # infoMessage(m_info, m_title, 300)
+                info = "上传完成!"
+                self.showInfoDialog(info)
+                os.system("sudo umount /mnt/mydev")
+            except Exception as e:
+                print("aboutPage：", e)
+            return
+        self.upload_thread_list = []
+        for i in upload_file_list:
+            thread = UploadThread(i)
+            self.upload_thread_list.append(thread)
+            thread.finished.connect(lambda: thread.deleteLater())
+            thread.finished.connect(lambda: self.countUploadThread(dialog))
+            thread.start()
+
+    def countUploadThread(self, obj):
+        self.count_num = self.count_num + 1
+        if len(self.upload_thread_list) <= self.count_num:
+            try:
+                os.system("sudo umount /mnt/mydev")
+            except Exception as e:
+                print("aboutPage：", e)
+            # self.testinfo.closeWin()
+            try:
+                obj.closeDialog()
+            except Exception as e:
+                return
+            return
+
 
     """
     @detail 返回按钮操作
@@ -121,3 +202,5 @@ class AboutPage(Ui_Form, AbstractPage):
         page_msg = 'SysPage'
         self.next_page.emit(page_msg)
 
+    def getData(self):
+        pass

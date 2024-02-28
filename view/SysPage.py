@@ -104,7 +104,7 @@ class SysPage(Ui_Form, AbstractPage):
     """
     @Slot()
     def on_btnSet_clicked(self):
-        page_msg = 'UpdatePage'
+        page_msg = 'SetPage'
         self.next_page.emit(page_msg)
 
     """

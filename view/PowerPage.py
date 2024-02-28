@@ -96,10 +96,12 @@ class PowerPage(Ui_Form, AbstractPage):
     """
     @Slot()
     def on_btnShutdown_clicked(self):
-        m_title = "提示"
-        m_title = ""
-        m_info = "请关闭电源！"
-        infoMessage(m_info, m_title, 300)
+        # m_title = "提示"
+        # m_title = ""
+        # m_info = "请关闭电源！"
+        # infoMessage(m_info, m_title, 300)
+        info = "请在提示语关闭后关闭电源！"
+        self.showInfoDialog(info)
         time.sleep(1)
         return
         # order_str = "sudo shutdown -h now"

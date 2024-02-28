@@ -14,7 +14,8 @@ try:
     # from inf.wifiThread import WifiThread
     from third_party.keyboard.keyboard import KeyBoard
     from util.wifi import wifisearch
-    from view.AbstractPage import AbstractPage
+    from view.AbstractPage import AbstractPage, ProcessDialog
+    from controller.WifiController import WifiThread
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     # from func.infoPage import infoMessage
@@ -22,7 +23,8 @@ except ModuleNotFoundError:
     # from inf.wifiThread import WifiThread
     from qt0223.third_party.keyboard.keyboard import KeyBoard
     from qt0223.util.wifi import wifisearch
-    from qt0223.view.AbstractPage import AbstractPage
+    from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
+    from qt0223.controller.WifiController import WifiThread
 
 
 class WifiPage(Ui_Form, AbstractPage):
@@ -58,7 +60,7 @@ class WifiPage(Ui_Form, AbstractPage):
 
         self.setFocusWidget()
         self.installEvent()
-        self.mytest()
+        # self.mytest()
 
     """
     @detail 获取wifi连接反馈
@@ -67,28 +69,36 @@ class WifiPage(Ui_Form, AbstractPage):
     """
     def getWifiMsg(self, msg):
         if msg == 202:
-            m_title = "确认"
-            m_title = ""
-            m_info = "wifi连接成功，正在进行时间同步"
-            infoMessage(m_info, m_title)
+            # m_title = "确认"
+            # m_title = ""
+            # m_info = "wifi连接成功，正在进行时间同步"
+            # infoMessage(m_info, m_title)
+            info = "wifi连接成功，正在进行时间同步"
+            self.showInfoDialog(info)
         elif msg == 404:
             self.mywifithread.deleteLater()
-            m_title = "确认"
-            m_title = ""
-            m_info = "wifi连接失败！"
-            infoMessage(m_info, m_title, 280)
+            # m_title = "确认"
+            # m_title = ""
+            # m_info = "wifi连接失败！"
+            # infoMessage(m_info, m_title, 280)
+            info = "wifi连接失败！"
+            self.showInfoDialog(info)
         elif msg == 403:
             self.mywifithread.deleteLater()
-            m_title = "确认"
-            m_title = ""
-            m_info = "时间同步失败！"
-            infoMessage(m_info, m_title, 280)
+            # m_title = "确认"
+            # m_title = ""
+            # m_info = "时间同步失败！"
+            # infoMessage(m_info, m_title, 280)
+            info = "时间同步失败！"
+            self.showInfoDialog(info)
         elif msg == 203:
             self.mywifithread.deleteLater()
-            m_title = "确认"
-            m_title = ""
-            m_info = "时间同步成功！"
-            infoMessage(m_info, m_title, 280)
+            # m_title = "确认"
+            # m_title = ""
+            # m_info = "时间同步成功！"
+            # infoMessage(m_info, m_title, 280)
+            info = "时间同步成功！"
+            self.showInfoDialog(info)
 
     """
     @detail 测试信息
@@ -173,9 +183,16 @@ class WifiPage(Ui_Form, AbstractPage):
             self.mywifithread.update_json.connect(self.getWifiMsg)
             self.mywifithread.start()
             # self.mywifithread.connectWifi(self.wifiSSID, self.wifiPwd)
-            m_title = ""
-            m_info = "wifi连接中。。。"
-            infoMessage(m_info, m_title, 280)
+            # m_title = ""
+            # m_info = "wifi连接中。。。"
+            # infoMessage(m_info, m_title, 280)
+            info = "wifi连接中。。。"
+            dialog = ProcessDialog()
+            dialog.setInfo(info)
+            dialog.setParent(self)
+            dialog.hideBtn()
+            dialog.show()
+            self.mywifithread.finished.connect(dialog.closeDialog)
             return
             if self.wifiPwd != '':
                 cmd_wifi = 'echo %s | sudo nmcli dev wifi connect %s password %s' % (

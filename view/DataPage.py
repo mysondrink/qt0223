@@ -115,7 +115,7 @@ class DataPage(Ui_Form, AbstractPage):
         self.row_exetable = int(self.data['row_exetable'])
         self.column_exetable = int(self.data['column_exetable'])
 
-        print("row,column:", self.row_exetable, self.column_exetable)
+        # print("row,column:", self.row_exetable, self.column_exetable)
         name_pic = self.data['name_pic']
         cur_time = self.data['time']
         pic_path = self.data['pic_path']

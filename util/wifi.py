@@ -21,7 +21,7 @@ class wifisearch():
         """
         pass
 
-    def getwifiname(self) -> list[str]:
+    def getwifiname(self):
         """
         获取wifi名str列表
         Returns:

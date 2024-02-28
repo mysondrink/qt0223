@@ -82,9 +82,11 @@ class SetPage(Ui_Form, AbstractPage):
     """
     @Slot()
     def on_btnConfirm_clicked(self):
-        m_title = ""
-        m_info = "成功！"
-        infoMessage(m_info, m_title, 400)
+        # m_title = ""
+        # m_info = "成功！"
+        # infoMessage(m_info, m_title, 400)
+        info = "成功！"
+        self.showInfoDialog(info)
 
     """
     @detail 返回按钮操作
