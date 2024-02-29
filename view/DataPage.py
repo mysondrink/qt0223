@@ -23,6 +23,7 @@ except ModuleNotFoundError:
     import qt0223.middleware.database as insertdb
 
 
+
 class DataPage(Ui_Form, AbstractPage):
     def __init__(self):
         """
@@ -215,6 +216,7 @@ class DataPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
+        print("datapage insertMysql")
         reagent_matrix_info = str(self.readPixtable())
         point_str = self.data['point_str']
         self.showDataView(point_str + "," + reagent_matrix_info)
@@ -256,7 +258,7 @@ class DataPage(Ui_Form, AbstractPage):
             # 提交事务
             insertdb.insertMySql(data_1, data_2)
         except Exception as e:
-            print()
+            print(e)
 
     def setTableWidget(self, item_type, reagent_info, nature_aver_str):
         v = QVBoxLayout()

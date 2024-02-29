@@ -239,15 +239,7 @@ class LoadPage(Ui_Form, AbstractPage):
             self.p_ptr = self._s.currentIndex()
             self.next_page.emit("LoginPage")
 
-    def changePage(self, msg) -> None:
-        """
-        进行页面的跳转
-        Args:
-            msg: 发送的信号，获取子页面返回的信号，信号是跳转页面
-
-        Returns:
-            None
-        """
+    def changePage(self, msg):
         try:
             # 设置栈为2
             num = len(self.list_widget)
@@ -293,12 +285,11 @@ class LoadPage(Ui_Form, AbstractPage):
             # self.ui.centerframe.setLayout(self._s)
             # self.cur_page.show()
         except Exception as e:
-            # self.showErrorDialog() # 提示窗口
+            self.sendException()
+            print(e)
             # m_title = ""
             # m_info = "系统错误！"
             # infoMessage(m_info, m_title, 300)
-            self.sendException()
-            print(e)
 
     def statusShowTime(self) -> None:
         """

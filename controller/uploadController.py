@@ -84,13 +84,14 @@ class UploadThread(AbstractThread):
             if status_list[j] == 0:
                 break
             # MySQL语句
-            sql = 'UPDATE reagent_copy1 SET reagent_matrix_info = %s , gray_aver = %s, points = %s ' \
-                  'WHERE reagent_photo = %s'
+            sql = "UPDATE reagent_copy1 SET reagent_matrix_info = '%s' , gray_aver = '%s', points = '%s' " \
+                  "WHERE reagent_photo = '%s'"
             # print(sql)  # 查看SQL语句是否正确
             try:
                 q = QSqlQuery()
                 q.exec_(sql % (reagent_info_list[j], gray_aver_list[j], points_list[j], i)) # 执行sql语句
                 print('新增' + str(j + 1) + "数据")
+                q.clear()
             except Exception as e:
                 print(e)
                 print("数据添加失败")

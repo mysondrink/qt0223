@@ -282,13 +282,13 @@ class HistoryPage(Ui_Form, AbstractPage):
         global header_list
         if doctor != '':
             search_mode = 2
-            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = %s AND reagent_time = %s AND doctor = %s;"
+            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = '%s' AND reagent_time = '%s' AND doctor = '%s';"
         elif depart != '':
             search_mode = 3
-            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = %s AND reagent_time = %s AND doctor = %s AND depart = %s;"
+            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = '%s' AND reagent_time = '%s' AND doctor = '%s' AND depart = '%s';"
         else:
             # MySQL语句
-            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = %s AND reagent_time = %s;"
+            sql = "SELECT * FROM reagent_copy1 WHERE reagent_type = '%s' AND reagent_time = '%s';"
             search_mode = 1
         db = QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName(SQL_PATH)
@@ -298,14 +298,18 @@ class HistoryPage(Ui_Form, AbstractPage):
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time))
+                print(sql % (item_type, time))
             elif search_mode == 2:
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time, doctor))
+                print(sql % (item_type, time, doctor))
             elif search_mode == 3:
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time, doctor, depart))
+                print(sql % (item_type, time, doctor, depart))
+            print(q.executedQuery())
         except Exception as e:
             print(e)
 
@@ -325,7 +329,7 @@ class HistoryPage(Ui_Form, AbstractPage):
         """
         sum = 0
         while q.next():
-            self.time_list.append(q.value(3).strftime("%Y-%m-%d") + " " + q.value(9))
+            self.time_list.append(q.value(3) + " " + q.value(9))
             # print(x[9])
             self.patient_id_list.append(str(q.value(1)))
             self.reagent_id_list.append(str(q.value(4)))
@@ -388,7 +392,7 @@ class HistoryPage(Ui_Form, AbstractPage):
                 item_type = q.value(0)
                 patient_id = q.value(1)
                 pic_name = q.value(2)
-                pic_path = q.value(3).strftime("%Y-%m-%d")
+                pic_path = q.value(3)
                 code_num = q.value(5)
                 doctor = q.value(6)
                 depart = q.value(7)
@@ -483,6 +487,7 @@ class HistoryPage(Ui_Form, AbstractPage):
 
             time = "%s-%s-%s" % (
                 self.ui.dateBox.date().year(), self.ui.dateBox.date().month(), self.ui.dateBox.date().day())
+            time = self.ui.dateBox.date().toString("yyyy-MM-dd")
             # time = self.ui.dateBox.currentText()
             item_type = self.ui.modeBox_3.currentText()
             doctor = self.ui.lineEdit.text()
