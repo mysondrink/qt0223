@@ -1,10 +1,8 @@
 import os
 import re
-import pymysql
 import cv2 as cv
 import datetime
 import numpy as np
-
 try:
     # from func.infoPage import infoMessage
     from view.gui.info import *
@@ -13,6 +11,7 @@ try:
     from util.report import MyReport
     from view.AbstractPage import AbstractPage, ProcessDialog
     from controller.USBController import CheckUSBThread
+    import middleware.database as insertdb
 except ModuleNotFoundError:
     # from func.infoPage import infoMessage
     from qt0223.view.gui.info import *
@@ -21,6 +20,7 @@ except ModuleNotFoundError:
     from qt0223.util.report import MyReport
     from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
     from qt0223.controller.USBController import CheckUSBThread
+    import qt0223.middleware.database as insertdb
 
 
 class DataPage(Ui_Form, AbstractPage):
@@ -240,52 +240,23 @@ class DataPage(Ui_Form, AbstractPage):
         points = self.data['point_str']
         gray_aver = self.data['gray_aver_str']
         nature_aver = self.data['nature_aver_str']
-        connection = pymysql.connect(
-            host="127.0.0.1",
-            user="root",
-            password="password",
-            port=3306,
-            database="test",
-            charset='utf8'
-        )
-        # MySQL语句
-        sql = 'INSERT IGNORE INTO patient_copy1(name, patient_id, age, gender) VALUES (%s,%s,%s,%s)'
-        sql_2 = "INSERT IGNORE INTO reagent_copy1(reagent_type, patient_id, reagent_photo, " \
-                "reagent_time, reagent_code, doctor, depart, reagent_matrix, reagent_time_detail, " \
-                "reagent_matrix_info, patient_name, patient_age, patient_gender, points, gray_aver, nature_aver) " \
-                "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s)"
-
-        # 获取标记
-        cursor = connection.cursor()
         try:
-            # 执行SQL语句
-            cursor.execute(
-                sql,
-                [
+            data_1 = [
                     patient_name,
                     patient_id,
                     patient_age,
                     patient_gender
                 ]
-            )
-            cursor.execute(
-                sql_2,
-                [
+            data_2 = [
                     item_type, patient_id, pic_name, cur_time[0],
                     code_num, doctor, depart, matrix, cur_time[1],
                     reagent_matrix_info, name, age, patient_gender,
                     points, gray_aver, nature_aver
                 ]
-            )
             # 提交事务
-            connection.commit()
+            insertdb.insertMySql(data_1, data_2)
         except Exception as e:
-            # print(str(e))
-            # 有异常，回滚事务
-            connection.rollback()
-        # 释放内存
-        cursor.close()
-        connection.close()
+            print()
 
     def setTableWidget(self, item_type, reagent_info, nature_aver_str):
         v = QVBoxLayout()
@@ -327,73 +298,25 @@ class DataPage(Ui_Form, AbstractPage):
         """
         if msg == 202:
             self.usbthread.deleteLater()
-            m_title = ""
-            m_info = "下载完成！"
-            infoMessage(m_info, m_title, 300)
+            # m_title = ""
+            # m_info = "下载完成！"
+            # infoMessage(m_info, m_title, 300)
+            info = "下载完成！"
+            self.showInfoDialog(info)
         elif msg == 404:
             self.usbthread.deleteLater()
-            m_title = ""
-            m_info = "U盘未插入或无法访问！"
-            infoMessage(m_info, m_title)
+            # m_title = ""
+            # m_info = "U盘未插入或无法访问！"
+            # infoMessage(m_info, m_title)
+            info = "U盘未插入或无法访问！"
+            self.showInfoDialog(info)
         elif msg == 405:
             self.usbthread.deleteLater()
-            m_title = ""
-            m_info = "图片读取失败或未找到图片！"
-            infoMessage(m_info, m_title)
-
-    """
-    @detail 下载信息到u盘
-    @detail 下载内容包括图片、数据库信息
-    @detail 弃用
-    """
-    def downLoadToUSB(self):
-        # 指定目标目录
-        target_dir = '/media/orangepi/orangepi/'
-        # 获取U盘设备路径
-        try:
-            u_name = r"/media/orangepi/orangepi/" + os.listdir(target_dir)[0] + "/"
-        except Exception as e:
-            m_title = ""
-            m_info = "U盘未插入或无法访问！"
-            infoMessage(m_info, m_title)
-            return
-        # 检查U盘是否已插入
-        timenow = QDateTime.currentDateTime().toString('yyyy-MM-dd')
-        save_dir = u_name + timenow + "/"
-        filename = str(len(os.listdir(save_dir)) + 1)
-        save_path = save_dir + filename + ".txt"
-        dirs.makedir(save_path)
-        save_img_path_1 = save_dir + filename + "-1.jpeg"
-        save_img_path_2 = save_dir + filename + "-2.jpeg"
-        if os.path.exists(save_dir):
-            # 在U盘根目录下创建示例文件
-            # print(filename + file_name)
-            # print("exists")
-            # file_path = os.path.join(filename, file_name)
-            with open(save_path, "a") as f:
-                msg = self.data
-                f.write(str(msg) + "\n")
-            try:
-                name_pic = self.data['name_pic']
-                pic_path = self.data['pic_path']
-                img_origin = cv.imread('%s\\img\\%s\\%s-1.jpeg' % (frozen.app_path(), pic_path, name_pic))  # windows
-                # img_final = cv.imread('%s/img/%s/%s-1.jpeg' % (frozen.app_path(), pic_path, name_pic)) # linux
-                flag_bool = cv.imwrite(save_img_path_1, img_origin)
-
-                img_final = cv.imread('%s\\img\\%s\\%s-2.jpeg' % (frozen.app_path(), pic_path, name_pic))  # windows
-                # img_final = cv.imread('%s/img/%s/%s-2.jpeg' % (frozen.app_path(), pic_path, name_pic)) # linux
-                flag_bool = cv.imwrite(save_img_path_2, img_final)
-            except Exception as e:
-                m_title = ""
-                m_info = "图片读取失败或未找到图片！"
-                infoMessage(m_info, m_title)
-            m_title = ""
-            m_info = "下载完成！"
-            infoMessage(m_info, m_title, 300)
-        else:
-            m_title = ""
-            m_info = "U盘未插入或无法访问！"
-            infoMessage(m_info, m_title)
+            # m_title = ""
+            # m_info = "图片读取失败或未找到图片！"
+            # infoMessage(m_info, m_title)
+            info = "图片读取失败或未找到图片！"
+            self.showInfoDialog(info)
 
     """
     @detail 读取下传文件
@@ -488,7 +411,9 @@ class DataPage(Ui_Form, AbstractPage):
         self.download_timer.start(delay_time)
         m_title = ""
         m_info = "下载中..."
-        infoMessage(m_info, m_title, 300)
+        # infoMessage(m_info, m_title, 300)
+        info = "下载中..."
+        self.showInfoDialog(info)
 
     """
     @detail 数据按钮操作

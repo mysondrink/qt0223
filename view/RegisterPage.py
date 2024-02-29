@@ -3,7 +3,6 @@
 @Author：mysondrink@163.com
 @Time：2024/1/11 10:21
 """
-import pymysql
 try:
     import util.frozen as frozen
     from view.gui.register import *
@@ -140,10 +139,12 @@ class RegisterPage(Ui_Form, AbstractPage):
             page_msg = 'LoginPage'
             self.next_page.emit(page_msg)
             info = "注册成功!"
-            self.showInfo(info)
+            # self.showInfo(info)
+            self.showInfoDialog(info)
         elif code == 404:
             info = "注册失败!"
-            self.showInfo(info)
+            # self.showInfo(info)
+            self.showInfoDialog(info)
         return
 
     def checkName(self) -> None:
@@ -155,44 +156,15 @@ class RegisterPage(Ui_Form, AbstractPage):
         """
         if self.ui.pwdLine.text() == "" or self.ui.nameLine.text() == "" or self.ui.pwdLine_2.text() == "" :
             info = "请输入用户名或密码！"
-            self.showInfo(info)
+            self.showInfoDialog(info)
         elif self.ui.pwdLine.text() != self.ui.pwdLine_2.text():
             info = "两次输入不正确！"
-            self.showInfo(info)
+            self.showInfoDialog(info)
         else:
             name = self.ui.nameLine.text()
             password = self.ui.pwdLine.text()
             self.controller.insertUser(name, password)
         return
-
-    def insertUser(self) -> None:
-        """
-        abandoned
-        注册用户写入数据库
-        Returns:
-            None
-        """
-        user_name = self.ui.nameLine.text()
-        user_code = self.ui.pwdLine.text()
-        connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
-                                     charset='utf8')
-        # MySQL语句
-        sql = 'INSERT INTO user_table(user_name, user_code) VALUES (%s,%s)'
-
-        # 获取标记
-        cursor = connection.cursor()
-        try:
-            # 执行SQL语句
-            cursor.execute(sql, [user_name, user_code])
-            # 提交事务
-            connection.commit()
-        except Exception as e:
-            # print(str(e))
-            # 有异常，回滚事务
-            connection.rollback()
-        # 释放内存
-        cursor.close()
-        connection.close()
 
     @Slot()
     def on_btnReturn_clicked(self) -> None:

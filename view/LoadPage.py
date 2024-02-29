@@ -17,7 +17,7 @@ try:
     from view.TestPage import TestPage
     from view.PowerPage import PowerPage
     from view.HistoryPage import HistoryPage
-    from view.EditPage import EditPage
+    # from view.EditPage import EditPage
     from view.SysPage import SysPage
     from view.WifiPage import WifiPage
     from view.ClearPage import ClearPage
@@ -38,7 +38,7 @@ except ModuleNotFoundError:
     from qt0223.view.TestPage import TestPage
     from qt0223.view.PowerPage import PowerPage
     from qt0223.view.HistoryPage import HistoryPage
-    from qt0223.view.EditPage import EditPage
+    # from qt0223.view.EditPage import EditPage
     from qt0223.view.SysPage import SysPage
     from qt0223.view.WifiPage import WifiPage
     from qt0223.view.ClearPage import ClearPage

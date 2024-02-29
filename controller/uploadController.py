@@ -6,19 +6,27 @@
 import sys
 import traceback
 from PySide2.QtCore import QThread, Signal
-import pymysql
 import pandas as pd
 import numpy as np
 import os
 import time
+from PySide2.QtSql import QSqlQuery, QSqlDatabase
+try:
+    import util.frozen as frozen
+    from controller.AbstractThread import AbstractThread
+except:
+    import qt0223.util.frozen as frozen
+    from qt0223.controller.AbstractThread import AbstractThread
+
 
 time_to_sleep = 2
 trylock_time = -1
 failed_code = 404
 succeed_code = 202
+SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
-class UploadThread(QThread):
+class UploadThread(AbstractThread):
     update_json = Signal()
     finished = Signal()
     update_log = Signal()
@@ -26,29 +34,7 @@ class UploadThread(QThread):
 
     def __init__(self, file_path='./res/new_data.xlsx'):
         super().__init__()
-        sys.excepthook = self.HandleException
         self.file_path = file_path
-
-    """
-    @detail 捕获及输出异常类
-    @param excType: 异常类型
-    @param excValue: 异常对象
-    @param tb: 异常的trace back
-    """
-    def HandleException(self, excType, excValue, tb):
-        sys.__excepthook__(excType, excValue, tb)
-        err_msg = ''.join(traceback.format_exception(excType, excValue, tb))
-        self.update_log.emit(err_msg)
-
-    """
-    @detail 发送异常信息
-    @detail 在正常抛出异常时使用
-    @detail 未使用
-    """
-    def sendException(self):
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-        err_msg = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-        self.update_log.emit(err_msg)
 
     def run(self):
         csv_data = []
@@ -90,21 +76,10 @@ class UploadThread(QThread):
         return reagent_info_list, points_list, gray_aver_list
 
     def insertMysql(self, id_list, status_list, reagent_info_list, points_list, gray_aver_list):
-        db = pymysql.connect(host="localhost", user="root", password="password", database="test")  # 本机数据库连接
-
-        # 远程连接数据库
-        # db = pymysql.connect(
-        #     host='192.168.100.110',
-        #     port=3306,
-        #     user='root',
-        #     passwd='123456',
-        #     db='库名',
-        #     charset='utf8'
-        # )
-
-        # 使用cursor()方法获取操作游标
-        cursor = db.cursor()
-
+        db = QSqlDatabase.addDatabase("QSQLITE")
+        db.setDatabaseName(SQL_PATH)
+        db.open()
+        # 执行SQL语句
         for i, j in zip(id_list, range(len(id_list))):
             if status_list[j] == 0:
                 break
@@ -113,16 +88,13 @@ class UploadThread(QThread):
                   'WHERE reagent_photo = %s'
             # print(sql)  # 查看SQL语句是否正确
             try:
-                cursor.execute(sql, [reagent_info_list[j], gray_aver_list[j], points_list[j], i])  # 执行sql语句
-
-                db.commit()  # COMMIT命令用于把事务所做的修改保存到数据库
+                q = QSqlQuery()
+                q.exec_(sql % (reagent_info_list[j], gray_aver_list[j], points_list[j], i)) # 执行sql语句
                 print('新增' + str(j + 1) + "数据")
             except Exception as e:
                 print(e)
-                db.rollback()  # 发生错误时回滚
                 print("数据添加失败")
 
-        cursor.close()  # 关闭游标
         db.close()  # 关闭数据库连接
         time.sleep(0.5)
         self.deleteFile()

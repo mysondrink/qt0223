@@ -3,7 +3,6 @@
 @Author：mysondrink@163.com
 @Time：2024/1/11 10:45
 """
-import pymysql
 import sys
 import traceback
 page_dict = {'page': 0, 'page2': 1, 'page3': 2, 'page4': 3, 'page5': 4}

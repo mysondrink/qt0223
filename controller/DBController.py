@@ -5,10 +5,13 @@
 """
 # import pymysql
 from PySide2.QtCore import Signal
+from PySide2.QtSql import QSqlDatabase, QSqlQuery
 import time
 try:
+    import util.frozen as frozen
     from controller.AbstractThread import AbstractThread
 except ModuleNotFoundError:
+    import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractThread import AbstractThread
 # from func.infoPage import infoMessage
 
@@ -16,6 +19,8 @@ TIME_TO_SLEEP = 2
 TRYLOCK_TIME = -1
 FAILED_CODE = 404
 SUCCEED_CODE = 202
+
+SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
 class CheckDataBaseThread(AbstractThread):
@@ -41,7 +46,9 @@ class CheckDataBaseThread(AbstractThread):
             status_msg = 1
             self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
             connection = True
-            if connection:
+            db = QSqlDatabase.addDatabase("QSQLITE")
+            if db.open():
+                db.close()
                 # qmutex.tryLock(trylock_time)
                 time.sleep(TIME_TO_SLEEP)
                 info_msg = "连接数据库成功！"
@@ -49,6 +56,9 @@ class CheckDataBaseThread(AbstractThread):
                 status_msg = self.currentThread()
                 # qmutex.unlock()
             else:
+                name = db.connectionName()
+                db.close()
+                QSqlDatabase.removeDatabase(name)
                 # qmutex.tryLock(trylock_time)
                 time.sleep(TIME_TO_SLEEP)
                 info_msg = "连接数据库失败！"

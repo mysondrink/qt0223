@@ -5,7 +5,6 @@
 """
 import sys
 sys.path.append("..")
-import traceback
 from PySide2.QtWidgets import QApplication, QDialog, QMessageBox
 from PySide2.QtCore import Qt, qInstallMessageHandler
 try:

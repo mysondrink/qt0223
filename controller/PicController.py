@@ -47,7 +47,7 @@ class MyPicThread(AbstractThread):
         pic_path = QDateTime.currentDateTime().toString('yyyy-MM-dd')
         time_now = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         path_cache = frozen.app_path() + r'/pic_code/img/img_cache/'
-        path_save = frozen.app_path() + r'/pic_code/img/img_tem'
+        path_save = frozen.app_path() + r'/pic_code/img/img_tem/'
         Main = img_main()
         Camera_Init_flag = Main.imgAcquire(
             path_chache=path_cache,

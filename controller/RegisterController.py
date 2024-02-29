@@ -3,14 +3,17 @@
 @Author：mysondrink@163.com
 @Time：2024/1/11 17:17
 """
-import pymysql
+from PySide2.QtSql import QSqlQuery, QSqlDatabase
 try:
+    import util.frozen as frozen
     from controller.AbstractController import AbstractController
 except ModuleNotFoundError:
+    import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractController import AbstractController
 
 FAILED_CODE = 404
 SUCCEED_CODE = 202
+SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
 class RegisterController(AbstractController):
@@ -20,37 +23,32 @@ class RegisterController(AbstractController):
     def __del__(self):
         super().__del__()
 
+    def insertUser(self, username, usercode) -> None:
+        """
+        注册用户写入数据库
+        Args:
+            username: 用户名
+            usercode: 密码
 
-    """
-    @detail 注册用户写入数据库
-    """
-    def insertUser(self, username, usercode):
+        Returns:
+            None
+        """
         user_name = username
         user_code = usercode
-        host = "127.0.0.1"
-        user = "root"
-        password = "password"
-        port = 3306
-        database = "test"
-        charset = "utf8"
-        connection = pymysql.connect(host=host, user=user, password=password, port=port, database=database,
-                                     charset=charset)
         # MySQL语句
         sql = 'INSERT INTO user_table(user_name, user_code) VALUES (%s,%s)'
 
         # 获取标记
-        cursor = connection.cursor()
+        db = QSqlDatabase.addDatabase("QSQLITE")
+        db.setDatabaseName(SQL_PATH)
+        db.open()
         try:
+            q = QSqlQuery()
+            q.exec_(sql % (user_name, user_code))
             # 执行SQL语句
-            cursor.execute(sql, [user_name, user_code])
-            # 提交事务
-            connection.commit()
         except Exception as e:
-            # print(str(e))
-            # 有异常，回滚事务
-            connection.rollback()
+            print(e)
         # 释放内存
-        cursor.close()
-        connection.close()
+        db.close()
 
         self.update_json.emit(dict(code=SUCCEED_CODE))

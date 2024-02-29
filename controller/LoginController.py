@@ -3,14 +3,17 @@
 @Author：mysondrink@163.com
 @Time：2024/1/10 11:18
 """
-import pymysql
+from PySide2.QtSql import QSqlQuery, QSqlDatabase
 try:
+    import util.frozen as frozen
     from controller.AbstractController import AbstractController
 except ModuleNotFoundError:
+    import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractController import AbstractController
 
 FAILED_CODE = 404
 SUCCEED_CODE = 202
+SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
 class LoginController(AbstractController):
@@ -33,33 +36,27 @@ class LoginController(AbstractController):
         Returns:
             None
         """
-        connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
-                                     charset='utf8')
         # MySQL语句
         sql = 'SELECT * FROM user_table'
-        # 获取标记
-        cursor = connection.cursor()
+        db = QSqlDatabase.addDatabase("QSQLITE")
+        db.setDatabaseName(SQL_PATH)
+        db.open()
         try:
-            # 执行SQL语句
-            cursor.execute(sql)
-            # 提交事务
-            connection.commit()
+            q = QSqlQuery()
+            q.exec_(sql)
         except Exception as e:
-            # print(str(e))
-            # 有异常，回滚事务
-            connection.rollback()
+            print(e)
         user_name = []
         user_code = []
 
-        for x in cursor.fetchall():
-            user_name.append(x[0])
-            user_code.append(x[1])
+        while q.next():
+            user_name.append(q.value(0))
+            user_code.append(q.value(1))
 
         self.user_dict = dict(zip(user_name, user_code))
 
         # 释放内存
-        cursor.close()
-        connection.close()
+        db.close()
 
     def authUser(self, msg) -> None:
         """

@@ -1,7 +1,7 @@
 import os
 import cv2 as cv
 import random
-import pymysql
+from PySide2.QtSql import QSqlDatabase, QSqlQuery
 try:
     from view.gui.test import *
     from controller.PicController import MyPicThread
@@ -9,6 +9,7 @@ try:
     from view.AbstractPage import AbstractPage, ProcessDialog
     import util.frozen as frozen
     import util.dirs as dirs
+    import middleware.database as insertdb
 except ModuleNotFoundError:
     from qt0223.view.gui.test import *
     from qt0223.controller.PicController import MyPicThread
@@ -16,8 +17,10 @@ except ModuleNotFoundError:
     from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
     import qt0223.util.frozen as frozen
     import qt0223.util.dirs as dirs
+    import qt0223.middleware.database as insertdb
 
 allergen = [' ', '柳树', '普通豚草', '艾蒿', '屋尘螨']
+SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
 class TestPage(Ui_Form, AbstractPage):
@@ -69,6 +72,7 @@ class TestPage(Ui_Form, AbstractPage):
         self.ui.tableView.verticalHeader().close()
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
         # self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
     def setBtnIcon(self) -> None:
@@ -509,37 +513,29 @@ class TestPage(Ui_Form, AbstractPage):
     def setReagentCb(self) -> None:
         """
         读取数据库，获取试剂卡规格的信息
-        弃用，但不能删除代码
+        弃用
         Returns:
             None
         """
-        connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
-                                     charset='utf8')
         # MySQL语句
         sql = 'SELECT * FROM matrix_table'
-        # 获取标记
-        cursor = connection.cursor()
+        db = QSqlDatabase.addDatabase("QSQLITE")
+        db.setDatabaseName(SQL_PATH)
+        db.open()
         try:
-            # 执行SQL语句
-            cursor.execute(sql)
-            # 提交事务
-            connection.commit()
+            q = QSqlQuery()
+            q.exec_(sql)
         except Exception as e:
-            # print(str(e))
+            print(e)
             # 有异常，回滚事务
-            connection.rollback()
         self.reagent_type = []
         self.reagent_matrix = []
         self.reagent_matrix_info = []
-
-        for x in cursor.fetchall():
-            self.reagent_type.append(x[1])
-            self.reagent_matrix.append(x[2])
-            self.reagent_matrix_info.append(x[3])
-
-        # 释放内存
-        cursor.close()
-        connection.close()
+        while q.next():
+            self.reagent_type.append(q.value(1))
+            self.reagent_matrix.append(q.value(2))
+            self.reagent_matrix_info.append(q.value(3))
+        db.close()
 
     @Slot()
     def on_btnReturn_clicked(self) -> None:
