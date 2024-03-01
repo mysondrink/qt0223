@@ -32,7 +32,6 @@ class LoadController(AbstractController):
         """
         super().__init__()
         self._len = 0
-        self.flag_num = FLAG_NUM
         self.thread_len = 0
         self.thread_list = []
         self.thread_id = []
@@ -44,6 +43,7 @@ class LoadController(AbstractController):
         Returns:
             None
         """
+        self.flag_num = FLAG_NUM
         self.thread_list = [CheckCameraThread(), CheckSerialThread(), CheckDataBaseThread()]
         self.thread_id = []
         self.thread_len = len(self.thread_list) * 2

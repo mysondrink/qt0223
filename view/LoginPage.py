@@ -177,7 +177,7 @@ class LoginPage(Ui_Form, AbstractPage):
             info = "用户名或密码未填写！"
             self.update_info.emit(info)
         else:
-            print("send msg")
+            # print("send msg")
             # self.update_json.disconnect(self.controller.authUser)
             self.update_json.connect(self.controller.authUser, Qt.UniqueConnection)
             self.update_json.emit(dict(name=self.ui.nameLine.text(), password=self.ui.numLine.text()))

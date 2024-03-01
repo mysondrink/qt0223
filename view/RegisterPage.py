@@ -16,11 +16,8 @@ except ModuleNotFoundError:
     from qt0223.view.AbstractPage import AbstractPage
     from qt0223.controller.RegisterController import RegisterController
 
-class RegisterPage(Ui_Form, AbstractPage):
-    next_page = Signal(str)
-    update_json = Signal(dict)
-    update_log = Signal(str)
 
+class RegisterPage(Ui_Form, AbstractPage):
     def __init__(self):
         """
         构造函数
@@ -73,7 +70,7 @@ class RegisterPage(Ui_Form, AbstractPage):
         for item in self.focuswidget:
             item.setFocusPolicy(Qt.ClickFocus)
 
-    def eventFilter(self, obj, event) -> None:
+    def eventFilter(self, obj, event) -> bool:
         """
         槽函数
         事件过滤
@@ -82,12 +79,17 @@ class RegisterPage(Ui_Form, AbstractPage):
             event: 发生的事件
 
         Returns:
-            None
+            bool: 处理掉事件
         """
         if obj in self.focuswidget:
             if event.type() == QEvent.Type.FocusIn:
                 # print(obj.setText("hello"))
                 self.setKeyBoard(obj)
+                return True
+            else:
+                return False
+        else:
+            return False
 
     def getKeyBoardText(self, msg) -> None:
         """

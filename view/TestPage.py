@@ -224,10 +224,10 @@ class TestPage(Ui_Form, AbstractPage):
         allergen = []
         for i in lines:
             allergen.append(i.rstrip())
-        row = 8
+        row = 8 + 1
         column = 5
         self.global_allergen = allergen
-        allergen_table_model = QStandardItemModel(row + 1, column)
+        allergen_table_model = QStandardItemModel(row, column)
         self.ui.tableView.setModel(allergen_table_model)
 
         coordinates = [(0, 0), (0, 4), (8, 0), (8, 4)]
@@ -237,37 +237,15 @@ class TestPage(Ui_Form, AbstractPage):
             item.setData(color, Qt.BackgroundColorRole)
             item.setTextAlignment(Qt.AlignCenter)
             allergen_table_model.setItem(coord[0], coord[1], item)
-        if f_name == "D":
-            num = 0
-            for i in range(1, row + 1):
-                for j in range(column - 1):
-                    if (i * column + j) % 2 == 0 and num < len(allergen):
-                        if allergen[num] != "":
-                            color = QColor(0, 255, 0)
-                            # print(allergen[num])
-                            item = QStandardItem(allergen[num])
-                            item.setData(color, Qt.BackgroundColorRole)
-                            item.setTextAlignment(Qt.AlignCenter)
-                            allergen_table_model.setItem(i, j, item)
-                        num = num + 1
-            # special:
-            color = QColor(0, 255, 0)
-            item = QStandardItem("总lgE")
-            item.setData(color, Qt.BackgroundColorRole)
-            item.setTextAlignment(Qt.AlignCenter)
-            allergen_table_model.setItem(2, 4, item)
-        else:
-            num = 0
-            for i in range(1, row + 1):
-                for j in range(column):
-                    if (i * column + j) % 2 != 0:
-                        color = QColor(0, 255, 0)
-                        # print(allergen[num])
-                        item = QStandardItem(allergen[num])
-                        item.setData(color, Qt.BackgroundColorRole)
-                        item.setTextAlignment(Qt.AlignCenter)
-                        allergen_table_model.setItem(i, j, item)
-                        num = num + 1
+        for i in range(row):
+            for j in range(column):
+                if allergen[i * column + j] != '':
+                    color = QColor(0, 255, 0)
+                    # print(allergen[num])
+                    item = QStandardItem(allergen[i * column + j])
+                    item.setData(color, Qt.BackgroundColorRole)
+                    item.setTextAlignment(Qt.AlignCenter)
+                    allergen_table_model.setItem(i, j, item)
 
     def setAllergenCb(self) -> None:
         """
@@ -413,11 +391,6 @@ class TestPage(Ui_Form, AbstractPage):
 
         patient_id = random.randint(1000, 1999)
 
-        # name_id = random.randint(1,199)
-        # patient_name = self.name_file[name_id].get("name")
-        # patient_age = self.name_file[name_id].get("age")
-        # patient_gender = self.name_file[name_id].get("gender")
-
         patient_name = self.ui.nameLine.text()
         patient_age = self.ui.ageLine.text()
         id_num = self.genderCb.checkedId()
@@ -441,17 +414,6 @@ class TestPage(Ui_Form, AbstractPage):
         code_num = random.randint(1000, 19999)
         reagent_matrix_info = self.readPixtableNum()
         # reagent_matrix_info = self.global_allergen
-        # data_json = dict(patient_id=patient_id, patient_name=patient_name,
-        #                  patient_age=patient_age, patient_gender=patient_gender,
-        #                  item_type=item_type, pic_name=pic_name,
-        #                  time=test_time, doctor=doctor,
-        #                  depart=depart, age=age,
-        #                  gender=gender, name=name,
-        #                  matrix=matrix, code_num=code_num,
-        #                  gray_aver=gray_aver, gray_row=gray_row,
-        #                  gray_column=gray_column, pic_path=pic_path,
-        #                  name_pic=name_pic, row_exetable=self.row_exetable,
-        #                  column_exetable=self.column_exetable, reagent_matrix_info=reagent_matrix_info)
         # new data
         data_json = dict(patient_id=patient_id, patient_name=patient_name,
                          patient_age=patient_age, patient_gender=patient_gender,
@@ -469,29 +431,6 @@ class TestPage(Ui_Form, AbstractPage):
         info_msg = 201
         self.update_json.emit(dict(info=info_msg, data=data_json))
         return
-
-    def readPixtable(self) -> list:
-        """
-        弃用
-        读取表格内容，同时以list形式保存到数据库
-        Returns:
-            list
-        """
-        reagent_matrix_info = []
-        for i in range(self.row_exetable):
-            row_list = []
-            for j in range(self.column_exetable):
-                index = self.ui.tableView.model().index(i + 1, j)  # 获取单元格的 QModelIndex 对象
-                data = "" if index.data() == None else index.data()
-                row_list.append(data)
-                # combo_box = self.ui.tableView.indexWidget(index)  # 获取该单元格中的 QComboBox 对象
-                # current_text = combo_box.currentText()  # 获取 QComboBox 当前选中的文本
-                # row_list.append(str(current_text))
-            reagent_matrix_info.append(row_list)
-        result = []
-        for i in range(0, self.row_exetable, 2):
-            result.append([a + b for a, b in zip(reagent_matrix_info[i], reagent_matrix_info[i + 1])])
-        return result
 
     def readPixtableNum(self):
         reagent_matrix_info = []
@@ -513,7 +452,7 @@ class TestPage(Ui_Form, AbstractPage):
     def setReagentCb(self) -> None:
         """
         读取数据库，获取试剂卡规格的信息
-        弃用
+        弃用, 不能删除
         Returns:
             None
         """

@@ -1,4 +1,14 @@
-# 报告单格式化
+"""
+@Description：报告单格式化方法
+@Author：mysondrink@163.com
+@Time：2024/3/1 10:47
+"""
+try:
+    import util.frozen as frozen
+except:
+    import qt0223.util.frozen as frozen
+
+
 class MyReport():
     def __init__(self):
         self.html_content = '<!doctype html>\
@@ -69,42 +79,29 @@ class MyReport():
                             '
         
     def gethtml(self, item_type, reagent_info, nature_aver_str):
-                    #         if g_arr[i][j] < 60000:
-                    #     n_arr[i][j] = "阴性"
-                    #     n_arr_flag[i][j] = "-"
-                    # elif g_arr[i][j] < 660000:
-                    #     n_arr[i][j] = "弱阳性"
-                    #     n_arr_flag[i][j] = "+"
-                    # elif g_arr[i][j] < 1100000:
-                    #     n_arr[i][j] = "中阳性"
-                    #     n_arr_flag[i][j] = "++"
-                    # elif g_arr[i][j] > 1100000:
-                    #     n_arr[i][j] = "强阳性"
-                    #     n_arr_flag[i][j] = "+++"
-                    # else:
-                    #     n_arr[i][j] = "error"
-                    #     n_arr_flag[i][j] = "error"
-        result_dict = {"阴性":"-","中阳性":"++", "强阳性":"+++","弱阳性":"+"}
+        # < 60000: "阴性" "-"
+        # < 660000: "弱阳性" "+"
+        # < 1100000: "中阳性" "++"
+        # > 1100000: "强阳性" "+++"
+        result_dict = {"阴性": "-", "中阳性": "++", "强阳性": "+++", "弱阳性": "+"}
+        # + —计算列表 40
         result_list_1 = [result_dict.get(i) for i in nature_aver_str.split(",")[5:]]
+        # 阴阳性计算列表 40
         result_list_2 = [i for i in nature_aver_str.split(",")[5:]]
-        num = []
         reagent_info_list_1 = [i for i in reagent_info.split(",")]
         reagent_info_list_2 = [reagent_info_list_1[k:k+5] for k in [j for j in range(0, 55, 5)] if k % 15 == 0]
+        # 过敏原列表
         reagent_info_list_3 = [i for i in sum(reagent_info_list_2, []) if i != '']
-        if item_type == 'D':
-            item_len = 14
-            result_list_3 = [result_list_1[0]] + [j for j in [result_list_1[i] for i in range(0, len(result_list_1), 2) if i % 5 != 0] if j != None]
-            result_list_4 = [result_list_2[0]] + [j for j in [result_list_2[i] for i in range(0, len(result_list_2), 2) if i % 5 != 0] if j != '0']
-            # result_list_3 = [result_list_1[i] for i in range(1, len(result_list_1), 2) if i % 5 != 0]
-            # result_list_4 = [result_list_2[i] for i in range(1, len(result_list_2), 2) if i % 5 != 0]
-            # special
-            index = 9
-            result_list_3.insert(index, result_dict.get(result_list_1[index]))
-            result_list_4.insert(index, result_list_2[index])
-        else:
-            item_len = 20
-            result_list_3 = [j for j in [result_list_1[i] for i in range(0, len(result_list_1), 2)] if j != None]
-            result_list_4 = [j for j in [result_list_2[i] for i in range(0, len(result_list_2), 2)] if j != '0'] 
+
+        path = frozen.app_path() + r"/res/allergen/"
+        with open(path + item_type, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            f.close()
+            allergen = [i.rstrip() for i in lines][5:]
+        # + —结果列表
+        result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
+        # 阴阳性结果列表
+        result_list_4 = [result_list_2[i] for i in range(len(allergen)) if allergen[i] != ""]
         # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
         temp = '<tr align="center">\
                 <td>%s</td>\
@@ -112,8 +109,8 @@ class MyReport():
                 <td>&lt;0.35</td>\
                 <td>%s</td>\
                 </tr>'
-        temp_str = ""
-        for j in range(item_len):
-            str_temp = temp
-            temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
+        temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+        # for j in range(len(reagent_info_list_3)):
+        #     str_temp = temp
+        #     temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])
         return self.html_content, temp_str

@@ -67,28 +67,6 @@ class ClearPage(Ui_Form, AbstractPage):
         self.setClearBar()
 
     """
-    @detail 遍历本地图片文件
-    @detail 弃用
-    """
-    def deleteDirs(self, now_time, root_list):
-        for i in range(1, len(root_list)):
-            if now_time > root_list[i][-10:]:
-                self.deletePicFile(root_list[i])
-
-    """
-    @detail 批量删除文件
-    @detail 弃用
-    """
-    def deletePicFile(self, path):
-        ls = os.listdir(path)
-        for i in ls:
-            c_path = os.path.join(path, i)
-            if os.path.isdir(c_path):
-                self.deletePicFile(c_path)
-            else:
-                os.remove(c_path)
-
-    """
     @detail 设置存储条
     """
     def setClearBar(self):
@@ -99,36 +77,6 @@ class ClearPage(Ui_Form, AbstractPage):
         mem_progress = (1 - (mem_avail / mem_total)) * 100
         print('mem_progress:', mem_progress)
         self.ui.clearBar.setValue(int(mem_progress))
-
-    """
-    @detail 存储满后显示
-    @detail 弃用
-    """
-    def checkBoxInfo(self, msg):
-        if msg == "警告":
-            self.ui.btnData.setEnabled(False)
-            self.ui.btnHistory.setEnabled(False)
-            # self.ui.btnSet.setEnabled(False)
-            # self.ui.btnPara.setEnabled(False)
-
-    """
-    @detail 开始存储探测
-    @detail 弃用
-    """
-    def startProbeMem(self):
-        self.myprobe = MyProbe()
-        self.myprobe.update_progress.connect(self.memWarning)
-        self.myprobe.start()
-
-    """
-    @detail 存储满后警告
-    @detail 弃用
-    """
-    def memWarning(self):
-        m_title = "警告"
-        m_info = "存储已经占满，请清理图片！"
-        # infoMessage(m_info, m_title)
-        return
 
     """
     @detail 清理结果处理，同时设置进度条显示
@@ -191,7 +139,7 @@ class ClearPage(Ui_Form, AbstractPage):
             # self.deleteDirs(str(now_time)[:10], root_list)
         elif dict_mode.get(self.ui.clearCb.currentText()) == 4:
             now_time = None
-        self.myClearThread = ClearThread(now_time)
+        self.myClearThread = ClearThread(str(now_time)[:10])
         self.myClearThread.finished.connect(self.myClearThread.deleteLater())
         self.myClearThread.finished.connect(self.getInfo)
         self.myClearThread.start()

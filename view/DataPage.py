@@ -4,7 +4,6 @@ import cv2 as cv
 import datetime
 import numpy as np
 try:
-    # from func.infoPage import infoMessage
     from view.gui.info import *
     import util.frozen as frozen
     from util import dirs
@@ -13,7 +12,6 @@ try:
     from controller.USBController import CheckUSBThread
     import middleware.database as insertdb
 except ModuleNotFoundError:
-    # from func.infoPage import infoMessage
     from qt0223.view.gui.info import *
     import qt0223.util.frozen as frozen
     from qt0223.util import dirs
@@ -108,7 +106,7 @@ class DataPage(Ui_Form, AbstractPage):
         """
         # print(msg['info'])
         # self.writeFile(msg['data'])
-
+        print("datapage id: ", id(self))
         flag = 0
         pic_para = 1
         self.info = msg['info']
@@ -146,19 +144,6 @@ class DataPage(Ui_Form, AbstractPage):
         self.ui.rightLabel.setText(self.test_time)
         self.ui.leftLabel.setText(self.test_time)
 
-        # 测试
-        # img_right = cv.imread('%s\\img\\%s\\%s-2.jpeg' % (frozen.app_path(), pic_path, name_pic))  # windows
-        # img_left = cv.imread('%s\\img\\%s\\%s-1.jpeg' % (frozen.app_path(), pic_path, name_pic))  # windows
-        # img_right = cv.imread('%s/img/%s/%s-2.jpeg' % (frozen.app_path(), pic_path, name_pic))  # linux
-        # img_left = cv.imread('%s/img/%s/%s-1.jpeg' % (frozen.app_path(), pic_path, name_pic))  # linux
-        # img_right = self.resizePhoto(img_right)
-        # img_left = self.resizePhoto(img_left)
-        #
-        # self.ui.photoLabel.setPixmap(img_right)
-        # self.ui.photoLabel.setScaledContents(True)
-        #
-        # self.ui.picLabel.setPixmap(img_left)
-        # self.ui.picLabel.setScaledContents(True)
         self.pic_para = 1
         if self.info == 201:
             self.point_list = self.data['point_str']
@@ -195,13 +180,6 @@ class DataPage(Ui_Form, AbstractPage):
             self.allergy_info = reagent_matrix_info
             point_str = self.data['point_str']
             self.showDataView(point_str + ',' + reagent_matrix_info)
-            # reagent_matrix_info = re.split(r",", reagent_matrix_info)[1:]
-            # self.allergy_info = reagent_matrix_info
-            # for i in range(self.row_exetable + int(self.row_exetable / 2)):
-            #     for j in range(self.column_exetable):
-            #         item = QStandardItem(reagent_matrix_info[i * self.column_exetable + j])
-            #         item.setTextAlignment(Qt.AlignCenter)
-            #         self.pix_table_model.setItem(i, j, item)
 
         self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
 
@@ -216,17 +194,11 @@ class DataPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        print("datapage insertMysql")
         reagent_matrix_info = str(self.readPixtable())
         point_str = self.data['point_str']
         self.showDataView(point_str + "," + reagent_matrix_info)
         self.allergy_info = reagent_matrix_info
         patient_id = self.data['patient_id']
-
-        # name_id = random.randint(1,199)
-        # patient_name = self.name_file[name_id].get("name")
-        # patient_age = self.name_file[name_id].get("age")
-        # patient_gender = self.name_file[name_id].get("gender")
 
         patient_name = self.data['patient_name']
         patient_age = self.data['patient_age']

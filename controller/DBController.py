@@ -3,10 +3,8 @@
 @Author：mysondrink@163.com
 @Time：2024/1/9 10:32
 """
-# import pymysql
-from PySide2.QtCore import Signal
-from PySide2.QtSql import QSqlDatabase, QSqlQuery
 import time
+import os
 try:
     import util.frozen as frozen
     from controller.AbstractThread import AbstractThread
@@ -46,22 +44,17 @@ class CheckDataBaseThread(AbstractThread):
             status_msg = 1
             self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
             connection = True
-            db = QSqlDatabase.addDatabase("QSQLITE")
-            if db.open():
-                db.close()
+            if os.path.exists(SQL_PATH):
                 # qmutex.tryLock(trylock_time)
                 time.sleep(TIME_TO_SLEEP)
-                info_msg = "连接数据库成功！"
+                info_msg = "数据库检测成功！"
                 code_msg = SUCCEED_CODE
                 status_msg = self.currentThread()
                 # qmutex.unlock()
             else:
-                name = db.connectionName()
-                db.close()
-                QSqlDatabase.removeDatabase(name)
                 # qmutex.tryLock(trylock_time)
                 time.sleep(TIME_TO_SLEEP)
-                info_msg = "连接数据库失败！"
+                info_msg = "数据库检测失败！"
                 code_msg = FAILED_CODE
                 status_msg = self.currentThread()
                 # qmutex.unlock()

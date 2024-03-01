@@ -298,18 +298,15 @@ class HistoryPage(Ui_Form, AbstractPage):
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time))
-                print(sql % (item_type, time))
             elif search_mode == 2:
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time, doctor))
-                print(sql % (item_type, time, doctor))
             elif search_mode == 3:
                 # 执行SQL语句
                 q = QSqlQuery()
                 q.exec_(sql % (item_type, time, doctor, depart))
-                print(sql % (item_type, time, doctor, depart))
-            print(q.executedQuery())
+            # print(q.executedQuery())
         except Exception as e:
             print(e)
 
@@ -414,16 +411,6 @@ class HistoryPage(Ui_Form, AbstractPage):
                 point_str = q.value(14)
                 gray_aver_str = q.value(15)
                 nature_aver_str = q.value(16)
-                # data_json = dict(patient_id=patient_id, patient_name=patient_name,
-                #                  patient_age=patient_age, patient_gender=patient_gender,
-                #                  item_type=item_type, pic_name=pic_name,
-                #                  time=cur_time, doctor=doctor,
-                #                  depart=depart, age=age,
-                #                  gender=gender, name=name,
-                #                  matrix=reagent_matrix, code_num=code_num,
-                #                  pic_path=pic_path, name_pic=name_pic,
-                #                  row_exetable=row_exetable, column_exetable=column_exetable,
-                #                  reagent_matrix_info=reagent_matrix_info)
                 data_json = dict(patient_id=patient_id, patient_name=patient_name,
                                  patient_age=patient_age, patient_gender=patient_gender,
                                  item_type=item_type, pic_name=pic_name,
@@ -437,18 +424,6 @@ class HistoryPage(Ui_Form, AbstractPage):
                                  gray_aver_str=gray_aver_str,nature_aver_str=nature_aver_str)
                 info_msg = 202
                 self.update_json.emit(dict(info=info_msg, data=data_json))
-                """
-                a = frozen.app_path()
-                b = self.time_list[num][:10]
-                c = i[0]
-
-                # self.ui.picLabel.setPixmap(QPixmap("./img/%s/%s.jpeg"%(b, c)))  # windows环境
-
-                self.ui.picLabel.setStyleSheet("QLabel{"
-                                         "border-image: url(%s/img/%s/%s.jpeg); "
-                                         "font: 20pt; "
-                                         "color: rgb(255,0,0);}"%(a, b, c)) # linux环境
-                """
         except Exception as e:
             print(e)
 

@@ -5,8 +5,7 @@
 """
 import sys
 sys.path.append("..")
-from PySide2.QtWidgets import QApplication, QDialog, QMessageBox
-from PySide2.QtCore import Qt, qInstallMessageHandler
+from PySide2.QtWidgets import QApplication
 try:
     from view.LoadPage import LoadPage
 except ModuleNotFoundError:

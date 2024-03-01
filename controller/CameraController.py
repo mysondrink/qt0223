@@ -3,11 +3,12 @@
 @Author：mysondrink@163.com
 @Time：2024/1/9 10:32
 """
-from PySide2.QtCore import Signal
 import time
 try:
     from controller.AbstractThread import AbstractThread
+    from pic_code.img_main import img_main
 except ModuleNotFoundError:
+    from qt0223.pic_code.img_main import img_main
     from qt0223.controller.AbstractThread import AbstractThread
 
 
@@ -39,10 +40,17 @@ class CheckCameraThread(AbstractThread):
             status_msg = 1
             self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
             time.sleep(TIME_TO_SLEEP)
-            info_msg = "连接摄像头成功！"
-            code_msg = SUCCEED_CODE
-            status_msg = self.currentThread()
-            self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
+            Main = img_main()
+            if Main.imgLed_init() and Main.imgCamera_init():
+                info_msg = "摄像头检测成功！"
+                code_msg = SUCCEED_CODE
+                status_msg = self.currentThread()
+                self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
+            else:
+                info_msg = "摄像头检测失败！"
+                code_msg = FAILED_CODE
+                status_msg = self.currentThread()
+                self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
             # qmutex.unlock()
         except Exception as e:
             self.sendException()

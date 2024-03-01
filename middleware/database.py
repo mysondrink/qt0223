@@ -64,7 +64,6 @@ def insertMySql(info, data):
 
     db = QSqlDatabase.addDatabase("QSQLITE")
     db.setDatabaseName(SQL_PATH)
-    print("database insertMySql")
     check(db.open)
 
     q = QSqlQuery()

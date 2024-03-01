@@ -37,7 +37,7 @@ class SysPage(Ui_Form, AbstractPage):
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.ui.btnSet.setText("   软件更新")
+        # self.ui.btnSet.setText("   软件更新")
         self.setBtnIcon()
 
     """
