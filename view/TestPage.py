@@ -335,16 +335,14 @@ class TestPage(Ui_Form, AbstractPage):
         name_pic = time_now
         try:
             judge_flag, gray_aver, nature_aver, gray_aver_str, nature_aver_str = self.mypicthread.getGrayAver()
-            if judge_flag != 1:
+            if judge_flag is False:
                 m_title = ""
                 m_info = "本次检测结果无效，建议重新进行检测"
                 # infoMessage(m_info, m_title, 180)
                 # self.update_info.emit(m_info)
-                self.update_info.emit(dict(info=m_info, code=201))
+                self.showInfoDialog(m_info)
+                # self.update_info.emit(dict(info=m_info, code=201))
                 return
-            # gray_row = len(_matrix) - 1
-            # gray_column = len(_matrix[0])
-            # point_list = _matrix[0]
             gray_row = 8
             gray_column = 5
             point_list = gray_aver[0]
@@ -384,9 +382,7 @@ class TestPage(Ui_Form, AbstractPage):
         dirs.makedir(save_path)
         flag_bool = cv.imwrite(save_path, img_show_final)
 
-        # self.testinfo.closeWin()
         page_msg = 'DataPage'
-        # page_msg = 'newDataPage'
         self.next_page.emit(page_msg)
 
         patient_id = random.randint(1000, 1999)

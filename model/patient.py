@@ -1,12 +1,13 @@
 """
 @Description：
 @Author：mysondrink@163.com
-@Time：2024/1/8 15:12
+@Time：2024/3/1 11:58
 """
-class UserModel():
+class PatientModel():
     def __init__(self):
         super().__init__()
 
     def datemodel(self):
-        self.username = ""
-        self.usercode = ""
+        self.name = ""
+        self.age = ""
+        self.gender = ""
