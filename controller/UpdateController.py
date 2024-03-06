@@ -6,10 +6,15 @@
 import time
 import os
 import zipfile
+import shutil
+import tempfile
+import grpc
 try:
+    from api.update.v1 import update_pb2, update_pb2_grpc
     import util.frozen as frozen
     from controller.AbstractThread import AbstractThread
 except ModuleNotFoundError:
+    from qt0223.api.update.v1 import update_pb2, update_pb2_grpc
     import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractThread import AbstractThread
 
@@ -40,24 +45,37 @@ class MyUpdateThread(AbstractThread):
             None
         """
         try:
-            with zipfile.ZipFile(MY_ZIP, 'r') as zip_ref:
-                zip_ref.extractall(MY_DIR)
+            # client of update server
+            print("Will try to update ...")
+            with grpc.insecure_channel("localhost:50051") as channel:
+                stub = update_pb2_grpc.UpdaterStub(channel)
+                response: update_pb2_grpc.UpdaterStub = stub.UpdateSoftware(
+                    update_pb2.UpdateRequest(name="updatecontroller"),
+                    timeout=10
+                )
                 time.sleep(TIME_TO_SLEEP)
-                info_msg = "更新成功！"
-                code_msg = SUCCEED_CODE
-                status_msg = self.currentThread()
-                self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
-            if os.path.exists(MY_ZIP):
-                os.remove(MY_ZIP)
+                if response.code == 202:
+                    info_msg = "更新成功！"
+                    code_msg = SUCCEED_CODE
+                    status_msg = self.currentThread()
+                    self.update_json.emit(
+                        dict(
+                            info=info_msg,
+                            code=code_msg,
+                            status=status_msg
+                        )
+                    )
+                else:
+                    raise Exception
         except Exception as e:
             self.sendException()
             info_msg = "更新失败！"
             code_msg = FAILED_CODE
             status_msg = 1
             self.update_json.emit(dict(info=info_msg, code=code_msg, status=status_msg))
-            if os.path.exists(MY_ZIP):
-                os.remove(MY_ZIP)
+            # if os.path.exists(MY_ZIP):
+            #     os.remove(MY_ZIP)
         finally:
             self.log_thread.deleteLater()
-            if os.path.exists(MY_ZIP):
-                os.remove(MY_ZIP)
+            # if os.path.exists(MY_ZIP):
+            #     os.remove(MY_ZIP)
