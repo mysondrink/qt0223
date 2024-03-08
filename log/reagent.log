@@ -1,0 +1,24 @@
+2024-03-08 16:45:01,041 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 415, in takePicture
+    reagent_matrix_info = self.readPixtableNum()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 486, in readPixtableNum
+    for i in range(self.row_exetable):
+AttributeError: 'TestPage' object has no attribute 'row_exetable'
+
+2024-03-08 16:45:01,045 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 415, in takePicture
+    reagent_matrix_info = self.readPixtableNum()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 486, in readPixtableNum
+    for i in range(self.row_exetable):
+AttributeError: 'TestPage' object has no attribute 'row_exetable'
+
+2024-03-08 16:46:59,791 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-03-08 16:46:59,791 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
