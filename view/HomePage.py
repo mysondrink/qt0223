@@ -5,18 +5,16 @@
 """
 try:
     import util.frozen as frozen
-    # from func.infoPage import infoMessage
     from view.gui.home import *
-    # from inf.probeThread import MyProbe
     from view.AbstractPage import AbstractPage
     from controller.HomePageController import HomePageController
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
-    # from func.infoPage import infoMessage
     from qt0223.view.gui.home import *
-    # from inf.probeThread import MyProbe
     from qt0223.view.AbstractPage import AbstractPage
     from qt0223.controller.HomePageController import HomePageController
+
+CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
 
 
 class HomePage(Ui_Form, AbstractPage):
@@ -158,8 +156,12 @@ class HomePage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        page_msg = 'RegPage'
-        self.next_page.emit(page_msg)
+        if self.checkAdminName():
+            page_msg = 'RegPage'
+            self.next_page.emit(page_msg)
+        else:
+            info = "当前用户没有权限！"
+            self.showInfoDialog(info)
 
     @Slot()
     def on_btnPara_clicked(self) -> None:
@@ -171,3 +173,14 @@ class HomePage(Ui_Form, AbstractPage):
         """
         page_msg = 'SysPage'
         self.next_page.emit(page_msg)
+
+    def checkAdminName(self):
+        """
+        读取当前操作用户信息
+        Returns:
+            bool: 如果是admin用户返回True否则返回False
+        """
+        settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+        settings.setIniCodec("UTF-8")
+        admin_name = settings.value("USER/user_name")
+        return True if admin_name == "admin" else False

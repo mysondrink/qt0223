@@ -9,11 +9,13 @@ try:
     from view.gui.about import *
     from view.AbstractPage import AbstractPage, ProcessDialog
     from controller.uploadController import UploadThread
+    from pic_code.img_main import img_main
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     from qt0223.view.gui.about import *
     from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
     from qt0223.controller.uploadController import UploadThread
+    from qt0223.pic_code.img_main import img_main
 
 CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
 
@@ -103,7 +105,11 @@ class AboutPage(Ui_Form, AbstractPage):
             return
         """
         try:
-            os.system("sudo mount /dev/sda1 /mnt/mydev")
+            Main = img_main()
+            identifier = "0xb7d60506"
+            flag = img_main.mountMove("1", "1", identifier)
+            if flag is not True:
+                raise
         except Exception as e:
             print("aboutPage :", e)
             return False
@@ -118,6 +124,13 @@ class AboutPage(Ui_Form, AbstractPage):
                 upload_file_list.append(path)
             else:
                 print("False")
+                dialog.closeDialog()
+                # m_title = ""
+                # m_info = "上传完成!"
+                # infoMessage(m_info, m_title, 300)
+                info = "上传失败!"
+                self.showInfoDialog(info)
+                self.umountDevice(Main)
         if not upload_file_list:
             try:
                 # self.testinfo.closeWin()
@@ -127,7 +140,7 @@ class AboutPage(Ui_Form, AbstractPage):
                 # infoMessage(m_info, m_title, 300)
                 info = "上传完成!"
                 self.showInfoDialog(info)
-                os.system("sudo umount /mnt/mydev")
+                self.umountDevice(Main)
             except Exception as e:
                 print("aboutPage：", e)
             return
@@ -136,10 +149,10 @@ class AboutPage(Ui_Form, AbstractPage):
             thread = UploadThread(i)
             self.upload_thread_list.append(thread)
             thread.finished.connect(lambda: thread.deleteLater())
-            thread.finished.connect(lambda: self.countUploadThread(dialog))
+            thread.finished.connect(lambda: self.countUploadThread(dialog, Main))
             thread.start()
 
-    def countUploadThread(self, obj):
+    def countUploadThread(self, obj, func):
         """
         计数上传完成的线程数
         计数达到上传数后关闭提示框
@@ -152,7 +165,10 @@ class AboutPage(Ui_Form, AbstractPage):
         self.count_num = self.count_num + 1
         if len(self.upload_thread_list) <= self.count_num:
             try:
-                os.system("sudo umount /mnt/mydev")
+                if func is not None:
+                    pass
+                else:
+                    self.umountDevice(func)
             except Exception as e:
                 print("aboutPage：", e)
             # self.testinfo.closeWin()
@@ -180,3 +196,9 @@ class AboutPage(Ui_Form, AbstractPage):
 
         """
         pass
+
+    def umountDevice(self, obj):
+        identifier = "0xb7d60506"
+        flag = obj.mountMove("2", "1", identifier)
+        if flag is not True:
+                raise

@@ -3,6 +3,8 @@
 @Author：mysondrink@163.com
 @Time：2024/1/11 10:21
 """
+import time
+
 try:
     import util.frozen as frozen
     from view.gui.register import *
@@ -137,11 +139,11 @@ class RegisterPage(Ui_Form, AbstractPage):
         """
         code = msg['code']
         if code == 202:
-            page_msg = 'LoginPage'
-            self.next_page.emit(page_msg)
             info = "注册成功!"
             # self.showInfo(info)
             self.showInfoDialog(info)
+            page_msg = 'LoginPage'
+            self.next_page.emit(page_msg)
         elif code == 404:
             info = "注册失败!"
             # self.showInfo(info)

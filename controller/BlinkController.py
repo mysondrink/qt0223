@@ -52,7 +52,6 @@ class CheckBlinkThread(AbstractThread):
                             break
                 else:
                     flag = 0
-                    break
             if flag == 1:
                 # print("True")
                 info_msg = "connected"

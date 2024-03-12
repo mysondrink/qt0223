@@ -60,7 +60,7 @@ SEARCH_ALL_USER = """
     """
 
 INSERT_USER_INFO = """
-    INSERT IGNORE INTO user_table(user_name, user_code) VALUES (?, ?)
+    INSERT INTO user_table(user_name, user_code) VALUES (?, ?)
     """
 
 
@@ -315,7 +315,7 @@ def insertUser(username, usercode):
         # 提交事务
         connection.commit()
     except Exception as e:
-        # print(str(e))
+        print(str(e))
         # 有异常，回滚事务
         connection.rollback()
         return FAILED_CODE

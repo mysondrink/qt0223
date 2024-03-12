@@ -227,7 +227,7 @@ class CheckUSBThread(QThread):
                     # path_usb = save_dir + timenow +".xlsx"
                     # shutil.copy(save_path, path_usb)
                 src_path = '%s/res/test.zip' % frozen.app_path()
-                identifier = "0xc009d7d1"
+                identifier = "0xb7d60506"
                 Main = img_main()
                 if Main.mountMove(img_origin, save_path, identifier) is not True:
                     raise Exception

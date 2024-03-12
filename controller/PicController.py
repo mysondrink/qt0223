@@ -8,13 +8,11 @@ import grpc
 try:
     import util.frozen as frozen
     from controller.AbstractThread import AbstractThread
-    from pic_code.img_main import img_main
     from api.imgprocess.v1 import imgprocess_pb2_grpc, imgprocess_pb2
     from api.helloworld.v1 import helloworld_pb2, helloworld_pb2_grpc
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractThread import AbstractThread
-    from qt0223.pic_code.img_main import img_main
     from qt0223.api.imgprocess.v1 import imgprocess_pb2_grpc, imgprocess_pb2
     from qt0223.api.helloworld.v1 import helloworld_pb2, helloworld_pb2_grpc
 

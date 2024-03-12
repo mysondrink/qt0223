@@ -22,3 +22,13 @@ KeyboardInterrupt
     def blinkIcon(self):
 KeyboardInterrupt
 
+2024-03-12 09:27:40,696 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 141, in blinkAssess
+    def blinkAssess(self, msg):
+KeyboardInterrupt
+
+2024-03-12 09:27:40,697 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 141, in blinkAssess
+    def blinkAssess(self, msg):
+KeyboardInterrupt
+

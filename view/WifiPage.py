@@ -181,7 +181,8 @@ class WifiPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        self.wifiName = wifisearch.getwifiname()
+        wifi = wifisearch()
+        self.wifiName = wifi.getwifiname()
         self.ui.wifiCb.addItems(self.wifiName)
 
     @Slot()

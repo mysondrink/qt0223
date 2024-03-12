@@ -17,6 +17,7 @@ except ModuleNotFoundError:
     from qt0223.controller.LoginController import LoginController
 
 SCREEN_TOP = 30
+CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
 
 
 class LoginPage(Ui_Form, AbstractPage):
@@ -179,6 +180,7 @@ class LoginPage(Ui_Form, AbstractPage):
         else:
             # print("send msg")
             # self.update_json.disconnect(self.controller.authUser)
+            self.writeUserName()
             self.update_json.connect(self.controller.authUser, Qt.UniqueConnection)
             self.update_json.emit(dict(name=self.ui.nameLine.text(), password=self.ui.numLine.text()))
         return
@@ -194,3 +196,13 @@ class LoginPage(Ui_Form, AbstractPage):
         # page_msg = registerPage()
         page_msg = 'RegisterPage'
         self.next_page.emit(page_msg)
+
+    def writeUserName(self):
+        """
+        将当前用户写入配置文件
+        Returns:
+            None
+        """
+        settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+        settings.setIniCodec("UTF-8")
+        settings.setValue("USER/user_name", self.ui.nameLine.text())
