@@ -109,6 +109,8 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
 
         try:
             Main = img_main()
+            _ = Main.imgLed_init()
+            _ = Main.imgCamera_init()
             Camera_Init_flag = Main.imgAcquire(
                 path_chache=path_cache,
                 path_save=path_save,

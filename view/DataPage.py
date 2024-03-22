@@ -248,6 +248,7 @@ class DataPage(Ui_Form, AbstractPage):
         Data_Nature = matrix_nature_aver
         Data_Light = matrix_gray_aver
         Main = img_main()
+        _ = Main.natPrint_init()
         if Main.natPrint(Data_Base, Data_Nature, Data_Light):
             dialog.closeDialog()
             info = "输出表格成功!"
@@ -284,6 +285,7 @@ class DataPage(Ui_Form, AbstractPage):
         # infoMessage(m_info, m_title, 300)
         info = "下载中..."
         self.showInfoDialog(info)
+
 
     @Slot()
     def on_btnData_clicked(self):
