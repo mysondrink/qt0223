@@ -326,12 +326,15 @@ class TestPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        cur_time = QDateTime.currentDateTime().toString('yyyy-MM-dd hh:mm:ss')
+        # cur_time = QDateTime.currentDateTime().toString('yyyy-MM-dd hh:mm:ss')
         # time_now = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-        pic_path = QDateTime.currentDateTime().toString('yyyy-MM-dd')
+        # pic_path = QDateTime.currentDateTime().toString('yyyy-MM-dd')
         time_now = msg['timenow']
         judge_flag = msg['flag']
         name_pic = time_now
+        converted_string = time_now.replace('_', '-')
+        cur_time = converted_string[:10] + ' ' + converted_string[11:].replace('-', ':')
+        pic_path = converted_string[:10]
         try:
             # judge_flag, gray_aver, nature_aver, gray_aver_str, nature_aver_str = self.mypicthread.getGrayAver()
             # judge_flag = self.mypicthread.getGrayAver()
@@ -588,9 +591,12 @@ class TestPage(Ui_Form, AbstractPage):
         dialog.show()
         # self.testinfo.show()
         mypicthread = MyPicThread()
+        # loop = QEventLoop()
+        # mypicthread.update_json.connect(lambda: loop.quit())
         mypicthread.update_json.connect(self.takePicture)
         mypicthread.finished.connect(dialog.closeDialog)
         mypicthread.setType(self.ui.modeBox_1.currentText())
+        # loop.exec_()
         try:
             mypicthread.start()
         except Exception as e:

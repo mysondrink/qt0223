@@ -58,13 +58,13 @@ class MyPicThread(AbstractThread):
                 )
             )
         except Exception as e:
+            self.sendException()
             self.update_json.emit(
                 dict(
                     timenow=response.message,
                     flag=False,
                 )
             )
-            self.sendException()
 
     def setType(self, item_type):
         """

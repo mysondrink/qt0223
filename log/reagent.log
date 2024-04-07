@@ -32,3 +32,503 @@ KeyboardInterrupt
     def blinkAssess(self, msg):
 KeyboardInterrupt
 
+2024-04-01 19:26:42,395 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-01T11:26:42.3586216+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-01 19:26:42,395 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-01T11:26:42.3586216+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-01 19:28:43,553 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 319, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-04-01 19:28:43,554 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 319, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-04-02 09:30:40,486 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in on_btnDownload_clicked
+    self.usbthread = CheckUSBThread(name, path, data, self.data['point_str'] + ',' + self.allergy_info)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\USBController.py", line 45, in __init__
+    super().__init__(parent)
+TypeError: __init__() takes 1 positional argument but 2 were given
+
+2024-04-02 09:30:40,491 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in on_btnDownload_clicked
+    self.usbthread = CheckUSBThread(name, path, data, self.data['point_str'] + ',' + self.allergy_info)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\USBController.py", line 45, in __init__
+    super().__init__(parent)
+TypeError: __init__() takes 1 positional argument but 2 were given
+
+2024-04-02 09:30:59,467 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 141, in blinkAssess
+    def blinkAssess(self, msg):
+KeyboardInterrupt
+
+2024-04-02 09:30:59,469 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 141, in blinkAssess
+    def blinkAssess(self, msg):
+KeyboardInterrupt
+
+2024-04-02 09:56:38,831 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 194, in getUSBInfo
+    obj.join()
+AttributeError: 'CheckUSBThread' object has no attribute 'join'
+
+2024-04-02 09:56:38,832 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 194, in getUSBInfo
+    obj.join()
+AttributeError: 'CheckUSBThread' object has no attribute 'join'
+
+2024-04-02 10:00:30,630 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 194, in getUSBInfo
+    obj.stop()
+AttributeError: 'CheckUSBThread' object has no attribute 'stop'
+
+2024-04-02 10:00:30,630 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 194, in getUSBInfo
+    obj.stop()
+AttributeError: 'CheckUSBThread' object has no attribute 'stop'
+
+2024-04-02 10:06:47,780 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\USBController.py", line 171, in downLoadToUSB
+    Main.moveToThread(Main_thread)
+AttributeError: 'img_main' object has no attribute 'moveToThread'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\USBController.py", line 33, in run
+    self.downLoadToUSB()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\USBController.py", line 184, in downLoadToUSB
+    Main.deleteLater()
+AttributeError: 'img_main' object has no attribute 'deleteLater'
+
+2024-04-02 10:35:40,393 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 290, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 199, in getUSBInfo
+    obj.thread.quit()
+AttributeError: 'builtin_function_or_method' object has no attribute 'quit'
+
+2024-04-02 10:35:40,394 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 290, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 199, in getUSBInfo
+    obj.thread.quit()
+AttributeError: 'builtin_function_or_method' object has no attribute 'quit'
+
+2024-04-02 10:59:44,725 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 291, in on_btnDownload_clicked
+    self.download_timer.timeout.connect(usbthread.start)
+NameError: name 'usbthread' is not defined
+
+2024-04-02 10:59:44,732 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 291, in on_btnDownload_clicked
+    self.download_timer.timeout.connect(usbthread.start)
+NameError: name 'usbthread' is not defined
+
+2024-04-02 11:03:42,776 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in on_btnDownload_clicked
+    self.usbthread.start()
+AttributeError: 'DataPage' object has no attribute 'usbthread'
+
+2024-04-02 11:03:42,776 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in on_btnDownload_clicked
+    self.usbthread.start()
+AttributeError: 'DataPage' object has no attribute 'usbthread'
+
+2024-04-02 11:08:31,583 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 293, in on_btnDownload_clicked
+    self.download_timer.timeout.connect(self.usbthread.start)
+AttributeError: 'DataPage' object has no attribute 'usbthread'
+
+2024-04-02 11:08:31,584 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 293, in on_btnDownload_clicked
+    self.download_timer.timeout.connect(self.usbthread.start)
+AttributeError: 'DataPage' object has no attribute 'usbthread'
+
+2024-04-02 11:08:39,101 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:08:39,101 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:27:06,869 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:27:06,869 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:33:52,614 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 188, in getUSBInfo
+    obj.update_json.disconnect(self.getUSBInfo)
+RuntimeError: Failed to disconnect signal update_json(int).
+
+2024-04-02 11:33:52,614 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 188, in getUSBInfo
+    obj.update_json.disconnect(self.getUSBInfo)
+RuntimeError: Failed to disconnect signal update_json(int).
+
+2024-04-02 11:35:38,072 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:35:38,072 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 11:35:57,155 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 188, in getUSBInfo
+    obj.update_json.disconnect(lambda msg: self.getUSBInfo(msg, obj=obj))
+RuntimeError: Failed to disconnect signal update_json(int).
+
+2024-04-02 11:35:57,156 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 188, in getUSBInfo
+    obj.update_json.disconnect(lambda msg: self.getUSBInfo(msg, obj=obj))
+RuntimeError: Failed to disconnect signal update_json(int).
+
+2024-04-02 11:46:33,315 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+TypeError: getUSBInfo() got an unexpected keyword argument 'obj'
+
+2024-04-02 11:46:33,315 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 282, in <lambda>
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg, obj=usbthread))
+TypeError: getUSBInfo() got an unexpected keyword argument 'obj'
+
+2024-04-02 11:52:45,542 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 295, in on_btnDownload_clicked
+    self.showInfoDialog(info)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 74, in showInfoDialog
+    dialog = AbsctractDialog()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 22, in __init__
+    super().__init__()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractWidget.py", line 29, in __init__
+    self.logThread = LogThread()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 30, in __init__
+    self.log_file = LOG_FILE
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 30, in __init__
+    self.log_file = LOG_FILE
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.1.1\plugins\python\helpers\pydev\pydevd.py", line 1160, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.1.1\plugins\python\helpers\pydev\pydevd.py", line 1175, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+2024-04-02 11:52:45,543 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 295, in on_btnDownload_clicked
+    self.showInfoDialog(info)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractPage.py", line 74, in showInfoDialog
+    dialog = AbsctractDialog()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 22, in __init__
+    super().__init__()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractWidget.py", line 29, in __init__
+    self.logThread = LogThread()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 30, in __init__
+    self.log_file = LOG_FILE
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 30, in __init__
+    self.log_file = LOG_FILE
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_39_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_39_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_39_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.1.1\plugins\python\helpers\pydev\pydevd.py", line 1160, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.1.1\plugins\python\helpers\pydev\pydevd.py", line 1175, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+2024-04-02 11:59:18,920 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in on_btnDownload_clicked
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg))
+AttributeError: 'CheckUSBThread' object has no attribute 'update_json'
+
+2024-04-02 11:59:18,922 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 283, in on_btnDownload_clicked
+    usbthread.update_json.connect(lambda msg: self.getUSBInfo(msg))
+AttributeError: 'CheckUSBThread' object has no attribute 'update_json'
+
+2024-04-02 13:04:07,186 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 288, in <lambda>
+    self.download_timer.timeout.connect(lambda: self.showDownloadFinished(usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in showDownloadFinished
+    self.download_timer.timeout.disconnect(lambda: obj.start())
+RuntimeError: Failed to disconnect signal timeout().
+
+2024-04-02 13:04:07,186 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 288, in <lambda>
+    self.download_timer.timeout.connect(lambda: self.showDownloadFinished(usbthread))
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in showDownloadFinished
+    self.download_timer.timeout.disconnect(lambda: obj.start())
+RuntimeError: Failed to disconnect signal timeout().
+
+2024-04-02 16:35:37,996 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-02 16:35:38,000 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-03 11:01:16,094 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 131, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-03 11:01:16,094 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 131, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-03 11:04:12,241 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-04-03T03:04:12.2142052+00:00", grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-03 11:04:12,244 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-04-03T03:04:12.2142052+00:00", grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-03 11:04:56,815 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Connection reset"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Connection reset", grpc_status:14, created_time:"2024-04-03T03:04:56.7962214+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-03 11:04:56,819 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Connection reset"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Connection reset", grpc_status:14, created_time:"2024-04-03T03:04:56.7962214+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 63, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-03 12:39:47,965 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-03 12:39:47,966 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-03 12:42:39,610 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 12:43:43,491 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 12:44:17,447 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 12:44:22,974 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 12:44:28,113 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 12:44:35,018 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-03 13:43:28,033 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-03 13:43:28,039 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-03 14:06:51,633 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:06:51,637 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:09:27,702 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 44, in run
+    print("Will try to imgprocess...")
+OSError: [Errno 22] Invalid argument
+
+2024-04-03 14:09:28,951 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 44, in run
+    print("Will try to imgprocess...")
+OSError: [Errno 22] Invalid argument
+
+2024-04-03 14:09:44,668 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:09:44,670 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:10:43,528 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:10:43,531 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:11:48,167 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+
+2024-04-03 14:11:48,170 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 444, in takePicture
+    reagent_time_detail = test_time[1]
+IndexError: list index out of range
+

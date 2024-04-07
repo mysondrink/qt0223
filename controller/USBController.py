@@ -1,15 +1,6 @@
-"""
-@Description：数据下载类
-@Author：mysondrink@163.com
-@Time：2024/2/27 16:14
-"""
-from PySide2.QtCore import QThread, Signal, QDateTime
-import sys
-import traceback
+from PySide2.QtCore import Signal
 import os
-import cv2 as cv
 import pandas as pd
-import time
 import shutil
 try:
     import util.frozen as frozen
@@ -31,18 +22,11 @@ succeed_code = 202
 class CheckUSBThread(AbstractThread):
     update_json = Signal(int)
 
-    def __init__(self, name, path, data, allergy, parent=None):
+    def __init__(self, name, path, data, allergy):
         """
-        初始化线程
-        构造函数
-        Args:
-            name: 图片名称
-            path: 图片路径
-            data: 图片数据
-            allergy: 试剂卡数据
-            parent: 父类
+        下载线程，进行数据和图片的下载
         """
-        super().__init__(parent)
+        super().__init__()
         self.name_pic = name
         self.pic_path = path
         self.data = data
@@ -50,10 +34,7 @@ class CheckUSBThread(AbstractThread):
 
     def run(self):
         """
-        u盘下载运行函数
-        进行u盘下载
-        Returns:
-            None
+        线程运行函数
         """
         try:
             self.downLoadToUSB()
@@ -63,82 +44,38 @@ class CheckUSBThread(AbstractThread):
 
     def downLoadToUSB(self):
         """
-        下载信息到u盘
-        下载内容包括图片、数据库信息
-        Returns:
-            None
-        """
-        """
-        # 指定目标目录
-        target_dir = '/media/orangepi/'
-        # 获取U盘设备路径
-        try:
-            if len(os.listdir(target_dir)) == 0:
-                self.update_json.emit(failed_code)
-                return
-            else:
-                u_name = r"/media/orangepi/" + os.listdir(target_dir)[0] + "/"
-        except Exception as e:
-            print(e)
-            self.sendException()
-            self.update_json.emit(failed_code)
-            return
-        try:
-            cmd = 'su orangepi -c "cd %s"'%u_name
-            flag = os.system(cmd)
-            if flag != 0:
-                self.update_json.emit(failed_code)
-                delete_cmd = 'echo %s | sudo rm -rf %s' % ('orangepi', u_name)
-                os.system(delete_cmd)
-                return
-        except Exception as e:
-            print(e)
-            self.sendException()
-            self.update_json.emit(failed_code)
-            return
-        # 检查U盘是否已插入
-        # timenow = QDateTime.currentDateTime().toString('yyyy-MM-dd')
-        timenow = self.data['time'][0]
-        save_dir = u_name + timenow + "/"
-        dirs.makedir(save_dir)
-        # filename = str(int((len(os.listdir(save_dir)) - 1)/2) + 1).zfill(4)
-        save_path = save_dir + timenow + ".csv"
-        save_path = save_dir + timenow + ".xlsx"
+        创建excel表，同时将图片和excel表copy到U盘
         """
         save_path = '%s/img/%s/%s.xlsx' % (frozen.app_path(), self.pic_path, self.pic_path)
         dirs.makedir(save_path)
         save_dir = '%s/img/%s/' % (frozen.app_path(), self.pic_path)
-        # save_img_path_1 = save_dir + filename + "-" + self.name_pic + "生成图.jpeg"
-        # save_img_path_2 = save_dir + filename + "-" + self.name_pic + "检疫图.jpeg"
+        move_picture_flag = True
+        cache_path = '%s/cache/picture/' % frozen.app_path()
+        dirs.makedir(cache_path)
         if os.path.exists(save_dir):
-            # 在U盘根目录下创建示例文件
-            # print(filename + file_name)
-            # print("exists")
-            # file_path = os.path.join(filename, file_name)
-            # with open(save_path, "a") as f:
-            #     msg = self.data
-            #     f.write(str(msg) + "\n")
-
             try:
                 img_origin = '%s/img/%s/%s-1.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
-                # shutil.copy(img_origin, save_img_path_1)
-                # img_origin = cv.imread('%s/img/%s/%s-1.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)) # linux
-                # flag_bool = cv.imwrite(save_img_path_1, img_origin)
+                save_img_path_1 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "生成图.jpeg")
+                shutil.copy(img_origin, save_img_path_1)
 
                 img_final = '%s/img/%s/%s-2.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
-                # shutil.copy(img_final, save_img_path_2)
-                # img_final = cv.imread('%s/img/%s/%s-2.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)) # linux
-                # flag_bool = cv.imwrite(save_img_path_2, img_final)
+                save_img_path_2 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "检疫图.jpeg")
+                shutil.copy(img_final, save_img_path_2)
             except Exception as e:
-                print(e)
-                self.sendException()
-                self.update_json.emit(failed_code + 1)
-                return
+                # print(e)
+                # self.sendException()
+                # self.update_json.emit(failed_code + 1)
+                # return
+                move_picture_flag = False
             try:
                 if os.path.exists(save_path):
-                    df2 = pd.read_excel(save_path, sheet_name='Sheet2')
-                    row2 = df2.shape[0]  # 获取原数据的行数
-                    id_num = row2 + 1
+                    try:
+                        df2 = pd.read_excel(save_path, sheet_name='Sheet2')
+                        row2 = df2.shape[0]  # 获取原数据的行数
+                        id_num = row2 + 1
+                    except Exception as e:
+                        os.remove(save_path)
+                        id_num = 1
                 else:
                     id_num = 1
                 id_num = "\t" + str(id_num).zfill(4)
@@ -176,12 +113,9 @@ class CheckUSBThread(AbstractThread):
                 dataframe = dataframe[:1].drop(columns='数据')
                 newdata = pd.merge(dataframe, info_data, left_index=True, right_index=True, how='outer')
                 if os.path.exists(save_path):
-                    xlsx = pd.ExcelFile(save_path)
-                    # df1 = pd.read_excel(save_path, engine='openpyxl', sheet_name='Sheet1')
-                    df1 = pd.read_excel(xlsx, engine='openpyxl', sheet_name='Sheet1')
+                    df1 = pd.read_excel(save_path, engine='openpyxl', sheet_name='Sheet1')
                     row1 = df1.shape[0]  # 获取原数据的行数
-                    # df2 = pd.read_excel(save_path, engine='openpyxl', sheet_name='Sheet2')
-                    df2 = pd.read_excel(xlsx, engine='openpyxl', sheet_name='Sheet2')
+                    df2 = pd.read_excel(save_path, engine='openpyxl', sheet_name='Sheet2')
                     row2 = df2.shape[0]  # 获取原数据的行数
                     with pd.ExcelWriter(save_path, mode='a', engine='openpyxl', if_sheet_exists='overlay') as writer:
                         # 追加
@@ -196,31 +130,31 @@ class CheckUSBThread(AbstractThread):
                 identifier = "0xb7d60506"
                 Main = img_main()
                 save_usb_path = "/mnt/mydev/%s/" % self.pic_path
-                if Main.mountMove(img_origin, save_usb_path, identifier) is not True:
-                    raise Exception
-                if Main.mountMove(img_final, save_usb_path, identifier) is not True:
-                    raise Exception
+                save_usb_path = "/mnt/mydev/"
+                if move_picture_flag:
+                    # if Main.mountMove(img_origin, save_usb_path, identifier) is not True:
+                    #     raise Exception
+                    # if Main.mountMove(img_final, save_usb_path, identifier) is not True:
+                    #     raise Exception
+                    if Main.mountMove(save_img_path_1, save_usb_path, identifier) is not True:
+                        raise Exception
+                    if Main.mountMove(save_img_path_2, save_usb_path, identifier) is not True:
+                        raise Exception
                 if Main.mountMove(save_path, save_usb_path, identifier) is not True:
                     raise Exception
                 if Main.mountMove(src_path, save_usb_path, identifier) is not True:
                     raise Exception
+                self.update_json.emit(succeed_code)
             except Exception as e:
                 print(e)
                 self.update_json.emit(failed_code)
                 return
-            self.update_json.emit(succeed_code)
         else:
             self.update_json.emit(failed_code)
 
     def split_string(self, obj, sec):
         """
-        分割字符，将过敏原数据设置为固定形式的二维list
-        Args:
-            obj: 过敏原数据
-            sec: 步长，即二维list的列数
-
-        Returns:
-            result： list，分割好的二维list
+        数据过滤，将数据按照列数进行分割
         """
         result = []
         data = [obj[i:i + sec] for i in range(0, len(obj), sec)]
