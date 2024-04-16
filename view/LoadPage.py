@@ -25,6 +25,7 @@ try:
     from view.AboutPage import AboutPage
     from view.RegPage import RegPage
     from view.UpdatePage import UpdatePage
+    from view.CurvePage import CurvePage
 except ModuleNotFoundError:
     from qt0223.view.AbstractPage import AbstractPage
     from qt0223.controller.BlinkController import CheckBlinkThread
@@ -46,6 +47,7 @@ except ModuleNotFoundError:
     from qt0223.view.AboutPage import AboutPage
     from qt0223.view.RegPage import RegPage
     from qt0223.view.UpdatePage import UpdatePage
+    from qt0223.view.CurPage import CurvePage
 
 FLAG_NUM = 0
 FAILED_CODE = 404

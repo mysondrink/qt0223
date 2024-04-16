@@ -29,6 +29,12 @@ class LogThread(QThread):
         self.logger = None
         self.log_file = LOG_FILE
 
+    def __del__(self):
+        """
+        析构函数，打印类名
+        """
+        print(f"delete thread {self.__class__.__name__}")
+
     def run(self):
         """
         线程运行函数

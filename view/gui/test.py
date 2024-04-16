@@ -267,6 +267,29 @@ class Ui_Form(object):
         self.radioButton_2.setObjectName(u"radioButton_2")
         self.radioButton_2.setGeometry(QRect(650, 190, 95, 40))
         self.radioButton_2.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";")
+        self.label_13 = QLabel(self.page)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setGeometry(QRect(20, 150, 140, 27))
+        self.label_13.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";\n"
+"")
+        self.modeBox_2 = QComboBox(self.page)
+        self.modeBox_2.setObjectName(u"modeBox_2")
+        self.modeBox_2.setGeometry(QRect(166, 150, 129, 31))
+        self.modeBox_2.setStyleSheet(u"QComboBox::drop-down{\n"
+"width:56px;  height:56px;\n"
+"}\n"
+"\n"
+"QComboBox{\n"
+"font: 20pt \"\u5b8b\u4f53\";\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"	background-color: rgb(0, 0, 0);/*\u80cc\u666f\u989c\u8272*/\n"
+"    padding: 1px 2px 1px 2px;  /*\u9488\u5bf9\u4e8e\u7ec4\u5408\u6846\u4e2d\u7684\u6587\u672c\u5185\u5bb9*/\n"
+"	color: rgb(255,255,255)\n"
+"}")
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
@@ -353,7 +376,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -385,6 +408,7 @@ class Ui_Form(object):
         self.typeLabel.setText("")
         self.radioButton.setText(QCoreApplication.translate("Form", u"\u7537", None))
         self.radioButton_2.setText(QCoreApplication.translate("Form", u"\u5973", None))
+        self.label_13.setText(QCoreApplication.translate("Form", u"\u66f2\u7ebf", None))
         self.photoLabel.setText("")
         self.picLabel.setText(QCoreApplication.translate("Form", u"origin_photo", None))
         self.leftLabel.setText(QCoreApplication.translate("Form", u"TextLabel", None))

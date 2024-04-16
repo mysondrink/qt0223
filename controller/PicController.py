@@ -61,7 +61,7 @@ class MyPicThread(AbstractThread):
             self.sendException()
             self.update_json.emit(
                 dict(
-                    timenow=response.message,
+                    timenow='failed!',
                     flag=False,
                 )
             )

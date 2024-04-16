@@ -1,4 +1,5 @@
 from PySide2.QtCore import Signal
+from PySide2.QtGui import QPixmap, QPainter
 import os
 import pandas as pd
 import shutil
@@ -57,7 +58,7 @@ class CheckUSBThread(AbstractThread):
                 img_origin = '%s/img/%s/%s-1.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
                 save_img_path_1 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "生成图.jpeg")
                 shutil.copy(img_origin, save_img_path_1)
-
+                chart_img = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "曲线.jpeg")
                 img_final = '%s/img/%s/%s-2.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
                 save_img_path_2 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "检疫图.jpeg")
                 shutil.copy(img_final, save_img_path_2)
@@ -136,6 +137,8 @@ class CheckUSBThread(AbstractThread):
                     #     raise Exception
                     # if Main.mountMove(img_final, save_usb_path, identifier) is not True:
                     #     raise Exception
+                    if Main.mountMove(chart_img, save_usb_path, identifier) is not True:
+                        raise Exception
                     if Main.mountMove(save_img_path_1, save_usb_path, identifier) is not True:
                         raise Exception
                     if Main.mountMove(save_img_path_2, save_usb_path, identifier) is not True:

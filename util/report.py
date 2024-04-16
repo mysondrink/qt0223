@@ -78,16 +78,20 @@ class MyReport():
                             </html>\
                             '
         
-    def gethtml(self, item_type, reagent_info, nature_aver_str):
+    def gethtml(self, item_type, reagent_info, nature_aver_str, concentration_matrix):
         # < 60000: "阴性" "-"
         # < 660000: "弱阳性" "+"
         # < 1100000: "中阳性" "++"
         # > 1100000: "强阳性" "+++"
-        result_dict = {"阴性": "-", "中阳性": "++", "强阳性": "+++", "弱阳性": "+"}
+        result_dict = {
+            "极高": "&gt;100", "很高": "50-100", "非常高": "17.5-50", "高": "3.5-17.5",
+            "中": "0.7-3.5", "低": "0.35-0.7", "检测不到": "&lt;0.35"
+        }
         # + —计算列表 40
         result_list_1 = [result_dict.get(i) for i in nature_aver_str.split(",")[5:]]
         # 阴阳性计算列表 40
         result_list_2 = [i for i in nature_aver_str.split(",")[5:]]
+        result_list_concentration = [i for i in concentration_matrix.split(",")[5:]]
         reagent_info_list_1 = [i for i in reagent_info.split(",")]
         reagent_info_list_2 = [reagent_info_list_1[k:k+5] for k in [j for j in range(0, 55, 5)] if k % 15 == 0]
         # 过敏原列表
@@ -102,14 +106,16 @@ class MyReport():
         result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
         # 阴阳性结果列表
         result_list_4 = [result_list_2[i] for i in range(len(allergen)) if allergen[i] != ""]
+        list_concentration_filter = [result_list_concentration[i] for i in range(len(allergen)) if allergen[i] != ""]
+
         # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
         temp = '<tr align="center">\
                 <td>%s</td>\
                 <td>%s</td>\
-                <td>&lt;0.35</td>\
+                <td>%s</td>\
                 <td>%s</td>\
                 </tr>'
-        temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+        temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], list_concentration_filter[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
         # for j in range(len(reagent_info_list_3)):
         #     str_temp = temp
         #     temp_str = temp_str + str_temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j])

@@ -63,6 +63,37 @@ INSERT_USER_INFO = """
     INSERT INTO user_table(user_name, user_code) VALUES (?, ?)
     """
 
+INSERT_SPLINE_INFO = """
+    INSERT INTO t_spline(spline_id, light_matrix, concentration_matrix) VALUES (?, ?, ?)
+    """
+
+UPDATE_SPLINE_INFO = """
+    UPDATE t_spline
+    SET curve_id = ?
+    WHERE spline_id = ?
+"""
+
+SEARCH_SPLINE_POINTS = """
+    SELECT * FROM t_spline WHERE spline_id = ?
+    """
+
+
+SEARCH_ALL_CURVE = """
+    SELECT curve_id FROM t_curve
+    """
+
+SEARCH_CURVE_POINTS_VALUE = """
+    SELECT * FROM t_curve WHERE curve_id = ?
+    """
+
+UPDATE_CURVE_SQL = """
+    UPDATE t_curve
+    SET s0_glow_value = ?, s0_concentration = ?, s1_glow_value = ?, 
+        s1_concentration = ?, s2_glow_value = ?, s2_concentration = ?,
+        s3_glow_value = ?, s3_concentration = ?, s4_glow_value = ?,
+        s4_concentration = ?, s5_glow_value = ?, s5_concentration = ?
+    WHERE curve_id = ?
+    """
 
 def insertMySql(*args):
     conn = sqlite3.connect(SQL_PATH)
@@ -323,3 +354,125 @@ def insertUser(username, usercode):
     cursor.close()
     connection.close()
     return SUCCEED_CODE
+
+def insertCurveTable(curve_id, light_matrix, concentration_matrix):
+    _id = curve_id
+    _l = light_matrix
+    _c = concentration_matrix
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(INSERT_SPLINE_INFO, [_id, _l, _c])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+        return FAILED_CODE
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return SUCCEED_CODE
+
+def insertSingleCurveTable(spline_id, curve_id):
+    _s = spline_id
+    _id = curve_id
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(UPDATE_SPLINE_INFO, [_s, _id])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+        return FAILED_CODE
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return SUCCEED_CODE
+
+def getCurvePoints(curve_id):
+    _c = curve_id
+    conn = sqlite3.connect(SQL_PATH)
+    cur = conn.cursor()
+    try:
+        # 提交事务
+        cur.execute(SEARCH_SPLINE_POINTS, [_c])
+        conn.commit()
+    except Exception as e:
+        print(str(e))
+        # 有异常，回滚事务
+        conn.rollback()
+    _, _, light_matrix, concentration_matrix, _ = cur.fetchall()[0]
+    cur.close()
+    conn.close()
+    return light_matrix, concentration_matrix
+
+def setCurveDict():
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(SEARCH_ALL_CURVE)
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+    curve_id_list = []
+
+    for x in cursor.fetchall():
+        curve_id_list.append(x[0])
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return curve_id_list
+
+def getCurvePointsData(curve_id):
+    _c = curve_id
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(SEARCH_CURVE_POINTS_VALUE, [_c])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+    result = None
+
+    for x in cursor.fetchall():
+        result = x[2:]
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return list(result)
+
+def updateCurvePointsData(data, curve_id):
+    points_len = 6
+    _c = curve_id
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(UPDATE_CURVE_SQL, [*data[:points_len*2], _c])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()

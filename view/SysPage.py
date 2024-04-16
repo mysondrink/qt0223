@@ -12,6 +12,8 @@ except ModuleNotFoundError:
     from qt0223.view.gui.sys import *
     from qt0223.view.AbstractPage import AbstractPage
 
+CONFIG_FILE = frozen.app_path() + r"/config/configname.ini"
+
 
 class SysPage(Ui_Form, AbstractPage):
     def __init__(self):
@@ -136,3 +138,23 @@ class SysPage(Ui_Form, AbstractPage):
         """
         page_msg = 'HomePage'
         self.next_page.emit(page_msg)
+
+    @Slot()
+    def on_btnPer_clicked(self):
+        if self.checkAdminName():
+            page_msg = 'RegPage'
+            self.next_page.emit(page_msg)
+        else:
+            info = "当前用户没有权限！"
+            self.showInfoDialog(info)
+
+    def checkAdminName(self):
+        """
+        读取当前操作用户信息
+        Returns:
+            bool: 如果是admin用户返回True否则返回False
+        """
+        settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+        settings.setIniCodec("UTF-8")
+        admin_name = settings.value("USER/user_name")
+        return True if admin_name == "admin" else False

@@ -63,7 +63,8 @@ class HomePage(Ui_Form, AbstractPage):
         self.ui.history_icon_label.setPixmap(pixImg)
         self.ui.history_icon_label.setAlignment(Qt.AlignCenter)
 
-        reagent_set_icon_path = frozen.app_path() + r"/res/icon/set.png"
+        # reagent_set_icon_path = frozen.app_path() + r"/res/icon/set.png"
+        reagent_set_icon_path = frozen.app_path() + r"/res/icon/statistics.png"
         pixImg = self.mySetIconSize(reagent_set_icon_path)
         self.ui.reagent_set_icon_label.setPixmap(pixImg)
         self.ui.reagent_set_icon_label.setAlignment(Qt.AlignCenter)
@@ -156,12 +157,14 @@ class HomePage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        if self.checkAdminName():
-            page_msg = 'RegPage'
-            self.next_page.emit(page_msg)
-        else:
-            info = "当前用户没有权限！"
-            self.showInfoDialog(info)
+        page_msg = 'CurvePage'
+        self.next_page.emit(page_msg)
+        # if self.checkAdminName():
+        #     page_msg = 'CurvePage'
+        #     self.next_page.emit(page_msg)
+        # else:
+        #     info = "当前用户没有权限！"
+        #     self.showInfoDialog(info)
 
     @Slot()
     def on_btnPara_clicked(self) -> None:

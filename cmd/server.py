@@ -126,12 +126,25 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
                 combina=item_type,
                 radius=40
             )
+            # result_imgprocess = Main.imgProcess(
+            #     read=frozen.app_path() + r'/pic_code/img/img_tem/' + time_now + '.jpeg',
+            #     write=frozen.app_path() + r'/pic_code/img/img_out/',
+            #     combina=item_type,
+            #     radius=40,
+            #     list_data=self.readCurveFile()
+            # )
+            # if len(result_imgprocess) == 4:
+            #     judge_flag, gray_aver, nature_aver, water = result_imgprocess
             if len(result_imgprocess) == 3:
                 judge_flag, gray_aver, nature_aver = result_imgprocess
             else:
                 print("error para!")
                 raise Exception
-
+            import numpy as np
+            # random_matrix = np.random.randint(2000, high=10001, size=(9, 5))
+            random_matrix = np.random.uniform(2000, 10000, size=(9, 5))
+            rounded_floats = np.round(random_matrix, decimals=3)
+            water = rounded_floats
             if type(judge_flag) is not bool:
                 print("judge_flag type is: ", type(judge_flag))
                 raise Exception
@@ -146,12 +159,15 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
             antibody_test_points = []
             nature_aver_list = []
             gray_aver_list = []
+            concentration_list = []
             for i in range(w):
                 for j in range(h):
                     nature_aver_list.append(nature_aver[i][j])
                     gray_aver_list.append(str(gray_aver[i][j]))
+                    concentration_list.append(str(water[i][j]))
             nature_aver_str = ",".join(nature_aver_list)
             gray_aver_str = ",".join(gray_aver_list)
+            concentration_str = ",".join(concentration_list)
 
             # insert database
             data = dict(
@@ -161,6 +177,7 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
                 nature_aver=nature_aver_str
             )
             insertdb.insertMySql(data)
+            insertdb.insertCurveTable(time_now, gray_aver_str, concentration_str)
             msg = "succeed"
             code = 202
             return imgprocess_pb2.ImgProcessReply(message=time_now, code=202)
@@ -169,6 +186,15 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
             code = 404
             return imgprocess_pb2.ImgProcessReply(message=msg, code=code)
 
+    def readCurveFile(self):
+        path = frozen.app_path() + r"/res/"
+        f = open(path + 'curve', "r", encoding="utf-8")
+        lines = f.readlines()
+        f.close()
+        allergen = []
+        for i in lines:
+            allergen.append(i.rstrip())
+        return [float(item) for item in allergen]
 
 def serve():
     port = "50051"

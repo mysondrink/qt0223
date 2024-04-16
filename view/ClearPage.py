@@ -74,7 +74,7 @@ class ClearPage(Ui_Form, AbstractPage):
         print('mem_progress:', mem_progress)
         self.ui.clearBar.setValue(int(mem_progress))
 
-    def getInfo(self, msg):
+    def getInfo(self):
         """
         槽函数
         清理结果处理，同时设置进度条显示
@@ -142,6 +142,8 @@ class ClearPage(Ui_Form, AbstractPage):
             # self.deleteDirs(str(now_time)[:10], root_list)
         elif dict_mode.get(self.ui.clearCb.currentText()) == 4:
             now_time = None
+        info = "正在清理"
+        self.showInfoDialog(info)
         self.myClearThread = ClearThread(str(now_time)[:10])
         self.myClearThread.finished.connect(self.myClearThread.deleteLater())
         self.myClearThread.finished.connect(self.getInfo)

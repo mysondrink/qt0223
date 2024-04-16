@@ -49,6 +49,10 @@ class TestPage(Ui_Form, AbstractPage):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.radioButton_2.setChecked(True)
+        self.ui.label_12.hide()
+        self.ui.paraLine.hide()
+        curve_name_list = insertdb.setCurveDict()
+        self.ui.modeBox_2.addItems(curve_name_list)
         # 测试
         self.ui.typeLabel.setText("8x5")
         self.genderCb = QButtonGroup()
@@ -90,7 +94,7 @@ class TestPage(Ui_Form, AbstractPage):
         self.ui.btnPrint.setIconSize(QSize(32, 32))
         self.ui.btnPrint.setIcon(QIcon(exe_icon_path))
 
-        switch_icon_path = frozen.app_path() + r"/res/icon/switch.png"
+        switch_icon_path = frozen.app_path() + r"/res/icon/curve.png"
         self.ui.btnSwitch.setIconSize(QSize(32, 32))
         self.ui.btnSwitch.setIcon(QIcon(switch_icon_path))
 
@@ -472,6 +476,7 @@ class TestPage(Ui_Form, AbstractPage):
 
         # insert to sqlite database
         insertdb.insertMySql(info_json, data_json)
+        insert_flag = insertdb.insertSingleCurveTable(self.ui.modeBox_2.currentText(), time_now)
         # get reagent id to select photo
         reagent_id = insertdb.searchId(time_now)
         data_json = insertdb.changePhoto(reagent_id)
@@ -574,6 +579,20 @@ class TestPage(Ui_Form, AbstractPage):
         self.ui.btnExe.show()
         self.ui.btnConfirm.hide()
         self.setAllergenTableView()
+        self.writeCurveFile()
+
+    def writeCurveFile(self):
+        # numbers = [1, 2, 3]
+        curve_id = self.ui.modeBox_2.currentText()
+        value = insertdb.getCurvePointsData(curve_id)[:12]
+        # flag = [j.setText(str(i)) for i, j in zip(value, self.paraline_list) if i is not None]
+        # 打开一个文件以写入模式 ('w' 参数)
+        path = frozen.app_path() + r"/res/"
+        with open(path + 'curve', 'w', encoding="utf-8") as file:
+            # 遍历列表中的每个数字
+            for number in value:
+                # 写入数字并换行
+                file.write(str(number) + '\n')
 
     @Slot()
     def on_btnExe_clicked(self):

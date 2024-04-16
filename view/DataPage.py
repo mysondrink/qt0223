@@ -3,6 +3,7 @@ import re
 import cv2 as cv
 import datetime
 import numpy as np
+from PySide2.QtCharts import QtCharts
 try:
     from view.gui.info import *
     import util.frozen as frozen
@@ -10,8 +11,9 @@ try:
     from util.report import MyReport
     from view.AbstractPage import AbstractPage, ProcessDialog
     from controller.USBController import CheckUSBThread
-    # import middleware.database as insertdb
+    import middleware.database as insertdb
     from pic_code.img_main import img_main
+    from util.curve import MyCurve
 except ModuleNotFoundError:
     from qt0223.view.gui.info import *
     import qt0223.util.frozen as frozen
@@ -19,10 +21,14 @@ except ModuleNotFoundError:
     from qt0223.util.report import MyReport
     from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
     from qt0223.controller.USBController import CheckUSBThread
-    # import qt0223.middleware.database as insertdb
+    import qt0223.middleware.database as insertdb
     from qt0223.pic_code.img_main import img_main
+    from qt0223.util.curve import MyCurve
 
 
+QChartView = QtCharts.QChartView
+QChart = QtCharts.QChart
+QSplineSeries = QtCharts.QSplineSeries
 
 class DataPage(Ui_Form, AbstractPage):
     def __init__(self):
@@ -47,6 +53,7 @@ class DataPage(Ui_Form, AbstractPage):
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.stackedWidget.setCurrentIndex(3)  # 取消图片显示
         self.ui.btnPic.hide()
+        # self.ui.btnPic.setText("曲线")
         self.setBtnIcon()
         self.ui.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui.tableView_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -121,6 +128,13 @@ class DataPage(Ui_Form, AbstractPage):
         pic_path = self.data['pic_path']
         self.test_time = cur_time[0] + ' ' + cur_time[1]
         reagent_matrix_info = self.data['reagent_matrix_info']
+        try:
+            curve_id = self.data['pic_name']
+            _i = self.data['item_type']
+        except Exception as e:
+            curve_id = self.data['reagent_photo']
+            _i = self.data['item_type']
+        self.drawChart(_i, curve_id)
         self.pix_table_model = QStandardItemModel(
             self.row_exetable + int(self.row_exetable / 2), self.column_exetable
         )
@@ -149,9 +163,14 @@ class DataPage(Ui_Form, AbstractPage):
         point_str = self.data['point_str']
         self.showDataView(point_str + ',' + reagent_matrix_info)
         # creating a report display
-        self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+        # 测试
+        self.data['nature_aver_str'] = '检测不到,高,非常高,高,检测不到,非常高,极高,非常高,检测不到,极高,极高,非常高,高,高,非常高,极高,非常高,高,检测不到,高,高,检测不到,高,高,高,非常高,检测不到,非常高,高,极高,非常高,非常高,检测不到,非常高,非常高,高,检测不到,极高,高,检测不到,高,高,检测不到,高,检测不到'
+        # 测试结束
+        _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])
+        self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
+        # self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
 
-    def setTableWidget(self, item_type, reagent_info, nature_aver_str):
+    def setTableWidget(self, item_type, reagent_info, nature_aver_str, concentration_matrix):
         """
         设置报告单显示
         Args:
@@ -163,7 +182,7 @@ class DataPage(Ui_Form, AbstractPage):
             None
         """
         v = QVBoxLayout()
-        text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+        text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
         self.myreport = QTextEdit()
         # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
         # cur_time[0] + ' ' + cur_time[1]
@@ -227,6 +246,59 @@ class DataPage(Ui_Form, AbstractPage):
         self.ui.btnDownload.setEnabled(flag)
         self.ui.btnReturn.setEnabled(flag)
 
+    def drawChart(self, item_type, curve_id):
+        light_points, concentration_matrix = insertdb.getCurvePoints(curve_id)
+        fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+        sorted_coordinates_1 = sorted(fitting_points, key=lambda x: x[0])  # 按照横坐标进行从小到大排序
+        # print(sorted_coordinates_1)
+        import matplotlib.pyplot as plt
+        # 提取x和y坐标
+        x_values = [point[0] for point in sorted_coordinates_1]
+        y_values = [point[1] for point in sorted_coordinates_1]
+        # 绘制曲线
+        plt.figure(figsize=(10, 6))  # 可自定义图形大小
+        plt.plot(x_values, y_values)  # 绘制曲线，并标记点
+        # plt.xlabel('X Axis Label')
+        # plt.ylabel('Y Axis Label')
+        # plt.title('拟合曲线')
+        # 保存图像到本地文件
+        chart_img = '%s/cache/picture/%s' % (frozen.app_path(), curve_id + "曲线.jpeg")
+        plt.savefig(chart_img, dpi=300)  # 设置图像分辨率（dots per inch）
+
+    """
+    outdate
+    def drawChart(self, item_type, curve_id):
+        light_points, concentration_matrix = insertdb.getCurvePoints(curve_id)
+        fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+        sorted_coordinates_1 = sorted(fitting_points, key=lambda x: x[0]) # 按照横坐标进行从小到大排序
+        layout = QHBoxLayout()
+        self.ui.page_2.setLayout(layout)
+        self.ui.tableView.hide()
+        chart = QChart()
+        # chart.setTitle('Line Chart 1')
+        series = QSplineSeries(chart)
+        series_1 = QSplineSeries(chart)
+        series.setName("主曲线")
+        series_1.setName("拟合曲线")
+        LIGHT_DATA = [(0.0, 1362), (2.1, 24179), (8.92, 103611), (86.39, 888364), (176.88, 1704084),
+                        (371.42, 2849815)]
+        sorted_coordinates = sorted(LIGHT_DATA, key=lambda x: x[0]) # 按照横坐标进行从小到大排序
+        for i in sorted_coordinates:
+            series << QPointF(*i)
+        for k in sorted_coordinates_1:
+            series_1 << QPointF(*k)
+        chart.addSeries(series)
+        chart.addSeries(series_1)
+        chart.createDefaultAxes()  # 创建默认轴
+        # chart.legend().setVisible(False)    # 取消点位显示
+        self.chartview = QChartView(chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)  # 抗锯齿
+        # view.resize(800, 600)
+        # view.show()
+        layout.addWidget(self.chartview)
+        # self.ui.stackedWidget.setCurrentIndex(0)
+    """
+
     @Slot()
     def on_btnPrint_clicked(self):
         """
@@ -280,6 +352,14 @@ class DataPage(Ui_Form, AbstractPage):
         name = self.data['name_pic']
         path = self.data['pic_path']
         data = self.data
+
+        # chart_img = '%s/cache/picture/%s' % (frozen.app_path(), name + "曲线.jpeg")
+        # width = self.chartview.width()
+        # height = self.chartview.height()
+        # pixmap = QPixmap(width, height)
+        # self.chartview.render(pixmap)
+        # success = pixmap.save(chart_img)
+
         usbthread = CheckUSBThread(name, path, data, self.data['point_str'] + ',' + self.allergy_info)
         usbthread.update_json.connect(self.getUSBInfo)
         loop = QEventLoop()
@@ -319,7 +399,7 @@ class DataPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.stackedWidget.setCurrentIndex(1)
 
     @Slot()
     def on_btnReport_clicked(self):
