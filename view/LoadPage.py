@@ -224,6 +224,7 @@ class LoadPage(Ui_Form, AbstractPage):
             None
         """
         # print("showPage")
+        self.controller.deleteLater()
         self.list_widget = []
         if self.flag_num == 0:
             self._s = QStackedLayout()

@@ -47,6 +47,16 @@ class HomePage(Ui_Form, AbstractPage):
         self.controller.update_json.connect(self.memWarning)
         self.ui.btnSet.setText("  仪器设置")
 
+    def deleteLater(self):
+        """
+        打印删除的类的名
+        Returns:
+            None
+        """
+        super().deleteLater()
+        self.controller.deleteLater()
+        print(f"delete child widget{self.__class__.__name__}")
+
     def setBtnIcon(self) -> None:
         """
         设置按钮图标

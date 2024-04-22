@@ -36,7 +36,7 @@ class AbstractWidget(QWidget):
         """
         析构函数，打印类名
         """
-        print(f"delete widget{self.__class__.__name__}")
+        print(f"delete widget {self.__class__.__name__}")
 
     def deleteLater(self) -> None:
         """
@@ -44,8 +44,9 @@ class AbstractWidget(QWidget):
         Returns:
             None
         """
+        self.logThread.deleteLater()
         super().deleteLater()
-        print(f"delete widget{self.__class__.__name__}")
+        print(f"deleteLater widget {self.__class__.__name__}")
 
     def HandleException(self, excType, excValue, tb) -> None:
         """

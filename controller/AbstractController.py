@@ -32,6 +32,16 @@ class AbstractController(QObject):
         """
         print(f"del object is {self.__class__.__name__}")
 
+    def deleteLater(self) -> None:
+        """
+        打印删除的类的名
+        Returns:
+            None
+        """
+        self.log_thread.deleteLater()
+        super().deleteLater()
+        print(f"deleteLater controller {self.__class__.__name__}")
+
     def HandleException(self, excType, excValue, tb):
         """
         自动捕获和输出异常类

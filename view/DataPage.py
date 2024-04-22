@@ -142,6 +142,14 @@ class DataPage(Ui_Form, AbstractPage):
             self.row_exetable + int(self.row_exetable / 2) + 2,
             self.column_exetable
         )
+        # 设置只显示检测点对应结果
+        # self.pix_table_model = QStandardItemModel(
+        #     self.row_exetable + int(self.row_exetable / 2), self.column_exetable
+        # )
+        # self.pix_table_model_copy = QStandardItemModel(
+        #     self.row_exetable + 2,
+        #     self.column_exetable
+        # )
         self.ui.tableView.setModel(self.pix_table_model)
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -162,6 +170,8 @@ class DataPage(Ui_Form, AbstractPage):
         self.allergy_info = reagent_matrix_info
         point_str = self.data['point_str']
         self.showDataView(point_str + ',' + reagent_matrix_info)
+        # 设置只显示检测点对应结果
+        # self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
         # creating a report display
         # 测试
         self.data['nature_aver_str'] = '检测不到,高,非常高,高,检测不到,非常高,极高,非常高,检测不到,极高,极高,非常高,高,高,非常高,极高,非常高,高,检测不到,高,高,检测不到,高,高,高,非常高,检测不到,非常高,高,极高,非常高,非常高,检测不到,非常高,非常高,高,检测不到,极高,高,检测不到,高,高,检测不到,高,检测不到'
@@ -240,6 +250,84 @@ class DataPage(Ui_Form, AbstractPage):
                 item.setTextAlignment(Qt.AlignCenter)
                 self.pix_table_model_copy.setItem(i, j, item)
         return
+
+    """
+    def showDataView(self, points, data, gray_aver, item_type):
+        path = frozen.app_path() + r"/res/allergen/"
+        with open(path + item_type, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            f.close()
+            allergen = [i.rstrip() for i in lines][5:]
+        row = 8
+        column = 5
+        allergen_temp = [allergen[i * column:i * column + column] for i in range(row)]
+        # 定位点列表
+        _points = [i for i in points.split(",")]
+        # 数据点列表
+        result_list_points = [i for i in gray_aver.split(",")[5:]]
+        list_points_filter = self.filterData(result_list_points, allergen_temp)
+
+        # 过敏原列表
+        reagent_info_list_1 = [i for i in data.split(",")]
+        reagent_info_list_2 = [reagent_info_list_1[k:k+5] for k in [j for j in range(0, 55, 5)] if k % 15 == 0]
+        reagent_info_list_3 = [i for i in sum(reagent_info_list_2, []) if i != '']
+
+        # 需要达到的元素数量
+        target_length = 20
+        # 计算需要填充的0的数量
+        fill_count = target_length - len(list_points_filter)
+        # 使用列表的extend方法填充0
+        if fill_count > 0:
+            list_points_filter.extend([''] * fill_count)
+        fill_count = target_length - len(reagent_info_list_3)
+        # 使用列表的extend方法填充0
+        if fill_count > 0:
+            reagent_info_list_3.extend([''] * fill_count)
+
+        row = 4
+        column = 5
+        list_points_result = [list_points_filter[i * column:i * column + column] for i in range(row)]
+        list_allergen_result = [reagent_info_list_3[i * column:i * column + column] for i in range(row)]
+
+
+        # 新建一个空列表用于存放合并后的结果
+        merged_list = []
+
+        # 交叉合并
+        for i in range(max(len(list_allergen_result), len(list_points_result))):
+            if i < len(list_allergen_result):
+                merged_list.append(list_allergen_result[i])
+            if i < len(list_points_result):
+                merged_list.append(list_points_result[i])
+
+        flat_lst = [item for sublist in merged_list for item in sublist]
+
+        title_list = ["定位点", "", "", "", "定位点"]
+        # data_copy = re.split(r",", data)
+        data_copy = title_list + _points + flat_lst
+        row = self.pix_table_model_copy.rowCount()
+        column = self.pix_table_model_copy.columnCount()
+        for i in range(row):
+            for j in range(column):
+                if i * column + j > len(data_copy) - 1:
+                    break
+                pix_num = data_copy[i * column + j]
+                item = QStandardItem(str(pix_num))
+                item.setTextAlignment(Qt.AlignCenter)
+                self.pix_table_model_copy.setItem(i, j, item)
+        return
+
+    def filterData(self, ori_data, para_data):
+        row = 8
+        column = 5
+        ori_data_temp = [ori_data[i * column:i * column + column] for i in range(row)]
+        ori_data_corrected = [[b_row[j] if a_row[j] != '' else '' for j in range(len(a_row))]
+                              for a_row, b_row in zip(para_data, ori_data_temp)]
+        result_data = []
+        for i in range(0, len(ori_data_corrected), 2):
+            result_data.extend([item for pair in zip(*ori_data_corrected[i:i + 2]) for item in pair if item])
+        return result_data
+    """
 
     def checkUserOperation(self, flag):
         self.ui.btnPrint.setEnabled(flag)
@@ -321,15 +409,20 @@ class DataPage(Ui_Form, AbstractPage):
                     self.data['code_num'], '检测组合' + self.data['item_type'], test_time, time_now]
         gray_aver_str = self.data['gray_aver_str'].split(",")
         nature_aver_str = self.data['nature_aver_str'].split(",")
+        _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])
+        concentration_matrix_temp = concentration_matrix.split(",")
         array_gray_aver = np.array(gray_aver_str)
         array_nature_aver = np.array(nature_aver_str)
+        array_concentration = np.array(concentration_matrix_temp)
         matrix_gray_aver = array_gray_aver.reshape(9, 5)
         matrix_nature_aver = array_nature_aver.reshape(9, 5)
+        matrix_concentration = array_concentration.reshape(9, 5)
         Data_Nature = matrix_nature_aver
         Data_Light = matrix_gray_aver
+        Data_Water = matrix_concentration
         Main = img_main()
         _ = Main.natPrint_init()
-        if Main.natPrint(Data_Base, Data_Nature, Data_Light):
+        if Main.natPrint(Data_Base, Data_Nature, Data_Water, Data_Light):
             dialog.closeDialog()
             info = "输出表格成功!"
             self.update_info.emit(info)

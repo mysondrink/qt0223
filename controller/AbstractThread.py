@@ -42,8 +42,9 @@ class AbstractThread(QThread):
         if self.parent() is None:
             pass
         else:
+            self.log_thread.deleteLater()
             super().deleteLater()
-            print(f"delete thread {self.__class__.__name__}")
+            print(f"deleteLater thread {self.__class__.__name__}")
 
     def HandleException(self, excType, excValue, tb):
         """

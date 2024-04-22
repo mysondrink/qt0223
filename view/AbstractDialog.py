@@ -27,7 +27,7 @@ class AbsctractDialog(AbstractWidget):
         """
         析构函数，打印类名
         """
-        print(f"delete dialog{self.__class__.__name__}")
+        print(f"delete dialog {self.__class__.__name__}")
 
     def InitUI(self):
         """
@@ -113,8 +113,9 @@ class AbsctractDialog(AbstractWidget):
             None
         """
         timer = QTimer()
-        timer.timeout.connect(lambda: self.close())
+        # timer.timeout.connect(lambda: self.close())
         timer.timeout.connect(lambda: timer.stop())
+        timer.timeout.connect(lambda: self.deleteLater())
         timer.start(2500)
 
     def show(self):
@@ -140,7 +141,8 @@ class AbsctractDialog(AbstractWidget):
         Returns:
             None
         """
-        self.close()
+        # self.close()
+        self.deleteLater()
 
     def hideProgress(self):
         """
