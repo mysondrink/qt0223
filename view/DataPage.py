@@ -229,15 +229,8 @@ class DataPage(Ui_Form, AbstractPage):
             self.showInfoDialog(info)
             # obj.deleteLater()
 
-    def showDataView(self, data):
-        """
-        定位点数据展示
-        Args:
-            data: 过敏原信息
 
-        Returns:
-            None
-        """
+    def showDataView(self, data):
         title_list = ["定位点", "", "", "", "定位点"]
         data_copy = re.split(r",", data)
         data_copy = title_list + data_copy
@@ -311,6 +304,48 @@ class DataPage(Ui_Form, AbstractPage):
             for j in range(column):
                 if i * column + j > len(data_copy) - 1:
                     break
+                pix_num = data_copy[i * column + j]
+                item = QStandardItem(str(pix_num))
+                item.setTextAlignment(Qt.AlignCenter)
+                self.pix_table_model_copy.setItem(i, j, item)
+        return
+
+    # outdate
+    def filterData(self, ori_data, para_data):
+        row = 8
+        column = 5
+        ori_data_temp = [ori_data[i * column:i * column + column] for i in range(row)]
+        ori_data_corrected = [[b_row[j] if a_row[j] != '' else '' for j in range(len(a_row))]
+                              for a_row, b_row in zip(para_data, ori_data_temp)]
+        result_data = []
+        for i in range(0, len(ori_data_corrected), 2):
+            result_data.extend([item for pair in zip(*ori_data_corrected[i:i + 2]) for item in pair if item])
+        return result_data
+    """
+    """
+    def showDataView(self, points, data, gray_aver, item_type):
+
+        path = frozen.app_path() + r"/res/allergen/"
+        with open(path + item_type, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            f.close()
+            allergen = [i.rstrip() for i in lines][5:]
+        row = 8
+        column = 5
+        allergen_temp = [allergen[i * column:i * column + column] for i in range(row)]
+        # 定位点列表
+        _points = [i for i in points.split(",")]
+        # 数据点列表
+        result_list_points = [i for i in gray_aver.split(",")[5:]]
+        list_points_filter = self.filterData(result_list_points, allergen_temp)
+
+        title_list = ["定位点", "", "", "", "定位点"]
+        data_copy = re.split(r",", data)
+        data_copy = title_list + data_copy
+        row = self.pix_table_model_copy.rowCount()
+        column = self.pix_table_model_copy.columnCount()
+        for i in range(row):
+            for j in range(column):
                 pix_num = data_copy[i * column + j]
                 item = QStandardItem(str(pix_num))
                 item.setTextAlignment(Qt.AlignCenter)
@@ -411,9 +446,10 @@ class DataPage(Ui_Form, AbstractPage):
         nature_aver_str = self.data['nature_aver_str'].split(",")
         _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])
         concentration_matrix_temp = concentration_matrix.split(",")
+        concentration_matrix_temp_lst = ['-1' if item == '' else item for item in concentration_matrix_temp]
         array_gray_aver = np.array(gray_aver_str)
         array_nature_aver = np.array(nature_aver_str)
-        array_concentration = np.array(concentration_matrix_temp)
+        array_concentration = np.array(concentration_matrix_temp_lst)
         matrix_gray_aver = array_gray_aver.reshape(9, 5)
         matrix_nature_aver = array_nature_aver.reshape(9, 5)
         matrix_concentration = array_concentration.reshape(9, 5)
@@ -422,7 +458,10 @@ class DataPage(Ui_Form, AbstractPage):
         Data_Water = matrix_concentration
         Main = img_main()
         _ = Main.natPrint_init()
-        if Main.natPrint(Data_Base, Data_Nature, Data_Water, Data_Light):
+        # 测试
+        if Main.natPrint(Data_Base, Data_Nature, Data_Light):
+        # 测试结束
+        # if Main.natPrint(Data_Base, Data_Nature, Data_Water, Data_Light):
             dialog.closeDialog()
             info = "输出表格成功!"
             self.update_info.emit(info)
@@ -452,8 +491,14 @@ class DataPage(Ui_Form, AbstractPage):
         # pixmap = QPixmap(width, height)
         # self.chartview.render(pixmap)
         # success = pixmap.save(chart_img)
-
-        usbthread = CheckUSBThread(name, path, data, self.data['point_str'] + ',' + self.allergy_info)
+        _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])
+        usbthread = CheckUSBThread(
+            name,
+            path,
+            data,
+            self.data['point_str'] + ',' + self.allergy_info,
+            concentration_matrix
+        )
         usbthread.update_json.connect(self.getUSBInfo)
         loop = QEventLoop()
         usbthread.update_json.connect(loop.quit)

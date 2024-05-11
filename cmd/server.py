@@ -120,12 +120,15 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
                 raise Exception
             item_type = request.name
 
+            # 原测试
             result_imgprocess = Main.imgProcess(
                 read=frozen.app_path() + r'/pic_code/img/img_tem/' + time_now + '.jpeg',
                 write=frozen.app_path() + r'/pic_code/img/img_out/',
                 combina=item_type,
                 radius=40
             )
+            # 测试结束
+
             # result_imgprocess = Main.imgProcess(
             #     read=frozen.app_path() + r'/pic_code/img/img_tem/' + time_now + '.jpeg',
             #     write=frozen.app_path() + r'/pic_code/img/img_out/',
@@ -160,11 +163,21 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
             nature_aver_list = []
             gray_aver_list = []
             concentration_list = []
+            # gray_aver[0][1] = -1
+            # gray_aver[5][5] = -1
             for i in range(w):
                 for j in range(h):
                     nature_aver_list.append(nature_aver[i][j])
-                    gray_aver_list.append(str(gray_aver[i][j]))
-                    concentration_list.append(str(water[i][j]))
+                    if gray_aver[i][j] < 0:
+                        gray_aver_list.append('')
+                    else:
+                        # gray_aver_list.append(str(gray_aver[i][j]))
+                        gray_aver_list.append(f"{gray_aver[i][j]:.2f}")
+                    if water[i][j] < 0:
+                        concentration_list.append('')
+                    else:
+                        # concentration_list.append(str(water[i][j]))
+                        concentration_list.append(f"{water[i][j]:.2f}")
             nature_aver_str = ",".join(nature_aver_list)
             gray_aver_str = ",".join(gray_aver_list)
             concentration_str = ",".join(concentration_list)

@@ -34,7 +34,7 @@ class SysPage(Ui_Form, AbstractPage):
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.ui.btnSet.setText("   软件更新")
+        # self.ui.btnSet.setText("   软件更新")
         self.setBtnIcon()
 
     def setBtnIcon(self):
@@ -50,8 +50,10 @@ class SysPage(Ui_Form, AbstractPage):
 
         camera_icon_path = frozen.app_path() + r"/res/icon/camera.png"
         pixImg = self.mySetIconSize(camera_icon_path)
-        self.ui.camera_icon_label.setPixmap(pixImg)
-        self.ui.camera_icon_label.setAlignment(Qt.AlignCenter)
+        # self.ui.camera_icon_label.setPixmap(pixImg)
+        # self.ui.camera_icon_label.setAlignment(Qt.AlignCenter)
+        self.ui.per_icon_label.setPixmap(pixImg)
+        self.ui.per_icon_label.setAlignment(Qt.AlignCenter)
 
         clear_icon_path = frozen.app_path() + r"/res/icon/clear.png"
         pixImg = self.mySetIconSize(clear_icon_path)
@@ -106,16 +108,16 @@ class SysPage(Ui_Form, AbstractPage):
         page_msg = 'ClearPage'
         self.next_page.emit(page_msg)
 
-    @Slot()
-    def on_btnSet_clicked(self):
-        """
-        槽函数
-        软件更新页面跳转
-        Returns:
-            None
-        """
-        page_msg = 'UpdatePage'
-        self.next_page.emit(page_msg)
+    # @Slot()
+    # def on_btnSet_clicked(self):
+    #     """
+    #     槽函数
+    #     软件更新页面跳转
+    #     Returns:
+    #         None
+    #     """
+    #     page_msg = 'UpdatePage'
+    #     self.next_page.emit(page_msg)
 
     @Slot()
     def on_btnAbout_clicked(self):

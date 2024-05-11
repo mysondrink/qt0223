@@ -110,7 +110,10 @@ class PowerPage(Ui_Form, AbstractPage):
         info = "请在提示语关闭后关闭电源！"
         self.showInfoDialog(info)
         time.sleep(1)
+        self.ui.btnReturn.setEnabled(False)
+        self.ui.btnLogout.setEnabled(False)
         return
         # order_str = "sudo shutdown -h now"
         order_str = 'echo %s | sudo %s' % ('orangepi', 'shutdown -h now')
         os.system(order_str)
+        self.ui.btnShutdown.setEnabled(False)

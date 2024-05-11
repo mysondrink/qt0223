@@ -12,10 +12,12 @@ try:
     import util.frozen as frozen
     from controller.AbstractThread import AbstractThread
     import middleware.database as insertdb
+    from pic_code.img_main import img_main
 except:
     import qt0223.util.frozen as frozen
     from qt0223.controller.AbstractThread import AbstractThread
     import qt0223.middleware.database as insertdb
+    from qt0223.pic_code.img_main import img_main
 
 
 time_to_sleep = 2
@@ -99,14 +101,24 @@ class UploadThread(AbstractThread):
         Args:
             id_list: 照片名
             status_list: status状态list
-            reagent_info_list: 过敏原数据
-            points_list: 定位点数据
-            gray_aver_list: 像素点数据
+            reagent_info_list: 过敏原数据 60
+            points_list: 定位点数据 5
+            gray_aver_list: 像素点数据 40
 
         Returns:
             None
         """
         sum = insertdb.insertMySql(id_list, status_list, reagent_info_list, points_list, gray_aver_list)
+        print("update single spline 2 sqlite")
+        for i, j in zip(id_list, range(len(id_list))):
+            if status_list[j] == 0:
+                break
+            flag, concentration_aver_str = self.gray2Conc(points_list[j] + ',' + gray_aver_list[j])
+            if flag is not True:
+                break
+            flag = insertdb.updateSingleConFromUpload(i, points_list[j] + ',' + gray_aver_list[j], concentration_aver_str)
+            nature_aver_temp = self.gray2Nature(concentration_aver_str)
+            flag1 = insertdb.updateNatureAverFromUpload(i, nature_aver_temp)
         print('新增' + str(sum) + "数据")
         time.sleep(0.5)
         self.deleteFile()
@@ -119,4 +131,64 @@ class UploadThread(AbstractThread):
             None
         """
         os.remove(self.file_path)
+
+    def gray2Conc(self, data):
+        list1 = data.split(",")
+        print("list1 len:", len(list1))
+        list2 = ['-1' if item == '' else item for item in list1]
+        list5 = [list2[i:i+5] for i in range(0, len(list2), 5)]
+        # list3 = np.array(list2)
+        # list4 = list3.reshape(9, 5)
+        print("change num list5: ", list5)
+        list5[8][0] = '-1'
+        list5[8][4] = '-1'
+        Main = img_main()
+        # get_data = Main.tempRun(list4, func="model1")
+        get_data = Main.tempRun(list5, func="model1")
+        _flag = get_data['flag']
+        concentration_info = get_data['value']
+        w, h = concentration_info.shape
+        concentration_list = []
+        for i in range(w):
+            for j in range(h):
+                if concentration_info[i][j] < 0:
+                    concentration_list.append('')
+                else:
+                    # concentration_list.append(str(water[i][j]))
+                    concentration_list.append(f"{concentration_info[i][j]:.2f}")
+        concentration_str = ",".join(concentration_list)
+        return _flag, concentration_str
+
+    def gray2Nature(self, data):
+        nature_aver_list = []
+        result_dict = {
+            "极高": "&gt;100", "很高": "50-100", "非常高": "17.5-50", "高": "3.5-17.5",
+            "中": "0.7-3.5", "低": "0.35-0.7", "检测不到": "&lt;0.35"
+        }
+        result_dict = {
+            "1": "极高", "2": "很高", "3": "非常高", "4": "高",
+            "5": "中", "6": "低", "7": "检测不到"
+        }
+        list1 = data.split(",")
+        list2 = ['-1' if item == '' else item for item in list1]
+        for i in list2:
+            temp = float(i)
+            if temp < 0:
+                nature_aver_list.append(i)
+            elif temp < 0.35:
+                nature_aver_list.append(result_dict["7"])
+            elif temp < 0.7:
+                nature_aver_list.append(result_dict["6"])
+            elif temp < 3.5:
+                nature_aver_list.append(result_dict["5"])
+            elif temp < 17.5:
+                nature_aver_list.append(result_dict["4"])
+            elif temp < 50:
+                nature_aver_list.append(result_dict["3"])
+            elif temp < 100:
+                nature_aver_list.append(result_dict["2"])
+            else:
+                nature_aver_list.append(result_dict["1"])
+        result = ",".join(nature_aver_list)
+        return result
 

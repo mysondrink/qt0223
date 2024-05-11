@@ -46,20 +46,6 @@ class Ui_Form(object):
 "border-radius: 35px;\n"
 "\n"
 "")
-        self.btnSet = QPushButton(self.frame)
-        self.btnSet.setObjectName(u"btnSet")
-        self.btnSet.setGeometry(QRect(100, 160, 280, 80))
-        self.btnSet.setStyleSheet(u"QPushButton {\n"
-"font: 20pt \"\u5b8b\u4f53\";\n"
-"border:4px solid rgb(0,0,0);\n"
-"background-color:#05abc2;\n"
-"border-radius: 35px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"background-color: rgb(255, 0, 0);\n"
-"}\n"
-"")
         self.btnClear = QPushButton(self.frame)
         self.btnClear.setObjectName(u"btnClear")
         self.btnClear.setGeometry(QRect(410, 50, 280, 80))
@@ -76,7 +62,7 @@ class Ui_Form(object):
 "")
         self.about_icon_label = QLabel(self.frame)
         self.about_icon_label.setObjectName(u"about_icon_label")
-        self.about_icon_label.setGeometry(QRect(100, 270, 80, 80))
+        self.about_icon_label.setGeometry(QRect(100, 160, 80, 80))
         self.about_icon_label.setStyleSheet(u"font: 20pt \"\u5e7c\u5706\";\n"
 "border:4px solid rgb(0,0,0);\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -99,7 +85,7 @@ class Ui_Form(object):
 "")
         self.btnAbout = QPushButton(self.frame)
         self.btnAbout.setObjectName(u"btnAbout")
-        self.btnAbout.setGeometry(QRect(100, 270, 280, 80))
+        self.btnAbout.setGeometry(QRect(100, 160, 280, 80))
         self.btnAbout.setStyleSheet(u"QPushButton {\n"
 "font: 20pt \"\u5b8b\u4f53\";\n"
 "border:4px solid rgb(0,0,0);\n"
@@ -110,15 +96,6 @@ class Ui_Form(object):
 "QPushButton:pressed{\n"
 "background-color: rgb(255, 0, 0);\n"
 "}\n"
-"")
-        self.camera_icon_label = QLabel(self.frame)
-        self.camera_icon_label.setObjectName(u"camera_icon_label")
-        self.camera_icon_label.setGeometry(QRect(100, 160, 80, 80))
-        self.camera_icon_label.setStyleSheet(u"font: 20pt \"\u5e7c\u5706\";\n"
-"border:4px solid rgb(0,0,0);\n"
-"background-color: rgb(255, 255, 255);\n"
-"border-radius: 35px;\n"
-"\n"
 "")
         self.btnReturn = QPushButton(self.frame)
         self.btnReturn.setObjectName(u"btnReturn")
@@ -157,12 +134,10 @@ class Ui_Form(object):
 "\n"
 "")
         self.label.raise_()
-        self.btnSet.raise_()
         self.btnClear.raise_()
         self.btnWifi.raise_()
         self.btnAbout.raise_()
         self.about_icon_label.raise_()
-        self.camera_icon_label.raise_()
         self.clear_icon_label.raise_()
         self.wifi_icon_label.raise_()
         self.btnReturn.raise_()
@@ -179,14 +154,12 @@ class Ui_Form(object):
         self.wifi_icon_label.setText("")
         self.label.setText(QCoreApplication.translate("Form", u"\u7cfb\u7edf\u8bbe\u7f6e", None))
         self.clear_icon_label.setText("")
-        self.btnSet.setText(QCoreApplication.translate("Form", u"   \u8d28\u91cf\u63a7\u5236", None))
         self.btnClear.setText(QCoreApplication.translate("Form", u"  \u6e05\u9664\u7f13\u5b58", None))
         self.about_icon_label.setText("")
         self.btnWifi.setText(QCoreApplication.translate("Form", u"  wifi\u8bbe\u7f6e", None))
         self.btnAbout.setText(QCoreApplication.translate("Form", u"  \u5173\u4e8e\u4eea\u5668", None))
-        self.camera_icon_label.setText("")
         self.btnReturn.setText(QCoreApplication.translate("Form", u"\u8fd4\u56de", None))
-        self.btnPer.setText(QCoreApplication.translate("Form", u"  \u6743\u9650\u8bbe\u7f6e", None))
+        self.btnPer.setText(QCoreApplication.translate("Form", u"  \u8f6f\u4ef6\u8bbe\u7f6e", None))
         self.per_icon_label.setText("")
     # retranslateUi
 

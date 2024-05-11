@@ -45,7 +45,7 @@ class HomePage(Ui_Form, AbstractPage):
         self.setBtnIcon()
         self.controller = HomePageController()
         self.controller.update_json.connect(self.memWarning)
-        self.ui.btnSet.setText("  仪器设置")
+        # self.ui.btnSet.setText("  仪器设置")
 
     def deleteLater(self):
         """
@@ -73,8 +73,8 @@ class HomePage(Ui_Form, AbstractPage):
         self.ui.history_icon_label.setPixmap(pixImg)
         self.ui.history_icon_label.setAlignment(Qt.AlignCenter)
 
-        # reagent_set_icon_path = frozen.app_path() + r"/res/icon/set.png"
-        reagent_set_icon_path = frozen.app_path() + r"/res/icon/statistics.png"
+        reagent_set_icon_path = frozen.app_path() + r"/res/icon/set.png"
+        # reagent_set_icon_path = frozen.app_path() + r"/res/icon/statistics.png"
         pixImg = self.mySetIconSize(reagent_set_icon_path)
         self.ui.reagent_set_icon_label.setPixmap(pixImg)
         self.ui.reagent_set_icon_label.setAlignment(Qt.AlignCenter)
@@ -167,7 +167,9 @@ class HomePage(Ui_Form, AbstractPage):
         Returns:
             None
         """
-        page_msg = 'CurvePage'
+        # page_msg = 'CurvePage'
+        # self.next_page.emit(page_msg)
+        page_msg = 'EditPage'
         self.next_page.emit(page_msg)
         # if self.checkAdminName():
         #     page_msg = 'CurvePage'

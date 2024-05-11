@@ -109,7 +109,13 @@ class AboutPage(Ui_Form, AbstractPage):
             identifier = "0xb7d60506"
             flag = Main.mountMove("1", "1", identifier)
             if flag is not True:
-                raise
+                self.umountDevice(Main)
+                flag = Main.mountMove("1", "1", identifier)
+                if flag is not True:
+                    info = "上传失败!"
+                    self.showInfoDialog(info)
+                    dialog.closeDialog()
+                    raise
         except Exception as e:
             print("aboutPage :", e)
             return False
@@ -124,13 +130,12 @@ class AboutPage(Ui_Form, AbstractPage):
                 upload_file_list.append(path)
             else:
                 print("False")
-                dialog.closeDialog()
+                # dialog.closeDialog()
                 # m_title = ""
                 # m_info = "上传完成!"
                 # infoMessage(m_info, m_title, 300)
-                info = "上传失败!"
-                self.showInfoDialog(info)
-                self.umountDevice(Main)
+
+                # self.umountDevice(Main)
         if not upload_file_list:
             try:
                 # self.testinfo.closeWin()
@@ -174,6 +179,8 @@ class AboutPage(Ui_Form, AbstractPage):
             # self.testinfo.closeWin()
             try:
                 obj.closeDialog()
+                info = "上传完成!"
+                self.showInfoDialog(info)
             except Exception as e:
                 return
             return
@@ -201,4 +208,4 @@ class AboutPage(Ui_Form, AbstractPage):
         identifier = "0xb7d60506"
         flag = obj.mountMove("2", "1", identifier)
         if flag is not True:
-                raise
+            raise

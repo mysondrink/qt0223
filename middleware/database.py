@@ -95,6 +95,18 @@ UPDATE_CURVE_SQL = """
     WHERE curve_id = ?
     """
 
+UPDATE_SPLINE_INFO_FROM_EXCEL = """
+    UPDATE t_spline
+    SET light_matrix = ?, concentration_matrix = ?
+    WHERE spline_id = ?
+    """
+
+UPDATE_NATURE_AVER_FROM_EXCEL = """
+    UPDATE reagent_copy1
+    SET nature_aver = ?
+    WHERE reagent_photo = ?
+    """
+
 def insertMySql(*args):
     conn = sqlite3.connect(SQL_PATH)
     cur = conn.cursor()
@@ -127,7 +139,7 @@ def insertMySql(*args):
                     break
                 # MySQL syntax
                 # print(sql)  # check SQL syntax
-                cur.execute(UPLOAD_SQL, [reagent_info_list[j], gray_aver_list[j], points_list[j], i])  # execute SQL syntax
+                cur.execute(UPLOAD_SQL, [reagent_info_list[j], points_list[j] + ',' + gray_aver_list[j], points_list[j], i])  # execute SQL syntax
                 conn.commit()  # commit func using save change to database
             return j + 1
     except Exception as e:
@@ -466,6 +478,45 @@ def updateCurvePointsData(data, curve_id):
     try:
         # 执行SQL语句
         cursor.execute(UPDATE_CURVE_SQL, [*data[:points_len*2], _c])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+
+def updateSingleConFromUpload(spline_id, light_m, concentration_m):
+    _s = spline_id
+    _l = light_m
+    _c = concentration_m
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(UPDATE_SPLINE_INFO_FROM_EXCEL, [_l, _c, _s])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+
+def updateNatureAverFromUpload(reagent_id, nature_aver):
+    _id = reagent_id
+    _a = nature_aver
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(UPDATE_NATURE_AVER_FROM_EXCEL, [_a, _id])
         # 提交事务
         connection.commit()
     except Exception as e:

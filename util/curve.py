@@ -21,7 +21,7 @@ class MyCurve():
             allergen = [i.rstrip() for i in lines][5:]
         result_list_1 = [light_info_temp[i] for i in range(len(allergen)) if allergen[i] != ""]
         result_list_2 = [concentration_info_temp[i] for i in range(len(allergen)) if allergen[i] != ""]
-        float_list_1 = [float(i) for i in result_list_1]
-        float_list_2 = [float(i) for i in result_list_2]
+        float_list_1 = [float(i) for i in result_list_1 if i != '']
+        float_list_2 = [float(i) for i in result_list_2 if i != '']
         curve_points = [(i, j) for i, j in zip(float_list_2, float_list_1)]
         return curve_points

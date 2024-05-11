@@ -21,31 +21,29 @@ except ModuleNotFoundError:
     from qt0223.third_party.keyboard.keyboard import KeyBoard
     from qt0223.view.AbstractPage import AbstractPage
 
-class EditPage(Ui_Form, AbstractPage):
-    next_page = Signal(str)
-    update_json = Signal(dict)
-    update_log = Signal(str)
 
-    """
-    @detail 初始化加载界面信息，同时创建记录异常的信息
-    @detail 构造函数
-    """
+class EditPage(Ui_Form, AbstractPage):
     def __init__(self):
+        """
+        初始化加载界面信息，同时创建记录异常的信息
+        """
         super().__init__()
         self.reagent_num = None
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.InitUI()
 
-    """
-    @detail 设置界面相关信息
-    """
     def InitUI(self):
+        """
+        设置界面相关信息
+        Returns:
+            None
+        """
         self.setWindowFlags(Qt.Window | Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.rowCb.addItems(["2x3", "2x5", "4x5", "8x5"])
+        self.ui.rowCb.addItems(["8x5"])
         self.resetBtn()
 
         self.setBtnIcon()
@@ -56,13 +54,17 @@ class EditPage(Ui_Form, AbstractPage):
         self.setFocusWidget()
         self.installEvent()
 
-    """
-    @detail 设置过敏原表格
-    @param row: 表格的行
-    @param column: 表格的列
-    @param num: 表格类型，1为添加表格，2为修改表格
-    """
     def setReagentTable(self, row, column, num):
+        """
+        设置过敏原表格
+        Args:
+            row: 表格的行
+            column: 表格的列
+            num: 表格类型，1为添加表格，2为修改表格
+
+        Returns:
+            None
+        """
         if num == 1:
             self.row_reagent_table = row
             self.column_reagent_table = column
@@ -107,10 +109,12 @@ class EditPage(Ui_Form, AbstractPage):
                         # content_cb.setStyleSheet(self.cb_style_sheet)
                         self.ui.reagentTable.setIndexWidget(self.pix_reagent_table_model.index(i, j), content_cb)
 
-    """
-    @detail 设置按钮图标
-    """
     def setBtnIcon(self):
+        """
+        设置按钮图标
+        Returns:
+            None
+        """
         confirm_icon_path = frozen.app_path() + r"/res/icon/confirm.png"
         self.ui.btnConfirm.setIconSize(QSize(32, 32))
         self.ui.btnConfirm.setIcon(QIcon(confirm_icon_path))
@@ -134,11 +138,15 @@ class EditPage(Ui_Form, AbstractPage):
         self.ui.edit_icon_label.setPixmap(pixImg)
         self.ui.edit_icon_label.setAlignment(Qt.AlignCenter)
 
-    """
-    @detail 设置按钮图标比例
-    @param path: 图标路径
-    """
     def mySetIconSize(self, path):
+        """
+        设置按钮图标比例
+        Args:
+            path: 图标路径
+
+        Returns:
+            None
+        """
         img = QImage(path)  # 创建图片实例
         mgnWidth = 50
         mgnHeight = 50  # 缩放宽高尺寸
@@ -147,28 +155,36 @@ class EditPage(Ui_Form, AbstractPage):
             img.scaled(size, Qt.IgnoreAspectRatio))  # 修改图片实例大小并从QImage实例中生成QPixmap实例以备放入QLabel控件中
         return pixImg
 
-    """
-    @detail 安装事件监听
-    """
     def installEvent(self):
+        """
+        安装时间监听
+        Returns:
+            None
+        """
         for item in self.focuswidget:
             item.installEventFilter(self)
 
-    """
-    @detail 设置组件点击焦点
-    """
     def setFocusWidget(self):
+        """
+        设置组件点击焦点
+        Returns:
+            None
+        """
         self.focuswidget = [self.ui.nameLine]
         for item in self.focuswidget:
             item.setFocusPolicy(Qt.ClickFocus)
 
-    """
-    @detail 事件过滤
-    @detail 槽函数
-    @param obj: 发生事件的组件
-    @param event: 发生的事件
-    """
     def eventFilter(self, obj, event):
+        """
+        槽函数
+        事件过滤
+        Args:
+            obj: 发生事件的组件
+            event: 发生的事件
+
+        Returns:
+            None
+        """
         if obj in self.focuswidget:
             if event.type() == QEvent.Type.FocusIn:
                 # print(obj.setText("hello"))
@@ -179,12 +195,16 @@ class EditPage(Ui_Form, AbstractPage):
         else:
             return False
 
-    """
-    @detail 设置可以键盘弹出的组件
-    @detail 槽函数
-    @param obj: 键盘弹出的组件
-    """
     def setKeyBoard(self, obj):
+        """
+        槽函数
+        设置可以键盘弹出的组件
+        Args:
+            obj: 键盘弹出的组件
+
+        Returns:
+            None
+        """
         self.keyboardtext = KeyBoard()
         self.keyboardtext.text_msg.connect(self.getKeyBoardText)
         obj_name = obj.objectName()
@@ -194,33 +214,43 @@ class EditPage(Ui_Form, AbstractPage):
             self.keyboardtext.nameLabel.setText("试剂卡型号")
         self.keyboardtext.showWindow()
 
-    """
-    @detail 获取键盘的文本信息
-    @detail 槽函数
-    @param msg: 信号，键盘文本信息
-    """
     def getKeyBoardText(self, msg):
+        """
+        槽函数
+        获取键盘的文本信息
+        Args:
+            msg: 信号，键盘文本信息
+
+        Returns:
+            None
+        """
         self.focusWidget().setText(msg)
         self.focusWidget().clearFocus()
 
-    """
-    @detail 重置按钮信息，返回编辑首页
-    """
     def resetBtn(self):
+        """
+        重置按钮信息，返回编辑首页
+        Returns:
+            None
+        """
         self.ui.btnConfirm.hide()
         self.ui.btnReturn.setGeometry(10, 10, 780, 80)
 
-    """
-    @detail 重置按钮信息，当发生页面跳转时触发
-    """
     def resetBtn_2(self):
+        """
+        重置按钮信息，当发生页面跳转时触发
+        Returns:
+            None
+        """
         self.ui.btnConfirm.show()
         self.ui.btnReturn.setGeometry(410, 10, 380, 80)
 
-    """
-    @detail 读取数据库，获取试剂卡信息
-    """
     def setReagentCb(self):
+        """
+        读取数据库，获取试剂卡信息
+        Returns:
+            None
+        """
         connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
                                      charset='utf8')
         # MySQL语句
@@ -262,11 +292,15 @@ class EditPage(Ui_Form, AbstractPage):
         cursor.close()
         connection.close()
 
-    """
-    @detail 读取表格内容，同时以list形式保存到数据库
-    @param num: 读取添加和修改页面的表格
-    """
     def readPixtableNum(self, num):
+        """
+        读取表格内容，同时以list形式保存到数据库
+        Args:
+            num: 读取添加和修改页面的表格
+
+        Returns:
+            None
+        """
         str_num = ""
         if num == 1:
             return
@@ -282,12 +316,16 @@ class EditPage(Ui_Form, AbstractPage):
                         str_num = str_num + str(data_index)
         return str_num
 
-    """
-    @detail 插入数据到数据库
-    @param name: 试剂卡名称
-    @param item_type: 试剂卡规格
-    """
     def insertMatrix(self, name, item_type):
+        """
+        插入数据到数据库
+        Args:
+            name: 试剂卡名称
+            item_type: 试剂卡规格
+
+        Returns:
+            None
+        """
         matrix = self.readPixtableNum(2)
         connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
                                      charset='utf8')
@@ -309,11 +347,12 @@ class EditPage(Ui_Form, AbstractPage):
         cursor.close()
         connection.close()
 
-    """
-    @detail 修改页面跳转判断
-    @detail 槽函数
-    """
     def edit(self):
+        """
+        修改页面跳转判断
+        Returns:
+            槽函数
+        """
         if self.reagent_num == 1:
             self.insertMatrix(self.add_name, self.add_matrix_type)
             self.setReagentCb()
@@ -333,22 +372,27 @@ class EditPage(Ui_Form, AbstractPage):
             self.resetBtn()
             self.ui.stackedWidget.setCurrentIndex(0)
 
-    """
-    @detail 删除页面跳转判断
-    @detail 槽函数
-    """
     def deleteItem(self):
+        """
+        删除页面跳转判断
+        Returns:
+            槽函数
+        """
         item = self.ui.deleteCb.currentText()
         self.deleteReagentDB(item)
         self.resetBtn()
         self.ui.stackedWidget.setCurrentIndex(0)
 
-    """
-    @detail 删除数据库试剂卡信息
-    @detail 需要修改
-    @param item_type: 试剂卡名称
-    """
     def deleteReagentDB(self, item_type):
+        """
+        删除数据库试剂卡信息
+        需要修改
+        Args:
+            item_type: 试剂卡名称
+
+        Returns:
+            None
+        """
         # matrix = self.readPixtableNum(2)
         connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
                                      charset='utf8')
@@ -370,10 +414,16 @@ class EditPage(Ui_Form, AbstractPage):
         cursor.close()
         connection.close()
 
-    """
-    @detail 修改数据库试剂卡信息
-    """
     def updateReagentDB(self, name, item_type):
+        """
+        修改数据库试剂卡信息
+        Args:
+            name:
+            item_type:
+
+        Returns:
+
+        """
         matrix = self.readPixtableNum(2)
         connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
                                      charset='utf8')
@@ -395,41 +445,50 @@ class EditPage(Ui_Form, AbstractPage):
         cursor.close()
         connection.close()
 
-    """
-    @detail 添加按钮操作
-    @detail 槽函数
-    """
     @Slot()
     def on_btnAdd_clicked(self):
+        """
+        添加按钮操作
+        槽函数
+        Returns:
+
+        """
         self.resetBtn_2()
         self.ui.stackedWidget.setCurrentIndex(1)
 
-    """
-    @detail 删除按钮操作
-    @detail 槽函数
-    """
     @Slot()
     def on_btnDelete_clicked(self):
+        """
+        删除按钮操作
+        槽函数
+        Returns:
+
+        """
         self.resetBtn_2()
         self.ui.stackedWidget.setCurrentIndex(2)
         self.setReagentCb()
 
-    """
-    @detail 修改按钮操作
-    @detail 槽函数
-    """
     @Slot()
     def on_btnModify_clicked(self):
+        """
+        修改按钮操作
+        槽函数
+        Returns:
+
+        """
         self.resetBtn_2()
         self.ui.stackedWidget.setCurrentIndex(3)
         self.setReagentCb()
 
-    """
-    @detail 确认按钮操作
-    @detail 槽函数
-    """
     @Slot()
     def on_btnConfirm_clicked(self):
+        """
+        确认按钮操作
+        槽函数
+        Returns:
+
+        """
+        return
         if self.ui.stackedWidget.currentIndex() == 1:
             # 添加
             dict_mode = {
@@ -489,12 +548,14 @@ class EditPage(Ui_Form, AbstractPage):
             # delay_time = 2000
             # self.change_timer.start(delay_time)
 
-    """
-    @detail 返回按钮操作
-    @detail 槽函数
-    """
     @Slot()
     def on_btnReturn_clicked(self):
+        """
+        返回按钮操作
+        槽函数
+        Returns:
+
+        """
         if self.ui.stackedWidget.currentIndex() == 0:
             page_msg = 'HomePage'
             self.next_page.emit(page_msg)

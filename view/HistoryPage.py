@@ -337,10 +337,11 @@ class HistoryPage(Ui_Form, AbstractPage):
         filenames = os.listdir(path)
         self.ui.modeBox_3.clear()
         # 输出所有文件名
+        filenames.sort()
         for filename in filenames:
             # self.ui.modeBox_3.clear()
             self.ui.modeBox_3.addItem(filename)
-            self.ui.modeBox_3.setCurrentIndex(-1)
+        self.ui.modeBox_3.setCurrentIndex(-1)
 
     @Slot()
     def on_btnConfirm_clicked(self):

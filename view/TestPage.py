@@ -261,10 +261,11 @@ class TestPage(Ui_Form, AbstractPage):
         filenames = os.listdir(path)
         self.ui.modeBox_1.clear()
         # 输出所有文件名
+        filenames.sort()
         for filename in filenames:
             # self.ui.modeBox_3.clear()
             self.ui.modeBox_1.addItem(filename)
-            self.ui.modeBox_1.setCurrentIndex(-1)
+        self.ui.modeBox_1.setCurrentIndex(-1)
 
     def setTableView(self):
         """
@@ -429,7 +430,7 @@ class TestPage(Ui_Form, AbstractPage):
         point_list = gray_list[:5]
         point_str = ""
         for i in point_list:
-            if int(i) < 0:
+            if i == "":
                 point_str = point_str + ','
             else:
                 point_str = point_str + ',' + i

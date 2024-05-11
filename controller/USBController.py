@@ -23,7 +23,7 @@ succeed_code = 202
 class CheckUSBThread(AbstractThread):
     update_json = Signal(int)
 
-    def __init__(self, name, path, data, allergy):
+    def __init__(self, name, path, data, allergy, concentration):
         """
         下载线程，进行数据和图片的下载
         """
@@ -32,6 +32,7 @@ class CheckUSBThread(AbstractThread):
         self.pic_path = path
         self.data = data
         self.allergy_info = allergy
+        self.concentration_info = concentration
 
     def run(self):
         """
@@ -92,11 +93,25 @@ class CheckUSBThread(AbstractThread):
                 age = self.data['age']
                 reagent_matrix_info = self.allergy_info
                 reagent_matrix_info_copy = reagent_matrix_info
+                concentration_matrix_info = self.concentration_info
                 if type(reagent_matrix_info) == str:
                     reagent_matrix_info = reagent_matrix_info.split(',')
+                if type(concentration_matrix_info) == str:
+                    concentration_matrix_info = concentration_matrix_info.split(',')
                 row = reagent_matrix[0]
                 col = int(reagent_matrix[2])
-                reagent_matrix_info = self.split_string(reagent_matrix_info, col)
+                # list2 = self.split_string(concentration_matrix_info, col)
+                list2 = [','.join(concentration_matrix_info[i:i + col]) for i in range(0, len(concentration_matrix_info), col)]
+                list1 = self.split_string(reagent_matrix_info, col)
+                list3 = [',,'] * 13
+                flag_list = [0, 2, 3, 5, 6, 8, 9, 11, 12]
+                list4 = list1[:]
+                for i, j in zip(flag_list, range(len(flag_list))):
+                    list4[i] = list2[j]
+                merged_list1 = [str1 + str2 for str1, str2 in zip(list1, list3)]
+                merged_list = [str1 + str2 for str1, str2 in zip(merged_list1, list4)]
+
+                reagent_matrix_info = merged_list
                 k = ["序号", "图片名称", "时间", "样本条码", "医生", "类别",
                      "阵列", "病人名", "病人性别", "病人年龄", "数据"]
                 k_2 = ["序号", "图片名称", "时间", "样本条码", "医生", "类别",
@@ -121,12 +136,12 @@ class CheckUSBThread(AbstractThread):
                     with pd.ExcelWriter(save_path, mode='a', engine='openpyxl', if_sheet_exists='overlay') as writer:
                         # 追加
                         newdata.to_excel(writer, sheet_name='Sheet1', index=False, startrow=row1 + 2, header=False)
-                        datatwo.to_excel(writer, sheet_name='Sheet2', index=False, startrow=row2 + 1, header=False)
+                        # datatwo.to_excel(writer, sheet_name='Sheet2', index=False, startrow=row2 + 1, header=False)
                 else:
                     with pd.ExcelWriter(save_path, mode='w', engine='openpyxl') as writer:
                         # 新建
                         newdata.to_excel(writer, sheet_name='Sheet1', index=False)
-                        datatwo.to_excel(writer, sheet_name='Sheet2', index=False, header=k_2)
+                        # datatwo.to_excel(writer, sheet_name='Sheet2', index=False, header=k_2)
                 src_path = '%s/res/test.zip' % frozen.app_path()
                 identifier = "0xb7d60506"
                 Main = img_main()
@@ -138,7 +153,9 @@ class CheckUSBThread(AbstractThread):
                     # if Main.mountMove(img_final, save_usb_path, identifier) is not True:
                     #     raise Exception
                     if Main.mountMove(chart_img, save_usb_path, identifier) is not True:
-                        raise Exception
+                        flag = Main.mountMove("2", "1", identifier)
+                        if Main.mountMove(chart_img, save_usb_path, identifier) is not True:
+                            raise Exception
                     if Main.mountMove(save_img_path_1, save_usb_path, identifier) is not True:
                         raise Exception
                     if Main.mountMove(save_img_path_2, save_usb_path, identifier) is not True:
