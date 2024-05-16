@@ -9,6 +9,7 @@ try:
     import util.frozen as frozen
     from util import dirs
     from util.report import MyReport
+    from util.report_outdate import MyReport as OldTypeReport
     from view.AbstractPage import AbstractPage, ProcessDialog
     from controller.USBController import CheckUSBThread
     import middleware.database as insertdb
@@ -19,6 +20,7 @@ except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     from qt0223.util import dirs
     from qt0223.util.report import MyReport
+    from util.report_outdate import MyReport as OldTypeReport
     from qt0223.view.AbstractPage import AbstractPage, ProcessDialog
     from qt0223.controller.USBController import CheckUSBThread
     import qt0223.middleware.database as insertdb
@@ -174,7 +176,7 @@ class DataPage(Ui_Form, AbstractPage):
         # self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
         # creating a report display
         # 测试
-        self.data['nature_aver_str'] = '检测不到,高,非常高,高,检测不到,非常高,极高,非常高,检测不到,极高,极高,非常高,高,高,非常高,极高,非常高,高,检测不到,高,高,检测不到,高,高,高,非常高,检测不到,非常高,高,极高,非常高,非常高,检测不到,非常高,非常高,高,检测不到,极高,高,检测不到,高,高,检测不到,高,检测不到'
+        # self.data['nature_aver_str'] = '检测不到,高,非常高,高,检测不到,非常高,极高,非常高,检测不到,极高,极高,非常高,高,高,非常高,极高,非常高,高,检测不到,高,高,检测不到,高,高,高,非常高,检测不到,非常高,高,极高,非常高,非常高,检测不到,非常高,非常高,高,检测不到,极高,高,检测不到,高,高,检测不到,高,检测不到'
         # 测试结束
         _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])
         self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
@@ -192,7 +194,12 @@ class DataPage(Ui_Form, AbstractPage):
             None
         """
         v = QVBoxLayout()
-        text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
+        allergen_str = insertdb.selectAllergenMatrixInfo(item_type)
+        allergen_list = allergen_str.split(",")
+        if item_type in ["A", "B", "C", "D"]:
+            text = OldTypeReport().gethtml(item_type, reagent_info, nature_aver_str, allergen_list)
+        else:
+            text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix, allergen_list)
         self.myreport = QTextEdit()
         # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
         # cur_time[0] + ' ' + cur_time[1]
@@ -231,6 +238,14 @@ class DataPage(Ui_Form, AbstractPage):
 
 
     def showDataView(self, data):
+        """
+        数据展示，包括定位点，过敏原，灰度值
+        Args:
+            data:
+
+        Returns:
+
+        """
         title_list = ["定位点", "", "", "", "定位点"]
         data_copy = re.split(r",", data)
         data_copy = title_list + data_copy
@@ -365,13 +380,33 @@ class DataPage(Ui_Form, AbstractPage):
     """
 
     def checkUserOperation(self, flag):
+        """
+        判断当前状态是否为下载中
+        关闭除数据、报告单外的按钮
+        Args:
+            flag:
+
+        Returns:
+
+        """
         self.ui.btnPrint.setEnabled(flag)
         self.ui.btnDownload.setEnabled(flag)
         self.ui.btnReturn.setEnabled(flag)
 
     def drawChart(self, item_type, curve_id):
+        """
+        绘制曲线
+        Args:
+            item_type: 检测组合
+            curve_id: 曲线id号
+
+        Returns:
+            None
+        """
         light_points, concentration_matrix = insertdb.getCurvePoints(curve_id)
-        fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+        allergen_str = insertdb.selectAllergenMatrixInfo(item_type)
+        allergen_list = allergen_str.split(",")
+        fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix, allergen_list)
         sorted_coordinates_1 = sorted(fitting_points, key=lambda x: x[0])  # 按照横坐标进行从小到大排序
         # print(sorted_coordinates_1)
         import matplotlib.pyplot as plt

@@ -112,13 +112,9 @@ class Ui_Form(object):
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(0, 0, 378, 27))
         self.label_5.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";")
-        self.label_3 = QLabel(self.page2)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(190, 200, 151, 44))
-        self.label_3.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";")
         self.nameLine = QLineEdit(self.page2)
         self.nameLine.setObjectName(u"nameLine")
-        self.nameLine.setGeometry(QRect(390, 90, 230, 70))
+        self.nameLine.setGeometry(QRect(380, 140, 230, 70))
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -127,27 +123,9 @@ class Ui_Form(object):
         self.nameLine.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
-        self.rowCb = QComboBox(self.page2)
-        self.rowCb.setObjectName(u"rowCb")
-        self.rowCb.setGeometry(QRect(390, 190, 230, 70))
-        self.rowCb.setStyleSheet(u"QComboBox::drop-down{\n"
-"width:56px;  height:56px;\n"
-"}\n"
-"\n"
-"QComboBox{\n"
-"font: 20pt \"\u5b8b\u4f53\";\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"QComboBox QAbstractItemView {\n"
-"	background-color: rgb(0, 0, 0);/*\u80cc\u666f\u989c\u8272*/\n"
-"    padding: 1px 2px 1px 2px;  /*\u9488\u5bf9\u4e8e\u7ec4\u5408\u6846\u4e2d\u7684\u6587\u672c\u5185\u5bb9*/\n"
-"	color: rgb(255,255,255)\n"
-"}")
         self.label_2 = QLabel(self.page2)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(130, 100, 211, 44))
+        self.label_2.setGeometry(QRect(140, 140, 181, 71))
         self.label_2.setStyleSheet(u"font: 20pt \"\u5b8b\u4f53\";")
         self.stackedWidget.addWidget(self.page2)
         self.page3 = QWidget()
@@ -273,7 +251,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -289,11 +267,10 @@ class Ui_Form(object):
         self.btnDelete.setText(QCoreApplication.translate("Form", u"   \u5220\u9664\u8bd5\u5242\u5361", None))
         self.edit_icon_label.setText("")
         self.label_5.setText(QCoreApplication.translate("Form", u"\u6dfb\u52a0\u8bd5\u5242\u5361", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"\u89c4\u683c", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"\u8bd5\u5242\u5361\u578b\u53f7", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"\u68c0\u6d4b\u7ec4\u5408", None))
         self.label_6.setText(QCoreApplication.translate("Form", u"\u5220\u9664\u8bd5\u5242\u5361", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"\u8bd5\u5242\u5361\u578b\u53f7", None))
-        self.label_9.setText(QCoreApplication.translate("Form", u"\u8bd5\u5242\u5361\u578b\u53f7", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"\u68c0\u6d4b\u7ec4\u5408", None))
+        self.label_9.setText(QCoreApplication.translate("Form", u"\u68c0\u6d4b\u7ec4\u5408", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"\u4fee\u6539\u8bd5\u5242\u5361", None))
         self.btnConfirm.setText(QCoreApplication.translate("Form", u"\u786e\u8ba4", None))
         self.btnReturn.setText(QCoreApplication.translate("Form", u"\u8fd4\u56de", None))

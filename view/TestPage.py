@@ -217,6 +217,7 @@ class TestPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
+        """
         f_name = self.ui.modeBox_1.currentText()
         path = frozen.app_path() + r"/res/allergen/"
         f = open(path + f_name, "r", encoding="utf-8")
@@ -225,6 +226,11 @@ class TestPage(Ui_Form, AbstractPage):
         allergen = []
         for i in lines:
             allergen.append(i.rstrip())
+        """
+        item_type = self.ui.modeBox_1.currentText()
+        allergen_str = insertdb.selectAllergenMatrixInfo(item_type)
+        temp = ",,,,," + allergen_str
+        allergen = temp.split(",")
         row = 8 + 1
         column = 5
         self.global_allergen = allergen
@@ -254,6 +260,7 @@ class TestPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
+        """
         # 指定要读取的路径
         path = frozen.app_path() + r"/res/allergen/"
         # path = r"/res/allergen/"
@@ -266,6 +273,9 @@ class TestPage(Ui_Form, AbstractPage):
             # self.ui.modeBox_3.clear()
             self.ui.modeBox_1.addItem(filename)
         self.ui.modeBox_1.setCurrentIndex(-1)
+        """
+        allergen_list = insertdb.selectAllergenType()
+        self.ui.modeBox_1.addItems(allergen_list)
 
     def setTableView(self):
         """

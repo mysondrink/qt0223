@@ -330,6 +330,7 @@ class HistoryPage(Ui_Form, AbstractPage):
         Returns:
             None
         """
+        """
         # 指定要读取的路径
         path = frozen.app_path() + r"/res/allergen/"
         # path = r"/res/allergen/"
@@ -342,6 +343,9 @@ class HistoryPage(Ui_Form, AbstractPage):
             # self.ui.modeBox_3.clear()
             self.ui.modeBox_3.addItem(filename)
         self.ui.modeBox_3.setCurrentIndex(-1)
+        """
+        allergen_list = insertdb.selectAllergenType()
+        self.ui.modeBox_3.addItems(allergen_list)
 
     @Slot()
     def on_btnConfirm_clicked(self):

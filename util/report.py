@@ -165,7 +165,7 @@ class MyReport():
                             </html>\
                             '
         
-    def gethtml(self, item_type, reagent_info, nature_aver_str, concentration_matrix):
+    def gethtml(self, item_type, reagent_info, nature_aver_str, concentration_matrix, allergen_list):
         result_dict = {
             "极高": "&gt;100", "很高": "50-100", "非常高": "17.5-50", "高": "3.5-17.5",
             "中": "0.7-3.5", "低": "0.35-0.7", "检测不到": "&lt;0.35"
@@ -182,11 +182,14 @@ class MyReport():
         reagent_info_list_2 = [reagent_info_list_1[k:k+5] for k in [j for j in range(0, 55, 5)] if k % 15 == 0]
         reagent_info_list_3 = [i for i in sum(reagent_info_list_2, []) if i != '']
 
+        """
         path = frozen.app_path() + r"/res/allergen/"
         with open(path + item_type, "r", encoding="utf-8") as f:
             lines = f.readlines()
             f.close()
             allergen = [i.rstrip() for i in lines][5:]
+        """
+        allergen = allergen_list
         row = 8
         column = 5
         allergen_temp = [allergen[i * column:i * column + column] for i in range(row)]

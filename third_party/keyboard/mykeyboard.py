@@ -35,6 +35,7 @@ list_1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p']
 list_2 = ['cap', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l']
 list_3 = ['con', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'back', 'close']
 list_key = [Qt.Key_0, Qt.Key_1, Qt.Key_2, Qt.Key_3, Qt.Key_4, Qt.Key_5, Qt.Key_6, Qt.Key_7, Qt.Key_8, Qt.Key_9]
+list_5 = ['!', '.', '，', '#', '%', '?', '/', '*', '(', ')']
 
 qss = "QLineEdit {                    \
             border-style: none;        \
@@ -351,6 +352,18 @@ class MyKeyBoard(abstractkeyboard):
                 button = self.findChildren(QPushButton)
                 for i in button:
                     if len(i.value) == 1:
+                        if i.value in list_5:
+                            position = list_5.index(i.value)
+                            value = list_4[position]
+                            i.setText(value)
+                            i.setValue(value)
+                            continue
+                        elif i.value in list_4:
+                            position = list_4.index(i.value)
+                            value = list_5[position]
+                            i.setText(value)
+                            i.setValue(value)
+                            continue
                         value = i.value.upper()
                         i.setText(value)
                         i.setValue(value)
@@ -359,6 +372,18 @@ class MyKeyBoard(abstractkeyboard):
                 button = self.findChildren(QPushButton)
                 for i in button:
                     if len(i.value) == 1:
+                        if i.value in list_5:
+                            position = list_5.index(i.value)
+                            value = list_4[position]
+                            i.setText(value)
+                            i.setValue(value)
+                            continue
+                        elif i.value in list_4:
+                            position = list_4.index(i.value)
+                            value = list_5[position]
+                            i.setText(value)
+                            i.setValue(value)
+                            continue
                         value = i.value.lower()
                         i.setText(value)
                         i.setValue(value)

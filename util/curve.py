@@ -10,15 +10,18 @@ except:
 
 
 class MyCurve():
-    def filterCurvePoints(self, item_type, light_info, concentration_info):
+    def filterCurvePoints(self, item_type, light_info, concentration_info, allergen_list):
         light_info_temp = [i for i in light_info.split(",")][5:]
         concentration_info_temp = [i for i in concentration_info.split(",")][5:]
-
+        """
         path = frozen.app_path() + r"/res/allergen/"
         with open(path + item_type, "r", encoding="utf-8") as f:
             lines = f.readlines()
             f.close()
-            allergen = [i.rstrip() for i in lines][5:]
+            # allergen = [i.rstrip() for i in lines][5:]
+            allergen = [i.rstrip() for i in lines]
+        """
+        allergen = allergen_list
         result_list_1 = [light_info_temp[i] for i in range(len(allergen)) if allergen[i] != ""]
         result_list_2 = [concentration_info_temp[i] for i in range(len(allergen)) if allergen[i] != ""]
         float_list_1 = [float(i) for i in result_list_1 if i != '']

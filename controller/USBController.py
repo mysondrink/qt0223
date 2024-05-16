@@ -105,13 +105,17 @@ class CheckUSBThread(AbstractThread):
                 list1 = self.split_string(reagent_matrix_info, col)
                 list3 = [',,'] * 13
                 flag_list = [0, 2, 3, 5, 6, 8, 9, 11, 12]
+                flag_list = [i for i in range(9)]
                 list4 = list1[:]
                 for i, j in zip(flag_list, range(len(flag_list))):
                     list4[i] = list2[j]
+
                 merged_list1 = [str1 + str2 for str1, str2 in zip(list1, list3)]
                 merged_list = [str1 + str2 for str1, str2 in zip(merged_list1, list4)]
-
-                reagent_matrix_info = merged_list
+                if reagent_type[4:5] in ["A", "B", "C", "D"]:
+                    reagent_matrix_info = list1[:]
+                else:
+                    reagent_matrix_info = merged_list
                 k = ["序号", "图片名称", "时间", "样本条码", "医生", "类别",
                      "阵列", "病人名", "病人性别", "病人年龄", "数据"]
                 k_2 = ["序号", "图片名称", "时间", "样本条码", "医生", "类别",
@@ -182,6 +186,7 @@ class CheckUSBThread(AbstractThread):
         for i in range(len(data)):
             _s = ''
             if i in num_list:
+                continue
                 for j in range(len(data[i])):
                     _s += '' + ','
                 result.append(_s[:-1])

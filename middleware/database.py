@@ -107,6 +107,32 @@ UPDATE_NATURE_AVER_FROM_EXCEL = """
     WHERE reagent_photo = ?
     """
 
+INSERT_ALLERGEN_MATRIX = """
+    INSERT INTO matrix_table(reagent_type, reagent_matrix, reagent_matrix_info, status) VALUES (?, ?, ?, ?)
+    """
+
+SELECT_ALLERGEN_INFO = """
+    SELECT * FROM matrix_table WHERE status = 0
+    """
+
+DELETE_ALLERGEN_INFO = """
+    UPDATE matrix_table SET STATUS = 1 WHERE reagent_type = ?
+    """
+
+UPDATE_ALLERGEN_INFO = """
+    UPDATE matrix_table SET reagent_matrix_info = ? WHERE reagent_type= ?
+    """
+
+SELECT_ALLERGEN_MATRIX_INFO = """
+    SELECT reagent_matrix_info FROM matrix_table WHERE status = 0 AND reagent_type = ?
+    """
+
+# 修改数据库试剂卡信息 'UPDATE matrix_table SET reagent_matrix_info = ? WHERE reagent_type= ? AND reagent_matrix = ?'
+# 删除数据库试剂卡信息 'UPDATE matrix_table SET STATUS = 1 WHERE reagent_type = ?'
+# 读取数据库，获取试剂卡信息 'SELECT * FROM matrix_table WHERE STATUS = 0'
+# 插入数据到数据库 'INSERT INTO matrix_table(reagent_type, reagent_matrix, reagent_matrix_info) VALUES (?, ?, ?)'
+
+
 def insertMySql(*args):
     conn = sqlite3.connect(SQL_PATH)
     cur = conn.cursor()
@@ -527,3 +553,128 @@ def updateNatureAverFromUpload(reagent_id, nature_aver):
     # 释放内存
     cursor.close()
     connection.close()
+
+def insertAllergenMatrix(reagent_type, reagent_matrix, reagent_matrix_info):
+    _t = reagent_type
+    _m = reagent_matrix
+    _i = reagent_matrix_info
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(INSERT_ALLERGEN_MATRIX, [_t, _m, _i, 0])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+
+def selectAllergenInfo():
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(SELECT_ALLERGEN_INFO)
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+    list1 = []
+    list2 = []
+    list3 = []
+    for x in cursor.fetchall():
+        # self.reagent_type.append(x[1])
+        # self.reagent_matrix.append(x[2])
+        # self.reagent_matrix_info.append(x[3])
+        list1.append(x[1])
+        list2.append(x[2])
+        list3.append(x[3])
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return list1, list2, list3
+
+def deleteAllergenMatrix(reagent_type):
+    _t = reagent_type
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(DELETE_ALLERGEN_INFO, [_t])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+
+def updateAllergenMatrix(reagent_type, reagent_matrix_info):
+    _t = reagent_type
+    _m = reagent_matrix_info
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(UPDATE_ALLERGEN_INFO, [_m, _t])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+
+def selectAllergenType():
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(SELECT_ALLERGEN_INFO)
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+    list1 = []
+    for x in cursor.fetchall():
+        list1.append(x[1])
+
+    # 释放内存
+    cursor.close()
+    connection.close()
+    return list1
+
+def selectAllergenMatrixInfo(item_type):
+    _i = item_type
+    connection = sqlite3.connect(SQL_PATH)
+    cursor = connection.cursor()
+    try:
+        # 执行SQL语句
+        cursor.execute(SELECT_ALLERGEN_MATRIX_INFO, [_i])
+        # 提交事务
+        connection.commit()
+    except Exception as e:
+        # print(str(e))
+        # 有异常，回滚事务
+        connection.rollback()
+
+    # 释放内存
+    data, *rest = cursor.fetchall()[0]
+    cursor.close()
+    connection.close()
+    return data

@@ -163,24 +163,31 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
             nature_aver_list = []
             gray_aver_list = []
             concentration_list = []
-            # gray_aver[0][1] = -1
-            # gray_aver[5][5] = -1
+            # water[w-1][0] = -1
+            # water[w-1][h-1] = -1
             for i in range(w):
                 for j in range(h):
                     nature_aver_list.append(nature_aver[i][j])
-                    if gray_aver[i][j] < 0:
-                        gray_aver_list.append('')
-                    else:
-                        # gray_aver_list.append(str(gray_aver[i][j]))
-                        gray_aver_list.append(f"{gray_aver[i][j]:.2f}")
-                    if water[i][j] < 0:
-                        concentration_list.append('')
-                    else:
-                        # concentration_list.append(str(water[i][j]))
-                        concentration_list.append(f"{water[i][j]:.2f}")
-            nature_aver_str = ",".join(nature_aver_list)
-            gray_aver_str = ",".join(gray_aver_list)
-            concentration_str = ",".join(concentration_list)
+                    gray_aver_list.append(str(gray_aver[i][j]))
+                    concentration_list.append(f"{water[i][j]:.2f}")
+                    # if gray_aver[i][j] < 0:
+                    #     gray_aver_list.append('')
+                    # else:
+                    #     gray_aver_list.append(str(gray_aver[i][j]))
+                    #     # gray_aver_list.append(f"{gray_aver[i][j]:.2f}")
+                    # if water[i][j] < 0:
+                    #     concentration_list.append('')
+                    # else:
+                    #     # concentration_list.append(str(water[i][j]))
+                    #     concentration_list.append(f"{water[i][j]:.2f}")
+            allergen_list = [" "] * 5 + insertdb.selectAllergenMatrixInfo(item_type[4:]).split(",")
+            # nature_aver_str = ",".join(nature_aver_list)
+            # gray_aver_str = ",".join(gray_aver_list)
+            # concentration_str = ",".join(concentration_list)
+
+            nature_aver_str = ",".join(self.filterDataFromAllergen(nature_aver_list, allergen_list))
+            gray_aver_str = ",".join(self.filterDataFromAllergen(gray_aver_list, allergen_list))
+            concentration_str = ",".join(self.filterDataFromAllergen(concentration_list, allergen_list))
 
             # insert database
             data = dict(
@@ -208,6 +215,10 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
         for i in lines:
             allergen.append(i.rstrip())
         return [float(item) for item in allergen]
+
+    def filterDataFromAllergen(self, origin_data, filter_data):
+        return [i if j == "" else "-1" for i, j in zip(origin_data, filter_data)]
+
 
 def serve():
     port = "50051"
