@@ -51,6 +51,12 @@ UPLOAD_SQL = """
     WHERE reagent_photo = ?
     """
 
+UPLOAD_SQL_ADD_MODIFY_TIME = """
+    UPDATE reagent_copy1 
+    SET reagent_matrix_info = ? , gray_aver = ?, points = ?, reagent_time = ?, reagent_time_detail = ? 
+    WHERE reagent_photo = ?
+    """
+
 SEARCH_REAGENT_ID = """
     SELECT reagent_id FROM reagent_copy1 WHERE reagent_photo = ?
     """
@@ -166,6 +172,26 @@ def insertMySql(*args):
                 # MySQL syntax
                 # print(sql)  # check SQL syntax
                 cur.execute(UPLOAD_SQL, [reagent_info_list[j], points_list[j] + ',' + gray_aver_list[j], points_list[j], i])  # execute SQL syntax
+                # from datetime import datetime
+                # # 获取当前时间
+                # now = datetime.now()
+                # # 格式化日期部分
+                # date_part = now.strftime('%Y-%m-%d')
+                # # 格式化时间部分
+                # time_part = now.strftime('%H:%M:%S')
+                # reagent_time = date_part
+                # reagent_time_detail = time_part
+                # cur.execute(
+                #     UPLOAD_SQL_ADD_MODIFY_TIME,
+                #     [
+                #         reagent_info_list[j],
+                #         points_list[j] + ',' + gray_aver_list[j],
+                #         points_list[j],
+                #         reagent_time,
+                #         reagent_time_detail,
+                #         i
+                #     ]
+                # )  # execute SQL syntax
                 conn.commit()  # commit func using save change to database
             return j + 1
     except Exception as e:
@@ -314,13 +340,14 @@ def getSQLiteInfo(*args):
     name_list = []
     """
     按照数据库数据排序，对数据进行处理
-    获取第二行为病人号码
-    获取第四行和第十行为采样事件
+    获取第二行为病人号码改为获取第六行为样本条码
+    获取第四行和第十行为采样时间
     获取第五行为试剂卡编号
     获取第十二行为病人姓名
     """
     for x in cur.fetchall():
-        patient_id_list.append(str(x[1]))
+        # patient_id_list.append(str(x[1]))
+        patient_id_list.append(str(x[5]))
         time_list.append(x[3] + " " + x[9])
         reagent_id_list.append(str(x[4]))
         name_list.append(x[11])

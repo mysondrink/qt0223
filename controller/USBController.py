@@ -30,6 +30,7 @@ class CheckUSBThread(AbstractThread):
         super().__init__()
         self.name_pic = name
         self.pic_path = path
+        # self.pic_path = name.replace("_", "-")[:10]
         self.data = data
         self.allergy_info = allergy
         self.concentration_info = concentration
@@ -56,11 +57,14 @@ class CheckUSBThread(AbstractThread):
         dirs.makedir(cache_path)
         if os.path.exists(save_dir):
             try:
-                img_origin = '%s/img/%s/%s-1.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
+                temp_pic_name = self.name_pic.replace("_", "-")[:10]
+                # img_origin = '%s/img/%s/%s-1.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
+                img_origin = '%s/img/%s/%s-1.jpeg' % (frozen.app_path(), temp_pic_name, self.name_pic)
                 save_img_path_1 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "生成图.jpeg")
                 shutil.copy(img_origin, save_img_path_1)
                 chart_img = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "曲线.jpeg")
-                img_final = '%s/img/%s/%s-2.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
+                # img_final = '%s/img/%s/%s-2.jpeg' % (frozen.app_path(), self.pic_path, self.name_pic)
+                img_final = '%s/img/%s/%s-2.jpeg' % (frozen.app_path(), temp_pic_name, self.name_pic)
                 save_img_path_2 = '%s/cache/picture/%s' % (frozen.app_path(), self.name_pic + "检疫图.jpeg")
                 shutil.copy(img_final, save_img_path_2)
             except Exception as e:

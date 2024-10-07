@@ -24,10 +24,10 @@ class MyReport():
                                     <td>性别：%s</td>\
                                 </tr>\
                                 <tr align="center">\
-                                    <td>样本号：%s</td>\
+                                    <td>试剂卡编号：%s</td>\
                                 </tr>\
                                 <tr align="center">\
-                                    <td>条码号：%s</td>\
+                                    <td>样本条码：%s</td>\
                                 </tr>\
                                 <tr align="center">\
                                     <td>样本类型：%s</td>\
@@ -40,9 +40,9 @@ class MyReport():
                             <table style="font-size:20px;font-family:fangsong;" border="0" width="800" cellspacing="0" align="center">\
                                 <tr align="center">\
                                     <td>过敏原</td>\
-                                    <td>结果</td>\
+                                    <td>类别</td>\
                                     <td>参考值</td>\
-                                    <td>结果解释</td>\
+                                    <td>结果</td>\
                                 </tr>\
                                 %s\
                             </table>\

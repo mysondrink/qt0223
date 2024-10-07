@@ -99,11 +99,13 @@ class ChineseWidget(QListWidget):
         word = 'bafang'
         matching_indices = [index for index, char in enumerate(self.list_pinyin) if char == text]
         for i in range(len(matching_indices)):
-            if self.count() <= 30:
-                str_chr = self.list_hanzi[matching_indices[i]]
-                self.addOneItem(str_chr)
-            else:
-                break
+            str_chr = self.list_hanzi[matching_indices[i]]
+            self.addOneItem(str_chr)
+            # if self.count() <= 40:
+            #     str_chr = self.list_hanzi[matching_indices[i]]
+            #     self.addOneItem(str_chr)
+            # else:
+            #     break
 
     def onItemClicked(self, item) -> bool:
         """

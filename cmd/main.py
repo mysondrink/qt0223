@@ -6,6 +6,7 @@
 import sys
 sys.path.append("..")
 from PySide2.QtWidgets import QApplication
+from PySide2.QtCore import QStorageInfo
 try:
     from view.LoadPage import LoadPage
 except ModuleNotFoundError:

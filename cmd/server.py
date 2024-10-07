@@ -136,18 +136,13 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
             #     radius=40,
             #     list_data=self.readCurveFile()
             # )
-            # if len(result_imgprocess) == 4:
-            #     judge_flag, gray_aver, nature_aver, water = result_imgprocess
-            if len(result_imgprocess) == 3:
-                judge_flag, gray_aver, nature_aver = result_imgprocess
+            if len(result_imgprocess) == 4:
+                judge_flag, gray_aver, nature_aver, water = result_imgprocess
+            # if len(result_imgprocess) == 3:
+            #     judge_flag, gray_aver, nature_aver = result_imgprocess
             else:
                 print("error para!")
                 raise Exception
-            import numpy as np
-            # random_matrix = np.random.randint(2000, high=10001, size=(9, 5))
-            random_matrix = np.random.uniform(2000, 10000, size=(9, 5))
-            rounded_floats = np.round(random_matrix, decimals=3)
-            water = rounded_floats
             if type(judge_flag) is not bool:
                 print("judge_flag type is: ", type(judge_flag))
                 raise Exception
@@ -180,7 +175,7 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
                     # else:
                     #     # concentration_list.append(str(water[i][j]))
                     #     concentration_list.append(f"{water[i][j]:.2f}")
-            allergen_list = [" "] * 5 + insertdb.selectAllergenMatrixInfo(item_type[4:]).split(",")
+            allergen_list = [''] * 5 + insertdb.selectAllergenMatrixInfo(item_type[4:]).split(",")
             # nature_aver_str = ",".join(nature_aver_list)
             # gray_aver_str = ",".join(gray_aver_list)
             # concentration_str = ",".join(concentration_list)
@@ -217,7 +212,11 @@ class ImgProcesser(imgprocess_pb2_grpc.ImgProcesserServicer):
         return [float(item) for item in allergen]
 
     def filterDataFromAllergen(self, origin_data, filter_data):
-        return [i if j == "" else "-1" for i, j in zip(origin_data, filter_data)]
+        special_point = [0, 2,  4, 40, 44]
+        result = [j if j == "" else i for i, j in zip(origin_data, filter_data)]
+        for i in special_point:
+            result[i] = origin_data[i]
+        return result
 
 
 def serve():

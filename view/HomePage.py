@@ -45,7 +45,7 @@ class HomePage(Ui_Form, AbstractPage):
         self.setBtnIcon()
         self.controller = HomePageController()
         self.controller.update_json.connect(self.memWarning)
-        # self.ui.btnSet.setText("  仪器设置")
+        self.ui.btnSet.setText("  检测设置")
 
     def deleteLater(self):
         """
@@ -118,7 +118,7 @@ class HomePage(Ui_Form, AbstractPage):
         if code == 404:
             m_title = "警告"
             m_info = "存储已经占满，请清理图片！"
-            self.showInfo(m_info)
+            self.showInfoDialog(m_info)
             return
         elif code == 202:
             page_msg = 'TestPage'

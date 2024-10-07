@@ -532,3 +532,1507 @@ IndexError: list index out of range
     reagent_time_detail = test_time[1]
 IndexError: list index out of range
 
+2024-04-07 09:58:08,496 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 292, in changePage
+    temp.terminate()
+AttributeError: 'LoginPage' object has no attribute 'terminate'
+
+2024-04-11 10:06:56,490 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:06:56.466088+00:00"}"
+>
+
+2024-04-11 10:06:56,492 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:06:56.466088+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:06:56,492 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:06:56.466088+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:07:06,292 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:07:06.2894172+00:00"}"
+>
+
+2024-04-11 10:07:06,295 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:07:06.2894172+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:07:06,295 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:07:06.2894172+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:07:59,234 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-11 10:07:59,234 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-11 10:08:11,527 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:08:11.5257172+00:00"}"
+>
+
+2024-04-11 10:08:11,530 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:08:11.5257172+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:08:11,530 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:08:11.5257172+00:00"}"
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 64, in run
+    timenow=response.message,
+UnboundLocalError: local variable 'response' referenced before assignment
+
+2024-04-11 10:12:27,835 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-11T02:12:27.8329596+00:00"}"
+>
+
+2024-04-11 10:12:33,684 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-11 10:12:33,684 - LogController.py[line:83] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 13:38:45,426 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-04-12T05:38:45.3847071+00:00"}"
+>
+
+2024-04-12 13:56:00,525 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 13:56:00,525 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 16:21:46,552 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 131, in getData
+    self.drawChart(reagent_matrix_info)
+TypeError: drawChart() takes 1 positional argument but 2 were given
+
+2024-04-12 16:21:46,555 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 131, in getData
+    self.drawChart(reagent_matrix_info)
+TypeError: drawChart() takes 1 positional argument but 2 were given
+
+2024-04-12 16:27:13,137 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+TypeError: drawChart() takes 1 positional argument but 2 were given
+
+2024-04-12 16:27:13,139 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+TypeError: drawChart() takes 1 positional argument but 2 were given
+
+2024-04-12 16:27:44,492 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 243, in drawChart
+    light_points, concentration_matrix = insertdb.getCurvePoints(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\middleware\database.py", line 387, in getCurvePoints
+    _, _, light_matrix, concentration_matrix = cur.fetchall()[0]
+IndexError: list index out of range
+
+2024-04-12 16:27:44,494 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 243, in drawChart
+    light_points, concentration_matrix = insertdb.getCurvePoints(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\middleware\database.py", line 387, in getCurvePoints
+    _, _, light_matrix, concentration_matrix = cur.fetchall()[0]
+IndexError: list index out of range
+
+2024-04-12 16:28:56,158 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 16:28:56,158 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 16:31:56,497 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\..\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-04-12T08:31:56.4851983+00:00", grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+
+2024-04-12 16:33:35,837 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 244, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(light_points, concentration_matrix)
+TypeError: filterCurvePoints() missing 1 required positional argument: 'concentration_info'
+
+2024-04-12 16:33:35,840 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 135, in getData
+    self.drawChart(curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 244, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(light_points, concentration_matrix)
+TypeError: filterCurvePoints() missing 1 required positional argument: 'concentration_info'
+
+2024-04-12 16:33:56,718 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 131, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-12 16:33:56,718 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 131, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-12 16:35:13,267 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 262, in drawChart
+    series_1 << QPointF(*k)
+TypeError: 'PySide2.QtCore.QPointF' called with wrong argument types:
+  PySide2.QtCore.QPointF(str, str)
+Supported signatures:
+  PySide2.QtCore.QPointF()
+  PySide2.QtCore.QPointF(PySide2.QtCore.QPointF)
+  PySide2.QtCore.QPointF(PySide2.QtCore.QPoint)
+  PySide2.QtCore.QPointF(float, float)
+
+2024-04-12 16:35:13,269 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 262, in drawChart
+    series_1 << QPointF(*k)
+TypeError: 'PySide2.QtCore.QPointF' called with wrong argument types:
+  PySide2.QtCore.QPointF(str, str)
+Supported signatures:
+  PySide2.QtCore.QPointF()
+  PySide2.QtCore.QPointF(PySide2.QtCore.QPointF)
+  PySide2.QtCore.QPointF(PySide2.QtCore.QPoint)
+  PySide2.QtCore.QPointF(float, float)
+
+2024-04-12 16:35:31,202 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-12 16:35:31,202 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 169, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-15 17:16:54,697 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 142, in on_btnPer_clicked
+    if self.checkAdminName():
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 155, in checkAdminName
+    settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+NameError: name 'CONFIG_FILE' is not defined
+
+2024-04-15 17:16:54,700 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 142, in on_btnPer_clicked
+    if self.checkAdminName():
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 155, in checkAdminName
+    settings = QSettings(CONFIG_FILE, QSettings.IniFormat)
+NameError: name 'CONFIG_FILE' is not defined
+
+2024-04-15 18:36:42,366 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-15 18:36:53,082 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 09:59:23,857 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:01:01,296 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:01:25,483 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:02:26,731 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:02:58,990 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:05:04,966 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 10:05:04,967 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 10:05:17,378 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:09:04,732 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:10:01,800 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 10:11:15,013 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-04-16 15:09:58,330 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 153, in setLineNum
+    flag = [j.setText(str(i)) for i, j in zip(value[20:], self.paraline_list_2) if i is not None]
+AttributeError: 'CurvePage' object has no attribute 'paraline_list_2'
+
+2024-04-16 15:09:58,333 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 153, in setLineNum
+    flag = [j.setText(str(i)) for i, j in zip(value[20:], self.paraline_list_2) if i is not None]
+AttributeError: 'CurvePage' object has no attribute 'paraline_list_2'
+
+2024-04-16 15:10:24,653 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-16 15:10:24,653 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-16 15:10:35,060 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 155, in setLineNum
+    self.updateChart([i for i in value[:20] if i is not None])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 175, in updateChart
+    if self.myseries is not None:
+AttributeError: 'CurvePage' object has no attribute 'myseries'
+
+2024-04-16 15:10:35,071 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 155, in setLineNum
+    self.updateChart([i for i in value[:20] if i is not None])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\CurvePage.py", line 175, in updateChart
+    if self.myseries is not None:
+AttributeError: 'CurvePage' object has no attribute 'myseries'
+
+2024-04-16 15:10:53,652 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 15:10:53,653 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 15:50:06,042 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 259, in drawChart
+    chart_img = '%s/cache/picture/%s' % (frozen.app_path(), name + "曲线.jpeg")
+NameError: name 'name' is not defined
+
+2024-04-16 15:50:06,046 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 259, in drawChart
+    chart_img = '%s/cache/picture/%s' % (frozen.app_path(), name + "曲线.jpeg")
+NameError: name 'name' is not defined
+
+2024-04-16 15:51:37,132 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-16 15:51:37,136 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-16 15:58:02,051 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 15:58:02,059 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 16:01:50,626 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:50,626 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:55,110 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:55,110 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:55,889 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:55,889 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,046 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,046 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,188 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,188 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,331 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:56,331 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:57,149 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:57,149 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:57,847 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:57,847 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:58,015 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:01:58,015 - LogController.py[line:89] - ERROR: TypeError: getInfo() missing 1 required positional argument: 'msg'
+
+2024-04-16 16:02:04,810 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 16:02:04,810 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-16 16:53:08,028 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 168, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 182, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 105, in gethtml
+    result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 105, in <listcomp>
+    result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
+IndexError: list index out of range
+
+2024-04-16 16:53:08,032 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 168, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 182, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 105, in gethtml
+    result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 105, in <listcomp>
+    result_list_3 = [result_list_1[i] for i in range(len(allergen)) if allergen[i] != ""]
+IndexError: list index out of range
+
+2024-04-16 16:57:22,191 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 168, in getData
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 182, in setTableWidget
+    v = QVBoxLayout()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 115, in gethtml
+    temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 115, in <listcomp>
+    temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+TypeError: not enough arguments for format string
+
+2024-04-16 16:57:22,195 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 168, in getData
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 182, in setTableWidget
+    v = QVBoxLayout()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 115, in gethtml
+    temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 115, in <listcomp>
+    temp_str = "".join([temp % (str(j + 1) + reagent_info_list_3[j], result_list_3[j], result_list_4[j]) for j in range(len(reagent_info_list_3))])
+TypeError: not enough arguments for format string
+
+2024-04-18 14:40:00,994 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-18 14:40:00,995 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-18 15:11:34,509 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\AbstractThread.py", line 69, in HandleException
+    self.log_thread.getLogMsg(err_msg)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 88, in getLogMsg
+    self.error_info.emit()
+RuntimeError: Internal C++ object (LogThread) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 89, in getLogMsg
+    self.logger.error(msg)
+AttributeError: 'NoneType' object has no attribute 'error'
+
+2024-04-18 15:11:34,510 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\AbstractThread.py", line 69, in HandleException
+    self.log_thread.getLogMsg(err_msg)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 88, in getLogMsg
+    self.error_info.emit()
+RuntimeError: Internal C++ object (LogThread) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 89, in getLogMsg
+    self.logger.error(msg)
+AttributeError: 'NoneType' object has no attribute 'error'
+
+2024-04-18 15:11:34,511 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LoadController.py", line 57, in <lambda>
+    self.thread_list[num].finished.connect(lambda: self.thread_list[num].deleteLater())
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\AbstractThread.py", line 42, in deleteLater
+    self.log_thread.deleteLater()
+RuntimeError: Internal C++ object (LogThread) already deleted.
+
+2024-04-19 15:34:09,192 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:34:09,194 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 301, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:34:27,175 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-19 15:34:27,175 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-19 15:36:20,027 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:36:20,031 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:36:59,344 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:36:59,349 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:37:09,375 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-19 15:37:09,376 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-19 15:37:48,831 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 304, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:37:48,835 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 304, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:38:24,408 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 305, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 15:38:24,410 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 305, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-04-19 16:01:47,202 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    flat_lst = [item for sublist in merged_list for item in sublist]
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in <listcomp>
+    flat_lst = [item for sublist in merged_list for item in sublist]
+TypeError: 'int' object is not iterable
+
+2024-04-19 16:01:47,205 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 172, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in showDataView
+    flat_lst = [item for sublist in merged_list for item in sublist]
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 303, in <listcomp>
+    flat_lst = [item for sublist in merged_list for item in sublist]
+TypeError: 'int' object is not iterable
+
+2024-04-22 15:45:25,990 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 143, in getButtonInfo
+    num = int(info)
+ValueError: invalid literal for int() with base 10: '.'
+
+2024-04-22 15:45:25,993 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 143, in getButtonInfo
+    num = int(info)
+ValueError: invalid literal for int() with base 10: '.'
+
+2024-04-22 15:50:33,150 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 154, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'back'
+
+2024-04-22 15:50:33,156 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 154, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'back'
+
+2024-04-22 15:52:02,930 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 158, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'back'
+
+2024-04-22 15:52:02,933 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 158, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'back'
+
+2024-04-22 15:52:20,372 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 158, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'close'
+
+2024-04-22 15:52:20,376 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\third_party\keyboard\mynumkeyboard.py", line 158, in getButtonInfo
+    super().onKeyPressed(list_key[info], info)
+KeyError: 'close'
+
+2024-04-22 15:52:22,753 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-04-22 15:52:22,753 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-04-22 15:57:17,792 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-22 15:57:17,798 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 133, in setTitle
+    def setTitle(self):
+KeyboardInterrupt
+
+2024-04-22 17:16:43,644 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 177, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 192, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 132, in gethtml
+    temp_str = "".join([temp % (
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 135, in <listcomp>
+    result_list_3[j],
+IndexError: list index out of range
+
+2024-04-22 17:16:43,647 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 177, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 192, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 132, in gethtml
+    temp_str = "".join([temp % (
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 135, in <listcomp>
+    result_list_3[j],
+IndexError: list index out of range
+
+2024-04-22 17:17:19,959 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-22 17:17:19,959 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-22 17:18:23,054 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 177, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 192, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 132, in gethtml
+    temp_str = "".join([temp % (
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 135, in <listcomp>
+    result_list_3[j],
+IndexError: list index out of range
+
+2024-04-22 17:18:23,056 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 177, in getData
+    self.setTableWidget(self.data['item_type'], self.allergy_info, self.data['nature_aver_str'], concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 192, in setTableWidget
+    text = MyReport().gethtml(item_type, reagent_info, nature_aver_str, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 132, in gethtml
+    temp_str = "".join([temp % (
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\report.py", line 135, in <listcomp>
+    result_list_3[j],
+IndexError: list index out of range
+
+2024-04-22 17:18:26,298 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-22 17:18:26,298 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-22 17:26:06,697 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+TypeError: showDataView() takes 2 positional arguments but 5 were given
+
+2024-04-22 17:26:06,700 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+TypeError: showDataView() takes 2 positional arguments but 5 were given
+
+2024-04-22 17:26:21,254 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-22 17:26:21,255 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-04-30 11:43:26,468 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\DataPage.py", line 425, in on_btnPrint_clicked
+    if Main.natPrint(Data_Base, Data_Nature, Data_Water, Data_Light):
+TypeError: natPrint() takes 4 positional arguments but 5 were given
+
+2024-04-30 11:43:26,469 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\view\DataPage.py", line 425, in on_btnPrint_clicked
+    if Main.natPrint(Data_Base, Data_Nature, Data_Water, Data_Light):
+TypeError: natPrint() takes 4 positional arguments but 5 were given
+
+2024-05-06 16:58:13,423 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-05-06T08:58:13.307235+00:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"}"
+>
+
+2024-05-07 08:56:44,781 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused", grpc_status:14, created_time:"2024-05-07T00:56:44.7499669+00:00"}"
+>
+
+2024-05-07 11:24:51,635 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 349, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-05-07 11:24:51,638 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 349, in showDataView
+    pix_num = data_copy[i * column + j]
+IndexError: list index out of range
+
+2024-05-07 11:25:43,921 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+TypeError: showDataView() takes 2 positional arguments but 5 were given
+
+2024-05-07 11:25:43,923 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 174, in getData
+    self.showDataView(point_str, reagent_matrix_info, self.data['gray_aver_str'], self.data['item_type'])
+TypeError: showDataView() takes 2 positional arguments but 5 were given
+
+2024-05-07 11:40:59,576 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+KeyError: 'EditPage'
+
+2024-05-07 11:41:40,870 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 425, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 224, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 11:41:40,873 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 425, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 224, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 11:49:12,278 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 26, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 37, in InitUI
+    self.ui.btnSet.setText("   软件更新")
+AttributeError: 'Ui_Form' object has no attribute 'btnSet'
+
+2024-05-07 11:50:11,242 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 26, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 38, in InitUI
+    self.setBtnIcon()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\SysPage.py", line 53, in setBtnIcon
+    self.ui.camera_icon_label.setPixmap(pixImg)
+AttributeError: 'Ui_Form' object has no attribute 'camera_icon_label'
+
+2024-05-07 15:58:03,007 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 15:58:03,010 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 15:59:07,159 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 469, in on_btnDelete_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 15:59:07,161 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 469, in on_btnDelete_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 16:23:45,525 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 16:23:45,527 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-07 16:44:39,884 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:44:53,149 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:46:40,457 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:46:48,335 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:47:38,335 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:47:58,787 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:48:58,678 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:50:06,862 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:50:12,639 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:52:21,587 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:52:26,563 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 16:53:09,385 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 17:34:28,473 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 17:34:36,491 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 17:35:23,279 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 53, in run
+    raise Exception
+Exception
+
+2024-05-07 17:38:23,810 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Deadline Exceeded", grpc_status:4, created_time:"2024-05-07T09:38:23.7976565+00:00"}"
+>
+
+2024-05-07 17:46:20,525 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Deadline Exceeded", grpc_status:4, created_time:"2024-05-07T09:46:20.5239385+00:00"}"
+>
+
+2024-05-10 13:57:21,077 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-10 13:57:21,079 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-10 13:58:30,049 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-10 13:58:30,054 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-10 13:59:47,827 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-10 13:59:47,831 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-11 11:04:21,006 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-11 11:04:21,008 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-11 11:13:59,920 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 34, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 46, in InitUI
+    self.ui.rowCb.addItems(["8x5"])
+AttributeError: 'Ui_Form' object has no attribute 'rowCb'
+
+2024-05-11 11:14:26,533 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-11 11:14:26,533 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-11 11:14:44,933 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-11 11:14:44,937 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 481, in on_btnModify_clicked
+    self.setReagentCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 254, in setReagentCb
+    connection = pymysql.connect(host="127.0.0.1", user="root", password="password", port=3306, database="test",
+NameError: name 'pymysql' is not defined
+
+2024-05-11 11:23:46,646 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 502, in on_btnConfirm_clicked
+    if dict_mode.get(self.ui.rowCb.currentText()) == 1:
+AttributeError: 'Ui_Form' object has no attribute 'rowCb'
+
+2024-05-11 11:23:46,649 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 502, in on_btnConfirm_clicked
+    if dict_mode.get(self.ui.rowCb.currentText()) == 1:
+AttributeError: 'Ui_Form' object has no attribute 'rowCb'
+
+2024-05-11 11:24:54,909 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 499, in on_btnConfirm_clicked
+    self.add_matrix_type = self.ui.rowCb.currentText()
+AttributeError: 'Ui_Form' object has no attribute 'rowCb'
+
+2024-05-11 11:24:54,911 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 499, in on_btnConfirm_clicked
+    self.add_matrix_type = self.ui.rowCb.currentText()
+AttributeError: 'Ui_Form' object has no attribute 'rowCb'
+
+2024-05-11 11:45:50,282 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 560, in on_btnReturn_clicked
+    self.ui.nameLine.text("")
+TypeError: QLineEdit.text() takes no arguments (1 given)
+
+2024-05-11 11:45:50,286 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 560, in on_btnReturn_clicked
+    self.ui.nameLine.text("")
+TypeError: QLineEdit.text() takes no arguments (1 given)
+
+2024-05-11 11:45:59,256 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-11 11:45:59,256 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 322, in showCurrentTime
+    def showCurrentTime(self):
+KeyboardInterrupt
+
+2024-05-11 15:16:58,319 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1176, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\venv\lib\site-packages\grpc\_channel.py", line 1005, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-05-11T07:16:58.2804164+00:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNAVAILABLE: ipv4:127.0.0.1:50051: Connection refused"}"
+>
+
+2024-05-11 15:23:45,228 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 477, in on_btnConfirm_clicked
+    self.setReagentTable(2)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 114, in setReagentTable
+    _lineEdit.setText(result[i * row + j])
+TypeError: 'PySide2.QtWidgets.QLineEdit.setText' called with wrong argument types:
+  PySide2.QtWidgets.QLineEdit.setText(list)
+Supported signatures:
+  PySide2.QtWidgets.QLineEdit.setText(str)
+
+2024-05-11 15:23:45,230 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 477, in on_btnConfirm_clicked
+    self.setReagentTable(2)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\EditPage.py", line 114, in setReagentTable
+    _lineEdit.setText(result[i * row + j])
+TypeError: 'PySide2.QtWidgets.QLineEdit.setText' called with wrong argument types:
+  PySide2.QtWidgets.QLineEdit.setText(list)
+Supported signatures:
+  PySide2.QtWidgets.QLineEdit.setText(str)
+
+2024-05-11 15:39:34,456 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 35, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 68, in InitUI
+    self.setAllergenCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 270, in setAllergenCb
+    allergen_list = allergen_str.split(",")
+AttributeError: 'list' object has no attribute 'split'
+
+2024-05-11 16:13:59,706 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 590, in on_btnConfirm_clicked
+    self.setAllergenTableView()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 222, in setAllergenTableView
+    f = open(path + f_name, "r", encoding="utf-8")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:13:59,709 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 590, in on_btnConfirm_clicked
+    self.setAllergenTableView()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\TestPage.py", line 222, in setAllergenTableView
+    f = open(path + f_name, "r", encoding="utf-8")
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:18:59,062 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 400, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\curve.py", line 18, in filterCurvePoints
+    with open(path + item_type, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:18:59,065 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 400, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\curve.py", line 18, in filterCurvePoints
+    with open(path + item_type, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:22:51,148 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 402, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\curve.py", line 18, in filterCurvePoints
+    with open(path + item_type, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:22:51,150 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 137, in getData
+    self.drawChart(_i, curve_id)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\DataPage.py", line 402, in drawChart
+    fitting_points = MyCurve().filterCurvePoints(item_type, light_points, concentration_matrix)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\util\curve.py", line 18, in filterCurvePoints
+    with open(path + item_type, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\YGS_Tu\\Desktop\\code\\python\\qt0223/res/allergen/x'
+
+2024-05-11 16:23:15,895 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-11 16:23:15,895 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-11 16:31:18,353 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 275, in changePage
+    self.cur_page = globals()[msg]()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 47, in __init__
+    self.InitUI()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 73, in InitUI
+    self.setAllergenCb()
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HistoryPage.py", line 348, in setAllergenCb
+    self.ui.modeBox_1.addItems(allergen_list)
+AttributeError: 'Ui_Form' object has no attribute 'modeBox_1'
+
+2024-05-14 14:58:43,487 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Deadline Exceeded", grpc_status:4, created_time:"2024-05-14T06:58:43.4620331+00:00"}"
+>
+
+2024-05-14 16:06:34,522 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-14 16:06:34,522 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-14 16:07:13,004 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-14 16:07:13,010 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-20 10:47:09,188 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\DBController.py", line 48, in run
+    a = 1/0
+ZeroDivisionError: division by zero
+
+2024-05-20 10:47:31,069 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\AbstractThread.py", line 66, in HandleException
+    self.log_thread.getLogMsg(err_msg)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 88, in getLogMsg
+    self.error_info.emit()
+RuntimeError: Internal C++ object (LogThread) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 89, in getLogMsg
+    self.logger.error(msg)
+AttributeError: 'NoneType' object has no attribute 'error'
+
+2024-05-20 10:47:31,069 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\AbstractThread.py", line 66, in HandleException
+    self.log_thread.getLogMsg(err_msg)
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 88, in getLogMsg
+    self.error_info.emit()
+RuntimeError: Internal C++ object (LogThread) already deleted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\LogController.py", line 89, in getLogMsg
+    self.logger.error(msg)
+AttributeError: 'NoneType' object has no attribute 'error'
+
+2024-05-20 10:47:31,069 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-20 10:57:06,930 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-20 10:57:06,938 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\LoadPage.py", line 171, in blinkIcon
+    def blinkIcon(self):
+KeyboardInterrupt
+
+2024-05-20 10:59:32,409 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\WifiController.py", line 71, in connectWifi
+    if flag == -1:
+UnboundLocalError: local variable 'flag' referenced before assignment
+
+2024-05-20 10:59:41,435 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\controller\WifiController.py", line 71, in connectWifi
+    if flag == -1:
+UnboundLocalError: local variable 'flag' referenced before assignment
+
+2024-05-20 11:00:27,036 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AboutPage.py", line 123, in on_btnUpload_clicked
+    dir_list = os.listdir(u_name)
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: '/mnt/mydev/'
+
+2024-05-20 11:00:27,036 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AboutPage.py", line 123, in on_btnUpload_clicked
+    dir_list = os.listdir(u_name)
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: '/mnt/mydev/'
+
+2024-05-20 11:00:35,242 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 83, in paintEvent
+    def paintEvent(self, event):
+KeyboardInterrupt
+
+2024-05-20 11:00:35,242 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\AbstractDialog.py", line 83, in paintEvent
+    def paintEvent(self, event):
+KeyboardInterrupt
+
+2024-05-23 16:25:34,875 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Deadline Exceeded", grpc_status:4, created_time:"2024-05-23T08:25:34.8558131+00:00"}"
+>
+
+2024-05-23 16:26:58,082 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\cmd\..\controller\PicController.py", line 47, in run
+    response: imgprocess_pb2_grpc.ImgProcesserStub = stub.ImgProcess(
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1160, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Program Files\Python39\lib\site-packages\grpc\_channel.py", line 1003, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2024-05-23T08:26:58.0780048+00:00", grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+
+2024-09-12 09:35:48,075 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HomePage.py", line 121, in memWarning
+    self.showInfo(m_info)
+AttributeError: 'HomePage' object has no attribute 'showInfo'
+
+2024-09-12 09:35:48,075 - LogController.py[line:89] - ERROR: Traceback (most recent call last):
+  File "C:\Users\YGS_Tu\Desktop\code\python\qt0223\view\HomePage.py", line 121, in memWarning
+    self.showInfo(m_info)
+AttributeError: 'HomePage' object has no attribute 'showInfo'
+

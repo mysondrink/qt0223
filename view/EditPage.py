@@ -10,7 +10,7 @@ LINEEDIT_STYLE = "font: 20pt;background-color: rgb(255, 255, 127);"
 try:
     import util.frozen as frozen
     # from func.infoPage import infoMessage
-    from view.TestPage import allergen
+    # from view.TestPage import allergen
     from view.gui.edit import *
     from third_party.keyboard.keyboard import KeyBoard
     from view.AbstractPage import AbstractPage
@@ -18,7 +18,7 @@ try:
 except ModuleNotFoundError:
     import qt0223.util.frozen as frozen
     # from func.infoPage import infoMessage
-    from qt0223.view.TestPage import allergen
+    # from qt0223.view.TestPage import allergen
     from qt0223.view.gui.edit import *
     from qt0223.third_party.keyboard.keyboard import KeyBoard
     from qt0223.view.AbstractPage import AbstractPage
@@ -47,6 +47,7 @@ class EditPage(Ui_Form, AbstractPage):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.ui.stackedWidget.setCurrentIndex(0)
         # self.ui.rowCb.addItems(["8x5"])
+        self.ui.label.setText("检测设置")
         self.resetBtn()
 
         self.setBtnIcon()

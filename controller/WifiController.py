@@ -71,6 +71,7 @@ class WifiThread(AbstractThread):
             if flag == -1:
                 self.update_json.emit(succeed_code)
                 cmd_date = 'echo %s | sudo ntpdate cn.pool.ntp.org' % ('orangepi')
+                cmd_date = 'echo %s | sudo timedatectl' % ('orangepi')
                 result = subprocess.Popen(cmd_date, shell=True)
                 p = result.wait()
                 if p == 0:

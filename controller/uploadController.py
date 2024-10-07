@@ -50,6 +50,7 @@ class UploadThread(AbstractThread):
         id_data = []
         reagent_data = []
         status_data = []
+        type_data = []
         input_table = pd.read_excel(self.file_path, sheet_name="Sheet2")
         input_table_rows = input_table.shape[0]
         # input_table_columns = input_table.shape[1]
@@ -62,7 +63,8 @@ class UploadThread(AbstractThread):
             id_data.append(input_table_rows_values_list[1])
             reagent_data.append(input_table_rows_values_list[-2])
             status_data.append(input_table_rows_values_list[-1])
-        self.insertMysql(id_data, status_data, *self.filterReagentData(reagent_data))
+            type_data.append(input_table_rows_values_list[5])
+        self.insertMysql(id_data, status_data, type_data, *self.filterReagentData(reagent_data))
         # ["序号", "图片名称", "时间", "样本条码", "医生", "类别",
         #  "阵列", "病人名", "病人性别", "病人年龄", "数据", "status"]
         # [id_num, name_pic, cur_time, code_num, doctor, reagent_type,
@@ -94,7 +96,7 @@ class UploadThread(AbstractThread):
             gray_aver_list.append(",".join(str_list))
         return reagent_info_list, points_list, gray_aver_list
 
-    def insertMysql(self, id_list, status_list, reagent_info_list, points_list, gray_aver_list):
+    def insertMysql(self, id_list, status_list, type_list, reagent_info_list, points_list, gray_aver_list):
         """
         进行数据更新
         根据照片名进行数据的更新
@@ -112,12 +114,16 @@ class UploadThread(AbstractThread):
         print("update single spline 2 sqlite")
         for i, j in zip(id_list, range(len(id_list))):
             if status_list[j] == 0:
-                break
+                continue
             flag, concentration_aver_str = self.gray2Conc(points_list[j] + ',' + gray_aver_list[j])
             if flag is not True:
-                break
+                continue
             flag = insertdb.updateSingleConFromUpload(i, points_list[j] + ',' + gray_aver_list[j], concentration_aver_str)
-            nature_aver_temp = self.gray2Nature(concentration_aver_str)
+            if type_list[j][5] in ["A", "B", "C", "D"]:
+                # nature_aver_temp = self.gray2NatureNotCalc(points_list[j] + ',' + gray_aver_list[j])
+                nature_aver_temp = self.gray2NatureNotCalc(concentration_aver_str)
+            else:
+                nature_aver_temp = self.gray2Nature(concentration_aver_str)
             flag1 = insertdb.updateNatureAverFromUpload(i, nature_aver_temp)
         print('新增' + str(sum) + "数据")
         time.sleep(0.5)
@@ -151,7 +157,11 @@ class UploadThread(AbstractThread):
         concentration_list = []
         for i in range(w):
             for j in range(h):
-                if concentration_info[i][j] < 0:
+                if i == 0:
+                    concentration_list.append('')
+                elif (i * w + j) % 2 == 0:
+                    concentration_list.append('')
+                elif concentration_info[i][j] < 0:
                     concentration_list.append('')
                 else:
                     # concentration_list.append(str(water[i][j]))
@@ -189,6 +199,30 @@ class UploadThread(AbstractThread):
                 nature_aver_list.append(result_dict["2"])
             else:
                 nature_aver_list.append(result_dict["1"])
+        result = ",".join(nature_aver_list)
+        return result
+
+    def gray2NatureNotCalc(self, data):
+        # < 0.35: "阴性" "-"
+        # 0.35-3.5: "弱阳性" "+"
+        # 3.5-17.5: "中阳性" "++"
+        # >17.5: "强阳性" "+++"
+        nature_aver_list = []
+        result_dict = {
+            "1": "阴性", "2": "弱阳性", "3": "中阳性", "4": "强阳性"
+        }
+        list1 = data.split(",")
+        list2 = ['-1' if item == '' else item for item in list1]
+        for i in list2:
+            temp = float(i)
+            if temp < 0.35:
+                nature_aver_list.append(result_dict["1"])
+            elif temp < 3.5:
+                nature_aver_list.append(result_dict["2"])
+            elif temp < 17.5:
+                nature_aver_list.append(result_dict["3"])
+            else:
+                nature_aver_list.append(result_dict["4"])
         result = ",".join(nature_aver_list)
         return result
 

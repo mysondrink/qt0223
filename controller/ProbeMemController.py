@@ -38,8 +38,10 @@ class MyProbe(AbstractThread):
             mem_avail = memorystr.bytesAvailable() / (1024 * 1024 * 1024)
             mem_progress = mem_avail / mem_total
             if mem_progress < 0.02:
+                print("failed")
                 self.update_progress.emit(failed_code)
             else:
+                print("succeed")
                 self.update_progress.emit(succeed_code)
         except Exception as e:
             self.update_progress.emit(failed_code)

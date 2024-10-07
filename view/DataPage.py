@@ -203,9 +203,13 @@ class DataPage(Ui_Form, AbstractPage):
         self.myreport = QTextEdit()
         # 姓名，性别，样本号，条码号，样本类型，测试时间，【结果】，打印时间
         # cur_time[0] + ' ' + cur_time[1]
+        # str_list = [self.data['patient_name'], self.data['patient_gender'], self.data['reagent_id'],
+        #             self.data['code_num'], self.data['item_type'],
+        #             self.data['time'][0] + ' ' + self.data['time'][1],
+        #             text[1], '']
         str_list = [self.data['patient_name'], self.data['patient_gender'], self.data['reagent_id'],
-                    self.data['code_num'], self.data['item_type'],
-                    self.data['time'][0] + ' ' + self.data['time'][1],
+                    self.data['code_num'], '检测组合' + self.data['item_type'],
+                    self.data['time'][0],
                     text[1], '']
         self.myreport.setHtml(text[0] % tuple(str_list))
 
@@ -475,8 +479,10 @@ class DataPage(Ui_Form, AbstractPage):
         self.checkUserOperation(False)
         time_now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         test_time = self.test_time
-        Data_Base = [self.data['patient_name'], self.data['patient_gender'], self.data['patient_id'],
-                    self.data['code_num'], '检测组合' + self.data['item_type'], test_time, time_now]
+        # Data_Base = [self.data['patient_name'], self.data['patient_gender'], self.data['patient_id'],
+        #             self.data['code_num'], '检测组合' + self.data['item_type'], test_time, time_now]
+        Data_Base = [self.data['patient_name'], self.data['patient_gender'], self.data['reagent_id'],
+                    self.data['code_num'], '检测组合' + self.data['item_type'], test_time, '']
         gray_aver_str = self.data['gray_aver_str'].split(",")
         nature_aver_str = self.data['nature_aver_str'].split(",")
         _, concentration_matrix = insertdb.getCurvePoints(self.data['name_pic'])

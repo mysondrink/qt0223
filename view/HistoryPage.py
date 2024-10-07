@@ -27,7 +27,7 @@ except ModuleNotFoundError:
     import qt0223.middleware.database as insertdb
 
 page_dict = {'page': 0, 'page_2': 1, 'page_3': 2, 'page_4': 3}
-header_list = ["试剂卡编号", "采样时间",  "病人编号" , "病人姓名"]
+header_list = ["试剂卡编号", "采样时间",  "样本条码", "病人姓名"]
 SQL_PATH = frozen.app_path() + r'/res/db/orangepi-pi.db'
 
 
